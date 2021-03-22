@@ -1,0 +1,701 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+  orientation 0.8946819121964207 -0.30502766562658573 -0.326347053289825 4.657563954416043
+  position 44.51916025081147 371.541577389478 -46.93464319638423
+  follow "vehicle"
+}
+TexturedBackgroundLight {
+}
+TexturedBackground {
+}
+Roundabout {
+  translation 0.67 0 0
+  locked FALSE
+}
+BmwX5Simple {
+  translation 54.4895 0.4 -56.7948
+  rotation 0 1 0 2.35619
+  name "vehicle(1)"
+}
+Roundabout {
+  translation -1.37 0 -117.42
+  name "roundabout(3)"
+  locked FALSE
+}
+Roundabout {
+  translation -40.22 0 -78.69
+  name "roundabout(4)"
+  startRoadsLength [
+    9
+  ]
+  locked FALSE
+}
+Roundabout {
+  translation 120.08 0 -119.402
+  rotation 0 1 0 0.785398
+  name "roundabout(1)"
+  roadNumber 5
+  locked FALSE
+}
+Roundabout {
+  translation 141.227 0 -203.765
+  rotation 0 1 0 1.30899
+  name "roundabout(2)"
+  roadNumber 3
+  locked FALSE
+}
+RoadIntersection {
+  translation 19.65 0 -18.95
+  name "road intersection(1)"
+  startRoadsLength [
+    11
+  ]
+  locked FALSE
+}
+RoadIntersection {
+  translation 58.31 0 -57.63
+  name "road intersection(2)"
+  startRoadsLength [
+    11
+  ]
+  locked FALSE
+}
+RoadIntersection {
+  translation -59.24 0 -59.68
+  name "road intersection(5)"
+  startRoadsLength [
+    8
+  ]
+  locked FALSE
+}
+RoadIntersection {
+  translation -42.73 0 -158.66
+  name "road intersection(6)"
+  startRoadsLength [
+    11
+  ]
+  locked FALSE
+}
+RoadIntersection {
+  translation -81.55 0 -119.77
+  name "road intersection(7)"
+  startRoadsLength [
+    8
+  ]
+  locked FALSE
+}
+RoadIntersection {
+  translation -100.5 0 -100.81
+  name "road intersection(8)"
+  startRoadsLength [
+    12
+  ]
+  locked FALSE
+}
+RoadIntersection {
+  translation 47.15 0 -160.796
+  rotation 0 1 0 0.523598
+  name "road intersection(3)"
+  roadNumber 3
+  startRoadsLength [
+    11
+  ]
+  locked FALSE
+}
+RoadIntersection {
+  translation 29.9087 0 -231.366
+  rotation 0 1 0 -1.5707953071795862
+  name "road intersection(4)"
+  startRoadsLength [
+    11
+  ]
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 29.859 0 -29.1908
+  rotation 0 1 0 2.35619
+  name "road(3)"
+  length 26
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 65.2491 0 12.7902
+  rotation 0 1 0 2.35619
+  name "road(32)"
+  length 35
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 68.5106 0 -67.8391
+  rotation 0 1 0 2.35619
+  name "road(1)"
+  length 61
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 153.902 0 -45.2608
+  rotation 0 1 0 -0.7854053071795866
+  name "road(38)"
+  length 131
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 20.1252 0 -221.472
+  rotation 0 1 0 -0.7854053071795866
+  name "road(6)"
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 75
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 38.1573 0 -217.486
+  rotation 0 1 0 -0.7854053071795866
+  name "road(41)"
+  id "parking"
+  width 24
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 95
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 75.4729 0 -36.3483
+  rotation 0 1 0 -0.7854053071795866
+  name "road(42)"
+  id "parking"
+  width 47
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 48
+  appearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "textures/asphalt/asphalt_base_color.jpg"
+      ]
+      filtering 5
+    }
+    roughnessMap ImageTexture {
+      url [
+        "textures/asphalt/asphalt_roughness.jpg"
+      ]
+      filtering 5
+    }
+    metalness 0
+    normalMap ImageTexture {
+      url [
+        "textures/asphalt/asphalt_normal.png"
+      ]
+      filtering 5
+    }
+    normalMapFactor 1.5
+    occlusionMap ImageTexture {
+      url [
+        "textures/asphalt/asphalt_occlusion.jpg"
+      ]
+      filtering 5
+    }
+  }
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -12.8054 0 -45.8715
+  rotation 0 1 0 -0.7854053071795866
+  name "road(43)"
+  id "parking"
+  width 77
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 19
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 43.7856 0 10.7192
+  rotation 0 1 0 -0.7854053071795866
+  name "road(48)"
+  id "parking"
+  width 69
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 19
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 80.8613 0 2.72203
+  rotation 0 1 0 0.785391
+  name "road(49)"
+  id "parking"
+  width 64
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 14
+  locked FALSE
+}
+StopSign {
+  translation 3.65457 0 -8.7
+  rotation 0 -1 0 1.0472
+}
+GenericTrafficLight {
+  translation -8.45682 0 -3.80428
+  rotation 0 -1 0 -0.7854053071795866
+  state "green"
+}
+StraightRoadSegment {
+  translation 26.0581 0 -84.7348
+  rotation 0 1 0 -0.7854053071795866
+  name "road(46)"
+  id "parking"
+  width 77
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 47
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 64.7439 0 -123.402
+  rotation 0 1 0 -0.7854053071795866
+  name "road(47)"
+  id "parking"
+  width 77
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 47
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 121.614 0 -66.7462
+  rotation 0 1 0 -0.7854053071795866
+  name "road(50)"
+  id "parking"
+  width 68
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 47
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -64.0275 0 -97.0948
+  rotation 0 1 0 -0.7854053071795866
+  name "road(44)"
+  id "parking"
+  width 51
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 19
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -24.9184 0 -136.185
+  rotation 0 1 0 -0.7854053071795866
+  name "road(45)"
+  id "parking"
+  width 51
+  numberOfLanes 1
+  roadBorderHeight 0.1
+  startingRoadBorderWidth 0
+  endingRoadBorderWidth 0
+  length 48
+  locked FALSE
+}
+CommercialBuilding {
+  translation 58.1451 0 -17.6235
+  rotation 0 1 0 0.785398
+}
+CommercialBuilding {
+  translation -5.36729 0 -81.1351
+  rotation 0 1 0 0.785398
+  name "commercial building(1)"
+}
+CommercialBuilding {
+  translation 20.5559 0 -55.2127
+  rotation 0 1 0 0.785398
+  name "commercial building(2)"
+}
+StraightRoadSegment {
+  translation 5.62236 0 -241.471
+  rotation 0 1 0 -0.7854053071795866
+  name "road(35)"
+  length 83
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -52.483 0 -148.864
+  rotation 0 1 0 -0.7854053071795866
+  name "road(24)"
+  length 30
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 48.31 0 -67.6489
+  rotation 0 1 0 -2.3561953071795863
+  name "road(19)"
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 60
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -10.3159 0 -126.284
+  rotation 0 1 0 -2.3561953071795863
+  name "road(22)"
+  length 32
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -51.9241 0 -90.186
+  rotation 0 1 0 -2.3561953071795863
+  name "road(23)"
+  length 31
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 29.3501 0 -9.19468
+  rotation 0 1 0 0.785397
+  name "road(30)"
+  length 31
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 9.50825 0 8.86473
+  rotation 0 1 0 0.785397
+  name "road(40)"
+  length 54
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 68.0252 0 -47.8698
+  rotation 0 1 0 0.785397
+  name "road(31)"
+  length 31
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -66.2967 0 -66.691
+  rotation 0 1 0 -2.3561953071795863
+  name "road(25)"
+  length 33
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 9.61197 0 -28.951
+  rotation 0 1 0 -2.3561953071795863
+  name "road(21)"
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 54
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 34.1546 0 -152.916
+  rotation 0 1 0 -0.7854053071795866
+  name "road(18)"
+  length 38
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -10.3164 0 -108.475
+  rotation 0 1 0 -0.7854053071795866
+  name "road(20)"
+  length 26
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 132.262 0 -212.725
+  rotation 0 1 0 -2.3561953071795863
+  name "road(9)"
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 76
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 65.2714 0 -266.774
+  rotation 0 -1 0 0.785399
+  name "road(12)"
+  length 36
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 44.1658 0 -217.174
+  rotation 0 1 0 -2.3561953071795863
+  name "road(16)"
+  length 6
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 47.0503 0 -172.394
+  rotation 0 1 0 3.14159
+  name "road(13)"
+  length 38
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 109.318 0 -124.852
+  rotation 0 -1 0 2.0944
+  name "road(10)"
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 60
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 125.73 0 -108.375
+  rotation 0 -1 0 -0.523595307179586
+  name "road(2)"
+  length 60
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 132.468 0 -121.381
+  rotation 0 1 0 1.83259
+  name "road(4)"
+  length 103
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 153.126 0 -206.931
+  rotation 0 1 0 1.83259
+  name "road(8)"
+  length 60
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 223.302 0 -215.522
+  rotation 0 1 0 0.261793
+  name "road(27)"
+  length 58
+  locked FALSE
+}
+StraightRoadSegment {
+  translation 121.807 0 -131.292
+  rotation 0 -1 0 -2.8797853071795863
+  name "road(5)"
+  length 63
+  locked FALSE
+}
+StraightRoadSegment {
+  translation -8.52384 0 -9.02604
+  rotation 0 1 0 -2.3561953071795863
+  name "road(7)"
+  rightBarrier TRUE
+  leftBarrier TRUE
+  length 61
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 71.6412 0 -259.057
+  rotation 0 1 0 2.35619
+  name "road(11)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 12.6189 0 -234.428
+  rotation 0 1 0 2.35619
+  name "road(34)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation -45.8521 0 -175.991
+  rotation 0 1 0 -2.3561953071795863
+  name "road(36)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 213.665 0 -212.871
+  rotation 0 -1 0 -1.8325953071795862
+  name "road(26)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 228.558 0 -157.479
+  rotation 0 -1 0 -0.261795307179586
+  name "road(28)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 54.65 0 39.8877
+  rotation 0 1 0 -0.7854053071795866
+  name "road(39)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 146.679 0 -52.1013
+  rotation 0 1 0 0.523595
+  name "road(37)"
+  totalAngle 1.3
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 82.7655 0 -18.9596
+  rotation 0 1 0 0.785394
+  name "road(29)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 58.2197 0 5.58464
+  rotation 0 1 0 -0.7854053071795866
+  name "road(33)"
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 37.0255 0 -210.111
+  rotation 0 1 0 0.523595
+  name "road(14)"
+  totalAngle 0.5
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 37.0255 0 -210.111
+  rotation 0 1 0 0.785394
+  name "road(15)"
+  totalAngle 0.5
+  locked FALSE
+}
+CurvedRoadSegment {
+  translation 41.1328 0 -145.739
+  rotation 0 -1 0 -2.356185307179586
+  name "road(17)"
+  totalAngle 0.25
+  locked FALSE
+}
+WorkBarrier {
+  translation -5.73458 0 5.23954
+  rotation 0 1 0 2.3562
+}
+WorkBarrier {
+  translation -6.92951 0 4.04461
+  rotation 0 1 0 2.3562
+  name "work barrier(3)"
+}
+WorkBarrier {
+  translation 8.9729 0.29 4.56073
+  rotation 0 1 0 -2.356185307179586
+  name "work barrier(4)"
+}
+WorkBarrier {
+  translation 7.84867 0.29 5.68496
+  rotation 0 1 0 -2.356185307179586
+  name "work barrier(5)"
+}
+WorkBarrier {
+  translation 6.49107 0.29 7.04257
+  rotation 0 1 0 -2.356185307179586
+  name "work barrier(6)"
+}
+WorkBarrier {
+  translation 5.2962 0.29 8.23743
+  rotation 0 1 0 -2.356185307179586
+  name "work barrier(7)"
+}
+WorkBarrier {
+  translation -4.41239 0 6.54767
+  rotation 0 1 0 -0.785395307179586
+  name "work barrier(2)"
+}
+WorkBarrier {
+  translation -3.30221 0 7.72863
+  rotation 0 1 0 -0.785395307179586
+  name "work barrier(1)"
+}
+TeslaModel3Simple {
+  translation 8.78248 0.4 -5.69938
+  rotation 0 -1 0 -2.3561953071795863
+}
+FastFoodRestaurant {
+  translation 5.60909 0 -149.293
+  rotation 0 1 0 2.35619
+  height 20
+  length 20
+  width 19
+}
+UBuilding {
+  translation 113.714 0 -49.807
+  rotation 0 1 0 0.785398
+}
+TheThreeTowers {
+  translation 54.5431 0 -109.344
+  rotation 0 -1 0 0.785395
+}
+RandomBuilding {
+  translation -43.32 0 -118.7
+  rotation 0 1 0 0.785398
+  floorNumber 5
+}
+LargeResidentialTower {
+  translation 160.086 0 -150.095
+  rotation 0 1 0 0.261799
+  numberOfFloors 10
+}
+LargeResidentialTower {
+  translation 161.253 0 -184.051
+  rotation 0 1 0 0.261799
+  name "residential tower(3)"
+  numberOfFloors 10
+}
+LargeResidentialTower {
+  translation 210.482 0 -163.587
+  rotation 0 1 0 0.261799
+  name "residential tower(1)"
+  numberOfFloors 10
+}
+LargeResidentialTower {
+  translation 202.066 0 -195.095
+  rotation 0 1 0 0.261799
+  name "residential tower(2)"
+  numberOfFloors 10
+}
+Warehouse {
+  translation 29.0699 0 9.57016
+  rotation 0 1 0 -0.785395307179586
+}
+RectangleArena {
+  translation 86.9237 -1 -120.415
+  rotation 0 1 0 0.785398
+  floorSize 350 350
+  floorAppearance PBRAppearance {
+    baseColorMap ImageTexture {
+      url [
+        "C:/Users/adrian/Documents/Semestr_6/ISA/grass.png"
+      ]
+    }
+    roughness 1
+    roughnessMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_roughness.jpg"
+      ]
+    }
+    metalness 0
+    normalMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_normal.jpg"
+      ]
+    }
+    occlusionMap ImageTexture {
+      url [
+        "textures/parquetry/chequered_parquetry_occlusion.jpg"
+      ]
+    }
+  }
+}
