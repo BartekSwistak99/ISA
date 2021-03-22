@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.8946819121964207 -0.30502766562658573 -0.326347053289825 4.657563954416043
-  position 44.51916025081147 371.541577389478 -46.93464319638423
+  orientation 0.9983430733664037 -0.017929227081661166 -0.054677698173731776 5.26764919849774
+  position 67.49564897224124 150.7528131821024 -80.97884890984596
   follow "vehicle"
 }
 TexturedBackgroundLight {
@@ -14,6 +14,19 @@ TexturedBackground {
 Roundabout {
   translation 0.67 0 0
   locked FALSE
+}
+StopSign {
+  translation 4.01552 -2.58009e-07 -8.81503
+  rotation -1.98807e-08 -1 -1.5255e-08 0.785411
+  name "stop sign(1)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
 }
 BmwX5Simple {
   translation 54.4895 0.4 -56.7948
@@ -25,6 +38,19 @@ Roundabout {
   name "roundabout(3)"
   locked FALSE
 }
+StopSign {
+  translation 127.57 -3.31262e-06 -113.374
+  rotation 9.5898e-09 1 -2.5696e-09 -2.618025307179586
+  name "stop sign(10)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
 Roundabout {
   translation -40.22 0 -78.69
   name "roundabout(4)"
@@ -33,6 +59,66 @@ Roundabout {
   ]
   locked FALSE
 }
+StopSign {
+  translation -31.3894 -3.08842e-07 -75.4398
+  rotation 1.02911e-08 1 -1.35487e-09 -2.3562253071795864
+  name "stop sign(5)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+Roundabout {
+  translation -40.22 0 -78.69
+  name "roundabout(5)"
+  startRoadsLength [
+    9
+  ]
+  locked FALSE
+}
+StopSign {
+  translation -10.0187 -1.09627e-06 -120.54
+  rotation 3.27098e-09 -1 2.48455e-08 -0.7853753071795859
+  name "stop sign(9)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation 7.38241 -1.32459e-06 -114.213
+  rotation 1.02911e-08 1 -1.35487e-09 -2.3562253071795864
+  name "stop sign(8)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation -37.0816 -3.28143e-07 -87.3119
+  rotation 1.98803e-08 1 1.52546e-08 -0.7854253071795858
+  name "stop sign(4)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
 Roundabout {
   translation 120.08 0 -119.402
   rotation 0 1 0 0.785398
@@ -40,12 +126,64 @@ Roundabout {
   roadNumber 5
   locked FALSE
 }
+StopSign {
+  translation 110.929 -3.0977e-06 -119.776
+  rotation -1.63366e-14 1 -1.91801e-08 1.04717
+  name "stop sign(13)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation 117.461 -3.28898e-06 -128.408
+  rotation -4.47212e-08 -1 -5.82817e-08 0.261828
+  name "stop sign(12)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation 127.903 -3.42595e-06 -124.629
+  rotation 1.45536e-08 1 6.02828e-09 -1.3090253071795859
+  name "stop sign(11)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
 Roundabout {
   translation 141.227 0 -203.765
   rotation 0 1 0 1.30899
   name "roundabout(2)"
   roadNumber 3
   locked FALSE
+}
+StopSign {
+  translation 132.337 -4.29082e-06 -207.139
+  rotation 3.27103e-09 -1 2.48457e-08 -0.7853753071795859
+  name "stop sign(16)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
 }
 RoadIntersection {
   translation 19.65 0 -18.95
@@ -55,6 +193,30 @@ RoadIntersection {
   ]
   locked FALSE
 }
+GenericTrafficLight {
+  translation 64.3015 0 -57.2785
+  rotation 0 -1 0 2.35621
+  name "generic traffic light(4)"
+  state "green"
+}
+GenericTrafficLight {
+  translation 25.4723 0 -18.6511
+  rotation 0 -1 0 2.35621
+  name "generic traffic light(3)"
+  state "green"
+}
+GenericTrafficLight {
+  translation 13.8746 0 -19.1455
+  rotation 0 1 0 0.785391
+  name "generic traffic light(2)"
+  state "green"
+}
+GenericTrafficLight {
+  translation 19.8135 0 -24.6335
+  rotation 0 1 0 -0.7854053071795866
+  name "generic traffic light(1)"
+  state "green"
+}
 RoadIntersection {
   translation 58.31 0 -57.63
   name "road intersection(2)"
@@ -62,6 +224,30 @@ RoadIntersection {
     11
   ]
   locked FALSE
+}
+GenericTrafficLight {
+  translation -48.5852 0 -159.052
+  rotation 0 1 0 0.785383
+  name "generic traffic light(8)"
+  state "red"
+}
+GenericTrafficLight {
+  translation 57.9194 0 -51.7253
+  rotation 0 1 0 2.35618
+  name "generic traffic light(7)"
+  state "green"
+}
+GenericTrafficLight {
+  translation 58.8731 0 -63.5705
+  rotation 0 1 0 -0.7854153071795862
+  name "generic traffic light(6)"
+  state "orange"
+}
+GenericTrafficLight {
+  translation 52.6066 0 -57.8582
+  rotation 0 1 0 0.785383
+  name "generic traffic light(5)"
+  state "green"
 }
 RoadIntersection {
   translation -59.24 0 -59.68
@@ -78,6 +264,30 @@ RoadIntersection {
     11
   ]
   locked FALSE
+}
+GenericTrafficLight {
+  translation 35.903 0 -230.935
+  rotation 0 1 0 -2.3562053071795863
+  name "generic traffic light(12)"
+  state "green"
+}
+GenericTrafficLight {
+  translation -42.9699 0 -152.754
+  rotation 0 1 0 2.35618
+  name "generic traffic light(11)"
+  state "green"
+}
+GenericTrafficLight {
+  translation -42.5661 0 -164.358
+  rotation 0 1 0 -0.7854153071795862
+  name "generic traffic light(10)"
+  state "green"
+}
+GenericTrafficLight {
+  translation -36.7899 0 -158.361
+  rotation 0 1 0 -2.3562053071795863
+  name "generic traffic light(9)"
+  state "green"
 }
 RoadIntersection {
   translation -81.55 0 -119.77
@@ -113,6 +323,24 @@ RoadIntersection {
     11
   ]
   locked FALSE
+}
+GenericTrafficLight {
+  translation 30.2504 0.01 -237.192
+  rotation 0 1 0 -0.7854153071795862
+  name "generic traffic light(15)"
+  state "green"
+}
+GenericTrafficLight {
+  translation 23.9357 0 -231.929
+  rotation 0 -1 0 -0.7853853071795864
+  name "generic traffic light(14)"
+  state "red"
+}
+GenericTrafficLight {
+  translation 29.4987 0 -225.524
+  rotation 0 1 0 2.35618
+  name "generic traffic light(13)"
+  state "green"
 }
 StraightRoadSegment {
   translation 29.859 0 -29.1908
@@ -219,6 +447,32 @@ StraightRoadSegment {
   length 19
   locked FALSE
 }
+StopSign {
+  translation -48.819 -7.97325e-08 -81.7395
+  rotation 3.27098e-09 -1 2.48455e-08 -0.7853753071795859
+  name "stop sign(3)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation -43.8907 -4.40791e-08 -69.4861
+  rotation 6.31894e-09 1 -8.23501e-09 2.35618
+  name "stop sign(2)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
 StraightRoadSegment {
   translation 43.7856 0 10.7192
   rotation 0 1 0 -0.7854053071795866
@@ -244,15 +498,6 @@ StraightRoadSegment {
   endingRoadBorderWidth 0
   length 14
   locked FALSE
-}
-StopSign {
-  translation 3.65457 0 -8.7
-  rotation 0 -1 0 1.0472
-}
-GenericTrafficLight {
-  translation -8.45682 0 -3.80428
-  rotation 0 -1 0 -0.7854053071795866
-  state "green"
 }
 StraightRoadSegment {
   translation 26.0581 0 -84.7348
@@ -318,6 +563,19 @@ StraightRoadSegment {
   endingRoadBorderWidth 0
   length 48
   locked FALSE
+}
+StopSign {
+  translation 1.76081 -1.34572e-06 -126.158
+  rotation 1.98803e-08 1 1.52546e-08 -0.7854253071795858
+  name "stop sign(6)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
 }
 CommercialBuilding {
   translation 58.1451 0 -17.6235
@@ -698,4 +956,73 @@ RectangleArena {
       ]
     }
   }
+}
+StopSign {
+  translation 148.317 -4.58153e-06 -209.717
+  rotation -1.45537e-08 -1 -6.02831e-09 1.30902
+  name "stop sign(17)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation 142.76 -4.3436e-06 -194.572
+  rotation 7.67378e-09 1 -5.88831e-09 2.87977
+  name "stop sign(15)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation 116.964 -3.11145e-06 -110.765
+  rotation 6.31894e-09 1 -8.23502e-09 2.35617
+  name "stop sign(14)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation -4.78747 -1.06622e-06 -108.361
+  rotation 6.31891e-09 1 -8.235e-09 2.35617
+  name "stop sign(7)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation -8.33 0 -3.3
+  rotation -3.27089e-09 1 -2.48449e-08 0.785395
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+GenericTrafficLight {
+  translation 19.14 0 -12.96
+  rotation 0 1 0 2.35619
+  state "green"
 }
