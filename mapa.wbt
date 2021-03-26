@@ -3,9 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.9983430733664037 -0.017929227081661166 -0.054677698173731776 5.26764919849774
-  position 67.49564897224124 150.7528131821024 -80.97884890984596
-  follow "vehicle"
+  orientation 0.5350184721401188 0.8016218613870811 0.2667538674793007 5.202582580128266
+  position -55.015111132578 25.064702065559676 -139.94410620450887
 }
 TexturedBackgroundLight {
 }
@@ -229,7 +228,7 @@ GenericTrafficLight {
   translation -48.5852 0 -159.052
   rotation 0 1 0 0.785383
   name "generic traffic light(8)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 57.9194 0 -51.7253
@@ -241,7 +240,7 @@ GenericTrafficLight {
   translation 58.8731 0 -63.5705
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(6)"
-  state "orange"
+  state "green"
 }
 GenericTrafficLight {
   translation 52.6066 0 -57.8582
@@ -334,7 +333,7 @@ GenericTrafficLight {
   translation 23.9357 0 -231.929
   rotation 0 -1 0 -0.7853853071795864
   name "generic traffic light(14)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 29.4987 0 -225.524
@@ -391,7 +390,6 @@ StraightRoadSegment {
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
   length 95
-  locked FALSE
 }
 StraightRoadSegment {
   translation 75.4729 0 -36.3483
@@ -877,10 +875,6 @@ WorkBarrier {
   rotation 0 1 0 -0.785395307179586
   name "work barrier(1)"
 }
-TeslaModel3Simple {
-  translation 8.78248 0.4 -5.69938
-  rotation 0 -1 0 -2.3561953071795863
-}
 FastFoodRestaurant {
   translation 5.60909 0 -149.293
   rotation 0 1 0 2.35619
@@ -927,35 +921,6 @@ LargeResidentialTower {
 Warehouse {
   translation 29.0699 0 9.57016
   rotation 0 1 0 -0.785395307179586
-}
-RectangleArena {
-  translation 86.9237 -1 -120.415
-  rotation 0 1 0 0.785398
-  floorSize 350 350
-  floorAppearance PBRAppearance {
-    baseColorMap ImageTexture {
-      url [
-        "C:/Users/adrian/Documents/Semestr_6/ISA/grass.png"
-      ]
-    }
-    roughness 1
-    roughnessMap ImageTexture {
-      url [
-        "textures/parquetry/chequered_parquetry_roughness.jpg"
-      ]
-    }
-    metalness 0
-    normalMap ImageTexture {
-      url [
-        "textures/parquetry/chequered_parquetry_normal.jpg"
-      ]
-    }
-    occlusionMap ImageTexture {
-      url [
-        "textures/parquetry/chequered_parquetry_occlusion.jpg"
-      ]
-    }
-  }
 }
 StopSign {
   translation 148.317 -4.58153e-06 -209.717
@@ -1025,4 +990,86 @@ GenericTrafficLight {
   translation 19.14 0 -12.96
   rotation 0 1 0 2.35619
   state "green"
+}
+DEF GROUND_SHAPE Solid {
+  translation 0 -0.04 0
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.8 0.8 0.8
+        baseColorMap ImageTexture {
+          url [
+            "C:/Users/adrian/Documents/Semestr_6/ISA/grass.png"
+          ]
+        }
+        roughness 0.5
+        metalness 0
+        textureTransform TextureTransform {
+          scale 500 500
+        }
+      }
+      geometry DEF GROUND_PLANE Plane {
+        size 2000 2000
+      }
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE GROUND_PLANE
+  locked TRUE
+}
+DEF GROUND Solid {
+  translation 0 0.3 0
+  boundingObject DEF GROUND_PLANE Plane {
+    size 2000 2000
+  }
+  locked TRUE
+}
+DEF Car BmwX5 {
+  hidden translation_1 0 0 0
+  hidden rotation_1 -0.0004292504804540707 0.9999991668685877 0.0012173767517421577 3.819575549074127
+  hidden translation_2 0 0 0
+  hidden rotation_2 -0.0007456638640258772 0.999998978726207 -0.0012192341631073848 2.0438065808460952
+  hidden translation_3 0 0 0
+  hidden rotation_3 0 1 0 2.898429952388428
+  hidden translation_4 0 0 0
+  hidden rotation_4 0 0.9999999999999999 0 2.887069450717361
+  translation -30.678530030772496 0.27421018612394066 -157.66007487084406
+  rotation -0.004219366515213316 0.9999379855975935 0.010306401177776137 2.3643075833118954
+  controller "AckermannVehicleController"
+  sensorsSlotTop [
+    Camera {
+      translation 0 -0.05 -0.72
+      children [
+        Transform {
+          translation 0 0 0.05
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+  ]
+  sensorsSlotCenter [
+    GPS {
+    }
+    Gyro {
+    }
+    Display {
+      width 200
+      height 150
+    }
+  ]
 }
