@@ -3,8 +3,9 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.5350184721401188 0.8016218613870811 0.2667538674793007 5.202582580128266
-  position -55.015111132578 25.064702065559676 -139.94410620450887
+  orientation -0.5749236198348621 -0.8053949872057554 -0.14422810384879922 1.0157273277778196
+  position -79.4789739073847 53.04044790233042 -116.00035296380571
+  follow "Tractor"
 }
 TexturedBackgroundLight {
 }
@@ -391,60 +392,6 @@ StraightRoadSegment {
   endingRoadBorderWidth 0
   length 95
 }
-StraightRoadSegment {
-  translation 75.4729 0 -36.3483
-  rotation 0 1 0 -0.7854053071795866
-  name "road(42)"
-  id "parking"
-  width 47
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 48
-  appearance PBRAppearance {
-    baseColorMap ImageTexture {
-      url [
-        "textures/asphalt/asphalt_base_color.jpg"
-      ]
-      filtering 5
-    }
-    roughnessMap ImageTexture {
-      url [
-        "textures/asphalt/asphalt_roughness.jpg"
-      ]
-      filtering 5
-    }
-    metalness 0
-    normalMap ImageTexture {
-      url [
-        "textures/asphalt/asphalt_normal.png"
-      ]
-      filtering 5
-    }
-    normalMapFactor 1.5
-    occlusionMap ImageTexture {
-      url [
-        "textures/asphalt/asphalt_occlusion.jpg"
-      ]
-      filtering 5
-    }
-  }
-  locked FALSE
-}
-StraightRoadSegment {
-  translation -12.8054 0 -45.8715
-  rotation 0 1 0 -0.7854053071795866
-  name "road(43)"
-  id "parking"
-  width 77
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 19
-  locked FALSE
-}
 StopSign {
   translation -48.819 -7.97325e-08 -81.7395
   rotation 3.27098e-09 -1 2.48455e-08 -0.7853753071795859
@@ -470,97 +417,6 @@ StopSign {
       ]
     }
   ]
-}
-StraightRoadSegment {
-  translation 43.7856 0 10.7192
-  rotation 0 1 0 -0.7854053071795866
-  name "road(48)"
-  id "parking"
-  width 69
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 19
-  locked FALSE
-}
-StraightRoadSegment {
-  translation 80.8613 0 2.72203
-  rotation 0 1 0 0.785391
-  name "road(49)"
-  id "parking"
-  width 64
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 14
-  locked FALSE
-}
-StraightRoadSegment {
-  translation 26.0581 0 -84.7348
-  rotation 0 1 0 -0.7854053071795866
-  name "road(46)"
-  id "parking"
-  width 77
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 47
-  locked FALSE
-}
-StraightRoadSegment {
-  translation 64.7439 0 -123.402
-  rotation 0 1 0 -0.7854053071795866
-  name "road(47)"
-  id "parking"
-  width 77
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 47
-  locked FALSE
-}
-StraightRoadSegment {
-  translation 121.614 0 -66.7462
-  rotation 0 1 0 -0.7854053071795866
-  name "road(50)"
-  id "parking"
-  width 68
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 47
-  locked FALSE
-}
-StraightRoadSegment {
-  translation -64.0275 0 -97.0948
-  rotation 0 1 0 -0.7854053071795866
-  name "road(44)"
-  id "parking"
-  width 51
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 19
-  locked FALSE
-}
-StraightRoadSegment {
-  translation -24.9184 0 -136.185
-  rotation 0 1 0 -0.7854053071795866
-  name "road(45)"
-  id "parking"
-  width 51
-  numberOfLanes 1
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
-  length 48
-  locked FALSE
 }
 StopSign {
   translation 1.76081 -1.34572e-06 -126.158
@@ -1018,24 +874,16 @@ DEF GROUND_SHAPE Solid {
   locked TRUE
 }
 DEF GROUND Solid {
-  translation 0 0.3 0
+  translation 0 0.1 0
   boundingObject DEF GROUND_PLANE Plane {
     size 2000 2000
   }
   locked TRUE
 }
 DEF Car BmwX5 {
-  hidden translation_1 0 0 0
-  hidden rotation_1 -0.0004292504804540707 0.9999991668685877 0.0012173767517421577 3.819575549074127
-  hidden translation_2 0 0 0
-  hidden rotation_2 -0.0007456638640258772 0.999998978726207 -0.0012192341631073848 2.0438065808460952
-  hidden translation_3 0 0 0
-  hidden rotation_3 0 1 0 2.898429952388428
-  hidden translation_4 0 0 0
-  hidden rotation_4 0 0.9999999999999999 0 2.887069450717361
-  translation -30.678530030772496 0.27421018612394066 -157.66007487084406
-  rotation -0.004219366515213316 0.9999379855975935 0.010306401177776137 2.3643075833118954
-  controller "AckermannVehicleController"
+  translation -29.67101534524877 0.12998824592489538 -158.67435469787043
+  rotation -0.005279470578253055 0.999903030205309 0.012886325180376804 2.3567997822994418
+  name "BMW"
   sensorsSlotTop [
     Camera {
       translation 0 -0.05 -0.72
@@ -1070,6 +918,45 @@ DEF Car BmwX5 {
     Display {
       width 200
       height 150
+    }
+  ]
+}
+DEF CarTractor Tractor {
+  translation -24.1503 0.710219 -149.939
+  rotation 0.0732970862533226 0.993807813613936 -0.08350788433831403 2.36588
+  name "Tractor"
+  sensorSlot [
+    Camera {
+      translation -8.630814e-10 0.97344943 1.9889894
+      rotation -3.592801893310027e-10 0.9971888181431856 -0.07492970686047722 3.1415926
+      children [
+        Transform {
+          translation 0 0 0.05
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
+    SickLms291 {
+      translation -2.4859527e-10 0.57400942 2.311692
+      rotation 0 0.9975390707399396 -0.07011278305200722 3.1415926
+    }
+    GPS {
+    }
+    Gyro {
     }
   ]
 }
