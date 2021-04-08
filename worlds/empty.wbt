@@ -1,0 +1,11 @@
+#VRML_SIM R2021a utf8
+WorldInfo {
+  coordinateSystem "NUE"
+}
+Viewpoint {
+}
+Background {
+  skyColor [
+    0.4 0.7 1
+  ]
+}
