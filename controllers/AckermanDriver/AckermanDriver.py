@@ -23,16 +23,25 @@ class AckermannVehicleDriver():
         self.speed: float = 2.0
         self.max_speed: float = 50.0
         self.steering_angle: float = 0.0
-        self.max_steering_angle: float = 0.75
-      
+        self.max_steering_angle: float = 0.5
+    
+    def _get_sign(self, num: float) -> int:
+        return -1 if num <= 0.0 else 1
+
     def _set_steering_angle(self, angle: float):
+        sign = self._get_sign(self.steering_angle)
+
         self.steering_angle += angle
         if self.steering_angle >= self.max_steering_angle:
             self.steering_angle = self.max_steering_angle
         if self.steering_angle <= -self.max_steering_angle:
             self.steering_angle = -self.max_steering_angle
-            
-        self.driver.setSteeringAngle(angle)
+        
+        if sign == self._get_sign(self.steering_angle):
+            self.driver.setSteeringAngle(self.steering_angle)
+        else: 
+            self.driver.setSteeringAngle(0.0)
+
         
     def _set_speed(self, acceleration: float):
         self.speed += acceleration
