@@ -3,9 +3,9 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.5749236198348621 -0.8053949872057554 -0.14422810384879922 1.0157273277778196
-  position -79.4789739073847 53.04044790233042 -116.00035296380571
-  follow "Tractor"
+  orientation -0.7855378290604599 0.61787160297528 0.034132116133307924 1.2216022558760244
+  position 9.219245452508416 14.629675894017828 5.036555802625056
+  follow "vehicle(1)"
 }
 TexturedBackgroundLight {
 }
@@ -27,11 +27,6 @@ StopSign {
       ]
     }
   ]
-}
-BmwX5Simple {
-  translation 54.4895 0.4 -56.7948
-  rotation 0 1 0 2.35619
-  name "vehicle(1)"
 }
 Roundabout {
   translation -1.37 0 -117.42
@@ -391,6 +386,29 @@ StraightRoadSegment {
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
   length 95
+}
+BmwX5 {
+  hidden position_0_0 0.26359306958598544
+  hidden position2_0_0 7786.816561814844
+  hidden position_0_1 0.3066153015099862
+  hidden position2_0_1 7786.612542945532
+  hidden position_0_2 5835.949661135696
+  hidden position_0_3 5835.748627457023
+  hidden position_0_9 0.10016790389462117
+  hidden translation_1 0 0 0
+  hidden rotation_1 -0.08874903409930686 -0.9874156424403391 -0.13089674560726375 4.3214821885891155
+  hidden translation_2 0 0 0
+  hidden rotation_2 0.12701944199559737 0.98026660750628 -0.15147091986006977 4.517647491917166
+  hidden translation_3 0 0 0
+  hidden rotation_3 0 1 0 5.15369607304001
+  hidden translation_4 0 0 0
+  hidden rotation_4 0 -1 0 4.952662394366598
+  hidden translation_20 0.20082533450443352 -0.030921218479195267 -0.027547994645101603
+  hidden rotation_20 0 -0.6652060421485012 0.7466598432279096 0.1001679038946198
+  translation -3.4833 0.390821 -3.82069
+  rotation 0.0040810738842045014 0.9999388019856728 0.010282855605773076 -2.402337668303799
+  name "vehicle(1)"
+  controller "AckermannVehicleController"
 }
 StopSign {
   translation -48.819 -7.97325e-08 -81.7395
@@ -874,56 +892,29 @@ DEF GROUND_SHAPE Solid {
   locked TRUE
 }
 DEF GROUND Solid {
-  translation 0 0.1 0
+  translation 0 0.31 0
   boundingObject DEF GROUND_PLANE Plane {
     size 2000 2000
   }
   locked TRUE
 }
-DEF Car BmwX5 {
-  translation -29.67101534524877 0.12998824592489538 -158.67435469787043
-  rotation -0.005279470578253055 0.999903030205309 0.012886325180376804 2.3567997822994418
-  name "BMW"
-  sensorsSlotTop [
-    Camera {
-      translation 0 -0.05 -0.72
-      children [
-        Transform {
-          translation 0 0 0.05
-          rotation 1 0 0 1.5708
-          children [
-            Shape {
-              appearance PBRAppearance {
-                baseColor 0.8 0.8 0.8
-                roughness 1
-                metalness 0
-              }
-              geometry Cylinder {
-                height 0.1
-                radius 0.04
-              }
-            }
-          ]
-        }
-      ]
-      fieldOfView 1
-      width 128
-    }
-  ]
-  sensorsSlotCenter [
-    GPS {
-    }
-    Gyro {
-    }
-    Display {
-      width 200
-      height 150
-    }
-  ]
-}
 DEF CarTractor Tractor {
-  translation -24.1503 0.710219 -149.939
-  rotation 0.0732970862533226 0.993807813613936 -0.08350788433831403 2.36588
+  hidden position_0_0 -1.4399100911416859e-08
+  hidden position2_0_0 -4.017113939891606e-05
+  hidden position_0_1 -2.0195690341993485e-08
+  hidden position2_0_1 -4.0191298751898e-05
+  hidden position_0_2 0.00014036342853844882
+  hidden position_0_3 0.00014029402665564038
+  hidden translation_1 0 0 0
+  hidden rotation_1 -0.0003584439027601031 -0.9999999357589822 7.19954999320198e-09 4.017114278516822e-05
+  hidden translation_2 0 0 0
+  hidden rotation_2 0.0005024890565066166 0.9999998737523659 1.009784389616768e-08 4.0191301920988016e-05
+  hidden translation_3 0 0 0
+  hidden rotation_3 0 1 0 0.00014036342715162376
+  hidden translation_4 0 0 0
+  hidden rotation_4 0 -1 0 0.00014029402670459346
+  translation -24.258796561527024 0.6555552445616959 -149.88996331209108
+  rotation 0.025968465381965643 0.9976864903711916 -0.06282758738420517 2.359431786501152
   name "Tractor"
   sensorSlot [
     Camera {
@@ -959,4 +950,73 @@ DEF CarTractor Tractor {
     Gyro {
     }
   ]
+}
+Car {
+  hidden position_0_0 -0.08487496690664129
+  hidden position2_0_0 6616.293982300949
+  hidden position_0_1 -0.045986605809843914
+  hidden position2_0_1 6617.086518069792
+  hidden position_0_2 123.0634335181956
+  hidden position_0_3 122.39241529418719
+  hidden translation_1 0.0024193656489684017 -7.109280519840786e-05 -0.0008356221534852703
+  hidden rotation_1 0.6472193647528459 -0.7616174781205207 0.03234054591779291 6.152156446894626
+  hidden translation_2 -0.0011012695328983257 0.00010627013782135605 -0.002309233809614423
+  hidden rotation_2 -0.04800623486639759 0.9985830064690272 0.022964768782449282 5.389691190257728
+  hidden translation_3 -0.012055357881312918 -3.4656263747635415e-08 -0.005789426816772846
+  hidden rotation_3 0 -1 0 2.600272625396135
+  hidden translation_4 0.005841851525003609 -3.465626374763782e-08 -0.012030041033724207
+  hidden rotation_4 0 1 0 3.2712908494045414
+  translation 1.6294811901765902 0.23993367818784272 -163.33493833590262
+  rotation 0.014810529406055421 -0.9289402292119713 -0.3699333707173799 0.1794064239841836
+  boundingObject Group {
+    children [
+      Transform {
+        translation 0 0.29 2.68
+        children [
+          Box {
+            size 1.75 0.75 2
+          }
+        ]
+      }
+      Transform {
+        translation 0 0.65 0.6
+        children [
+          Box {
+            size 1.75 1.45 2.15
+          }
+        ]
+      }
+      Transform {
+        translation 0 0.53 -0.172
+        children [
+          Box {
+            size 1.75 0.8 1.4
+          }
+        ]
+      }
+    ]
+  }
+  physics Physics {
+    density -1
+    mass 2000
+    centerOfMass [
+      0 1 1.3
+    ]
+    inertiaMatrix [
+      1 1 1
+      0 0 0
+    ]
+  }
+  wheelFrontRight DEF front_right VehicleWheel {
+    name "front right wheel"
+  }
+  wheelFrontLeft DEF front_left VehicleWheel {
+    name "front left wheel"
+  }
+  wheelRearRight DEF rear_right VehicleWheel {
+    name "rear right wheel"
+  }
+  wheelRearLeft DEF rear_left VehicleWheel {
+    name "rear left wheel"
+  }
 }
