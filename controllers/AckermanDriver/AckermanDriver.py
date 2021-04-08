@@ -2,7 +2,7 @@
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
-from controller import Robot
+from controller import Robot, GPS, Gyro, Display
 from controller import Keyboard
 from vehicle import Driver
 
@@ -17,13 +17,34 @@ class AckermannVehicleDriver():
         self.driver = Driver()
         self.keyboard = Keyboard()
         
-        self.time_step = int(50)
-        self.keyboard.enable(self.time_step)
+        # Display
+        self.im = None
+        self.display = Display('display')
+        if self.display is not None:
+            self.im = self.display.imageLoad('speedometer.png')
+        self.needle_len = 50.0
+
+        # GPS 
+        self.GPS = GPS('gps')
+
+        # Gyro
+        self.gyro = Gyro('gyro')
+
+        
         # Params
-        self.speed: float = 2.0
+        self.speed: float = 0.0
+        self.time_step = int(50)
         self.max_speed: float = 50.0
         self.steering_angle: float = 0.0
         self.max_steering_angle: float = 0.5
+
+        # Enable devices
+        self.GPS.enable(self.time_step)
+        self.gyro.enable(self.time_step)
+        self.keyboard.enable(self.time_step)
+        
+        
+
     
     def _get_sign(self, num: float) -> int:
         return -1 if num <= 0.0 else 1
@@ -42,7 +63,29 @@ class AckermannVehicleDriver():
         else: 
             self.driver.setSteeringAngle(0.0)
 
+    def _update_display(self):
+        if self.display is None or self.im is None:
+            return
         
+        self.display.imagePaste(self.im, 0, 0)
+
+        current_speed: float = self.driver.getCurrentSpeed() 
+        if math.isnan(current_speed): current_speed = 0.0
+        if current_speed < 0.0: current_speed = abs(current_speed)
+
+
+        alpha: float = current_speed / 260.0 * 3.72 - 0.27
+        x = int(-self.needle_len * math.cos(alpha))
+        y = int(-self.needle_len * math.sin(alpha))
+        self.display.drawLine(100, 95, 100 + x, 95 + y)
+
+        # GPS speed
+        s = self.GPS.getSpeed() * 3.6
+        self.display.drawText('GPS speed: %.2f' % s, 10, 130)
+
+        # Show driver speed
+        self.display.drawText('Driver speed: %.2f' % current_speed, 10, 140)
+
     def _set_speed(self, acceleration: float):
         self.speed += acceleration
         if self.speed > self.max_speed:
@@ -60,17 +103,22 @@ class AckermannVehicleDriver():
             self._set_steering_angle(+0.1)
 
         if key == Keyboard.UP:
-            self._set_speed(+0.25)
+            self._set_speed(+0.5)
         if key == Keyboard.DOWN:
-            self._set_speed(-0.25)
+            self._set_speed(-0.5)
+
+        if key == 32:
+            print('stop')
+            self.driver.setBrakeIntensity(1.0)
 
         if key == -1:
-            sign = 1 if self.speed < 0 else -1
-            self._set_speed(sign * math.sqrt(abs(self.speed)))
+            self._set_speed(-self.speed)
+        
     
     def main_loop(self):
         while self.driver.step() != -1:
             self._check_keyboard()
+            self._update_display()
             pass
         
 if __name__ == '__main__':
