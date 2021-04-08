@@ -1,0 +1,101 @@
+Car{
+	!!!controller { 
+		pozwala wybrać skrypt do sterowania pojazdem i osprzętem 
+	}
+	
+	!!!synchronization { 
+		synchronization(TRUE) -> tryb synchroniczny 
+		synchronization(FALSE) -> tryb asynchroniczny
+		
+		tryb synchroniczny (domyślnie) symulacja będzie czekała na wywołanie wb_robot_step kiedy tylko będzie to potrzebne, aby symulacja była zsynchronowana z kontrolerem. Jeżeli WorldInfo.basicTimeStep jest 16 ms i control_step jest 64 ms wtedy Webots zawsze wykona dokładnie 4 symulacyjne kroku podczas jednego control_step. Po 4. kroku symulacji Webot będzie czekał na następny control_step (wb_robot_step(64)).
+	
+		tryb asynchroniczny symulacja będzie działać tak szybko jak to możliwe bez czekania na control_step. Dla przykładu, krokiem symulacji 16 ms i control_step 64 ms jak wcześniej, jeżeli symulacja zakończyła 4. krok ale kontroler jeszcze nie wywołał wb_robot_step(64) wtedy Webots nie będzie czekał tylko będzie działać dalej przy użyciu najnowszych poleceń. W takim razie liczba kroków które będą wykonane podczas control_step może być różna; zależna od symulacji, szybkości kontrolera, użycia CPU i wynik symulacji także może się różnić. 
+		Note that if the number of simulation steps per control step varies, this will appear as a variations of the "speed of the physics" in the controller's point of view, and this will appear as a variation of the robot's reaction speed in the user's point of view.
+	}
+	
+	
+	trackFront i trackRear {
+		definiują przednią/tylną odległość pomiędzy prawymi i lewymi kołami
+	}
+	
+	wheelbase {
+		definiują dystans pomiędzy przednimi i tylnymi osiami kół
+	}
+	
+	suspension...{
+		charakterystyka zawieszenia
+	}
+	
+	wheelsDampingConstant {
+		definiuje dampingConstant (tłumienie) każdego przegubu z kół użytych do symulacji tarcia pojazdu
+	}
+	
+	maxSteeringTorque {
+		określa maksymalny moment obrotowy przyłożony na osi Y przednich kół
+	}
+	
+	extensionSlot {
+		tu można dać własne moduły, sensory itp.
+	}
+	
+	!!!boundingObject{
+		Fizyczna geometria pojazdu
+	}
+	
+	!!!physics{
+		Fizyka koła określająca wszystkie cechy fizyczne.
+	}
+	
+	!!!type{
+		traction - napęd na przednie koła
+		propulsion - napęd na tylne koła
+		4x4 - napęd na 4 koła
+	}
+	
+	engineType{
+		combustion
+		electric 
+		parrel hybrid
+		power-split hybrid
+	}
+	
+	brakeCoefficient{
+		Określa maksymalne tłumienie stałe wykorzystywane przez hamulec na przegubie kół.
+	}
+	
+	!!!time0To100 {
+		Określa czas przyspieszania od 0 do 100 km / h w sekundach, wartość ta służy do obliczania przyspieszenia kół podczas sterowania samochodem w prędkości przelotowej poprzez driver.
+	}
+	
+	!!!maxVelocity{
+		Określa maksymalną prędkość samochodu w metrach na sekundę.
+	}
+	
+	engineMaxTorque{
+		Określa maksymalny moment obrotowy silnika w Nm używany do obliczenia momentu obrotowego silnika elektrycznego
+	}
+	
+	engineMaxPower{
+		Określa maksymalną moc silnika w Watach używaną do obliczenia momentu obrotowego silnika elektrycznego.
+	}
+	
+	engineMinRPM i engineMaxRPM {
+		Określa zakres roboczy silnika (w przypadku silnika elektrycznego nie stosuje się MinRPM).
+	}
+	
+	engineFunctionCoefficients{
+		Define the coefficients of the second order function used to approximate the output torque as a function of the rotational speed of the motor.
+	}
+	
+	gearRatio {
+		Określa łączne (nie tylko przełożenie skrzyni biegów) przełożenie między prędkością obrotową silnika a kołami, liczba elementów określa liczbę biegów, pierwszy element powinien być ujemny i jest to bieg wsteczny.
+	}
+	
+	hybridPowerSplitRatio{
+		Definiuje stosunek mocy wyjściowej silnika spalinowego używanego do ładowania akumulatora (tylko power-split hybrid engineType)
+	}
+	
+	hybridPowerSplitRPM{
+		Określa stałą prędkość obrotową silnika spalinowego (tylko power-split hybrid engineType)
+	}
+}
