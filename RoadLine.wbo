@@ -1,0 +1,5 @@
+#VRML_OBJ R2021a utf8
+RoadLine {
+  color 1 1 0
+  type "continuous"
+}
