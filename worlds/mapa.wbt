@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.3686393667846246 -0.7772656752623952 -0.5098657542094033 0.8636412235525645
-  position -87.19154473076384 28.79265360297185 -149.783856063179
+  orientation -0.8084119779821863 0.5831811280602859 -0.07981131329117287 1.007590107724945
+  position -23.954630079504046 28.282718362891988 -145.48045539588495
   follow "vehicle"
 }
 TexturedBackgroundLight {
@@ -260,6 +260,19 @@ RoadIntersection {
   startRoadsLength [
     11
   ]
+  startRoadsNumberOfLanes 4
+  startRoadsLine [
+    RoadLine {
+      color 1 1 0
+      type "continuous"
+    }
+    RoadLine {
+    }
+    RoadLine {
+      color 0 1 0
+      type "continuous"
+    }
+  ]
   locked FALSE
 }
 GenericTrafficLight {
@@ -464,7 +477,7 @@ StraightRoadSegment {
   numberOfLanes 4
   lines [
     RoadLine {
-      color 1 1 0
+      color 0 1 0
       type "continuous"
     }
     RoadLine {
@@ -705,7 +718,7 @@ CurvedRoadSegment {
     RoadLine {
     }
     RoadLine {
-      color 1 1 0
+      color 0 1 0
       type "continuous"
     }
   ]
@@ -967,18 +980,8 @@ DEF GROUND Solid {
   locked TRUE
 }
 DEF CarTractor Tractor {
-  hidden position_0_0 7.948975921934215e-10
-  hidden position2_0_0 -4.363354768097093e-06
-  hidden position_0_1 -1.490275125527374e-10
-  hidden position2_0_1 -4.362743860876444e-06
-  hidden position_0_2 -8.592109583815954e-06
-  hidden position_0_3 -8.589580199114266e-06
-  hidden rotation_1 0.00018217578474561823 -0.9999999834059916 -3.974487895014421e-10 4.363369409607607e-06
-  hidden rotation_2 3.415912490347678e-05 0.9999999994165771 7.451375623289567e-11 4.362758706848367e-06
-  hidden rotation_3 0 -1 0 8.592118601786654e-06
-  hidden rotation_4 0 1 0 8.589585631717215e-06
-  translation -24.28500189038141 0.654241885605659 -149.86365106432154
-  rotation 0.02574394386692973 0.9977260383350895 -0.062289660316490046 2.359398637019571
+  translation -24.286671066555076 0.6556102586660636 -149.8619713025269
+  rotation 0.025979591743404383 0.9976845635889633 -0.06285357896847388 2.3594278616297997
   name "Tractor"
   sensorSlot [
     Camera {
@@ -1016,30 +1019,35 @@ DEF CarTractor Tractor {
   ]
 }
 Car {
-  hidden position_0_0 -3.4407976004472555e-11
-  hidden position2_0_0 0.014699426785138069
-  hidden position_0_1 3.440758812258222e-11
-  hidden position2_0_1 0.02032750483923889
-  hidden position_0_2 -0.07488657050141276
-  hidden position_0_3 -0.0844831157627473
-  hidden linearVelocity_0 -8.415038928871742e-14 -2.5876215659081933e-12 -2.018207396758953e-13
-  hidden angularVelocity_0 4.440423090614103e-13 7.413165554782147e-15 4.64056260207959e-13
-  hidden rotation_1 -2.340727767950927e-09 1 -1.720398800223628e-11 0.014699426785130977
-  hidden linearVelocity_1 -1.376448900059557e-13 -8.568879576116778e-13 2.2747582599636396e-13
-  hidden angularVelocity_1 4.318718903315994e-13 9.708599615154286e-15 4.720801729215e-13
-  hidden rotation_2 -1.6926033764205975e-09 -1 1.720379406129111e-11 0.02032750483924016
-  hidden linearVelocity_2 -1.2350479516297284e-13 -8.967785841579941e-13 1.3738788523234611e-14
-  hidden angularVelocity_2 1.5451352362709554e-13 8.269090609409691e-15 1.9445692754730724e-13
-  hidden rotation_3 0 -1 0 0.07488657050141524
-  hidden linearVelocity_3 -9.486746690927778e-14 -3.384123751443823e-12 1.4276950061854798e-13
-  hidden angularVelocity_3 2.740691182286321e-13 6.219614378923117e-15 3.0961447572588955e-13
-  hidden rotation_4 0 0.9999999999999999 0 0.08448311576274531
-  hidden linearVelocity_4 1.1616618337735204e-14 -3.4004805667016675e-12 -6.614872031904475e-14
-  hidden angularVelocity_4 -9.867391672983143e-14 7.037353385094378e-15 -8.900060606828797e-14
-  translation -49.69389849215962 0.4537042733840226 -183.1075486648603
-  rotation 0.002974658258413662 -0.9999717863989577 -0.006897667310239613 -2.3272985389566863
-  controller "AckermannControllerThrottle"
+  translation -42.2815 0.322005 -161.293
+  rotation -0.006901922901024243 0.999972420309568 0.0027426411527901122 -2.385125307179586
+  controller "AckermanDriver"
   extensionSlot [
+    Camera {
+      translation 0 0.78 4.24
+      rotation 3.4339994638889944e-07 -0.9659258492010602 -0.2588189595935602 -3.1415853071795863
+      children [
+        Transform {
+          translation 0 0 0.05
+          rotation 1 0 0 1.5708
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 0.8 0.8 0.8
+                roughness 1
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.04
+              }
+            }
+          ]
+        }
+      ]
+      fieldOfView 1
+      width 128
+    }
     Gyro {
     }
     GPS {

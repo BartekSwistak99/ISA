@@ -2,9 +2,12 @@
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
-from controller import Robot, GPS, Gyro, Display
+from controller import Robot, GPS, Gyro, Display, Camera
 from controller import Keyboard
 from vehicle import Driver
+
+import numpy as np
+from scipy.ndimage.interpolation import shift
 
 from datetime import date
 import datetime
@@ -31,6 +34,9 @@ class AckermannVehicleDriver():
         # Gyro
         self.gyro = Gyro('gyro')
 
+        # Camera
+        self.camera = Camera('camera')
+
         # Params
         self.speed: float = 0.0
         self.time_step = int(50)
@@ -45,9 +51,14 @@ class AckermannVehicleDriver():
         self.GPS.enable(self.time_step)
         self.gyro.enable(self.time_step)
         self.keyboard.enable(self.time_step)
+        self.camera.enable(self.time_step)
 
-        self.flag = True
-        self.flag1 = False
+        # Auto drive
+        self.SIZE_LINE = 3
+        self.old_line_values = np.zeros(self.SIZE_LINE)
+        self.old_value = 0.0
+        self.integral = 0.0
+
 
     def _get_sign(self, num: float) -> int:
         return -1 if num <= 0.0 else 1
@@ -101,78 +112,38 @@ class AckermannVehicleDriver():
         # 100km/h 0 -> 100 => 1 sekund
         # setCruisingSpeed(0) 100..0  => 1 sekund
         #
+    
+    def _check_camera(self):
+        image = self.camera.getImageArray()
+        data = np.array(image, dtype='uint8')
+        data = np.absolute(data - [255, 255, 0])
+        
+        sums = np.sum(data, axis=2)
+        threshold = np.where(data < 30)
+        pixs = threshold[0].shape[0]
+        sumx = np.sum(threshold[0])
 
-    def _check_keyboard(self):
-        key = self.keyboard.getKey()
-        if key == Keyboard.LEFT:
-            self._set_steering_angle(-0.1)
-        if key == Keyboard.RIGHT:
-            self._set_steering_angle(+0.1)
 
-        if key == Keyboard.UP:
-            self._set_speed(+0.5)
-        if key == Keyboard.DOWN:
-            self._set_speed(-0.5)
+        magic = 0
+        if pixs != 0:
+            magic = (sumx / pixs / self.camera.getWidth() - 0.5) * self.camera.getFov()
 
-        if key == 32:
-            print('stop')
-            self.driver.setBrakeIntensity(1.0)
+        shift(self.old_line_values, 1)
 
-        if key == -1:
-            sign = 1 if self.speed < 0 else -1
-            speed_ms = self.speed / 3.6
+        self.old_line_values[self.SIZE_LINE - 1] = magic
+        yellow_line_angle = np.sum(self.old_line_values) / self.SIZE_LINE
 
-            kinetic_energy = 0.5 * self.weight * (speed_ms ** 2)
-            force_air = 0.5 * 0.5 * 1.21 * 1.4 * speed_ms**2
-            rolling_resistance = 0.02 * self.weight * 9.81 * 1
+        diff = yellow_line_angle - self.old_value
+        self.old_value = yellow_line_angle
 
-            force_total = force_air + rolling_resistance
-            d = kinetic_energy / force_total
-
-            a = 0 if d == 0 else speed_ms**2 / (2 * d)
-
-            if abs(speed_ms) < 0.1:
-                self._set_speed(-self.speed)
-            else:
-                self._set_speed(sign*a)
-
-            # m = 500
-            # g = 9.81
-            # theta = 0
-            # v = x || 50
-            # Crr = wheelsDampingConstant || 0.02
-
-            # Rolling resistance = Crr * Normal_force
-            # Normal force = m * g * cos(theta)
-
-            # RR = 0.02 * 500 * 9.81 * 1
-            # RR = 98,1N
-
-            # Fop = 0.5 * C * p * S * v^2
-            # C = 0.5
-            # S = 1.4m^2
-            # p = 1.21kg/m^3
-            # Fop = 0.5 * 0.5 * 1.21 * 1.4 * 13.9^2
-            # Fop = 82,32N
-
-            # F = 180,4N
-
-            # theta = 0 stopni
-
-            # Work = Force * displacement * cosine(Theta)
-            # 0.5*m*v^2 = F*d
-            # ke = 0.5 * m * v^2
-
-            # v = 50 km/h = 13,9 m/s
-            # m = 500 kg
-            # ke = 0,5 * 500 kg * (13,9 m/s) ^ 2 = 250 kg * 192,90 m/s = 48225,30 kg*m^2/s^2
-            # F = 1 kg*m/s^2
-            # d = ke / F =  48225,30kg*m^2/s^2 / 1kg*m/s^2 = 48225,30m
-            #
+        angle = 0.05 * yellow_line_angle + diff
+        print(angle)
+        self._set_steering_angle(angle)
 
     def main_loop(self):
+        self._set_speed(5)
         while self.driver.step() != -1:
-            self._check_keyboard()
+            self._check_camera()
             self._update_display()
             pass
 
