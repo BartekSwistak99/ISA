@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.5429728506336301 -0.6473130575554492 -0.5349451270859519 1.0551069508287543
-  position -36.569939149641115 18.70879290338471 -141.06707001432116
+  orientation -0.3253537255398593 -0.8117635892968522 -0.4849585841793354 1.1284127321073218
+  position -161.17766839182352 53.1915764071062 -40.87417278633053
   follow "vehicle"
 }
 TexturedBackgroundLight {
@@ -920,10 +920,9 @@ DEF CarTractor Tractor {
   ]
 }
 Car {
-  translation -28.2705 0.46999 -159.296
+  translation -108.741 0.39736 -89.3663
   rotation 0.004133794778764711 -0.999941157363017 -0.010029633704030386 -2.3597473877329067
   controller "AckermanDriver"
-  synchronization FALSE
   extensionSlot [
     Gyro {
     }
@@ -995,5 +994,6 @@ Car {
   wheelRearLeft DEF rear_left VehicleWheel {
     name "rear left wheel"
   }
+  time0To100 1
   maxVelocity 500
 }
