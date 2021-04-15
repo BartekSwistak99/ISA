@@ -44,8 +44,6 @@ class AckermannVehicleDriver():
         self.keyboard.enable(self.time_step)
 
 
-
-
     def _get_sign(self, num: float) -> int:
         return -1 if num <= 0.0 else 1
 
@@ -106,7 +104,7 @@ class AckermannVehicleDriver():
             self._set_speed(+0.5)
         if key == Keyboard.DOWN:
             self.driver.setGear(-1)
-            self._set_speed(-0.5)
+            self._set_speed(+0.5)
 
         if key == 32:
             print('stop')
@@ -129,6 +127,7 @@ if __name__ == '__main__':
     #controller.main_loop()
 
     driver = AckermannVehicleDriver()
+    driver.driver.setSteeringAngle(0.0)
     driver.main_loop()
 
 
