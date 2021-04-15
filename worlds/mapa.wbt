@@ -3,8 +3,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.6920447482182358 -0.4832202276819593 -0.5362576601061787 1.194393238131162
-  position -106.17593076861753 46.008502652441386 -71.2141866567217
+  orientation -0.4360721878958565 -0.6983209682013648 -0.5676168358268008 0.672255968053194
+  position -19.01685821041962 52.04986736848697 -107.26296816335972
   follow "vehicle"
 }
 TexturedBackgroundLight {
@@ -13,6 +13,7 @@ TexturedBackground {
 }
 Roundabout {
   translation 0.67 0 0
+  startRoadsWidth 9
   locked FALSE
 }
 StopSign {
@@ -31,6 +32,7 @@ StopSign {
 Roundabout {
   translation -1.37 0 -117.42
   name "roundabout(3)"
+  startRoadsWidth 9
   locked FALSE
 }
 StopSign {
@@ -52,6 +54,7 @@ Roundabout {
   startRoadsLength [
     9
   ]
+  startRoadsWidth 9
   locked FALSE
 }
 StopSign {
@@ -66,14 +69,6 @@ StopSign {
       ]
     }
   ]
-}
-Roundabout {
-  translation -40.22 0 -78.69
-  name "roundabout(5)"
-  startRoadsLength [
-    9
-  ]
-  locked FALSE
 }
 StopSign {
   translation -10.0187 -1.09627e-06 -120.54
@@ -118,7 +113,9 @@ Roundabout {
   translation 120.08 0 -119.402
   rotation 0 1 0 0.785398
   name "roundabout(1)"
+  outerRadius 10
   roadNumber 5
+  startRoadsWidth 9
   locked FALSE
 }
 StopSign {
@@ -165,6 +162,7 @@ Roundabout {
   rotation 0 1 0 1.30899
   name "roundabout(2)"
   roadNumber 3
+  startRoadsWidth 9
   locked FALSE
 }
 StopSign {
@@ -183,6 +181,7 @@ StopSign {
 RoadIntersection {
   translation 19.65 0 -18.95
   name "road intersection(1)"
+  roadsWidth 9
   startRoadsLength [
     11
   ]
@@ -215,6 +214,7 @@ GenericTrafficLight {
 RoadIntersection {
   translation 58.31 0 -57.63
   name "road intersection(2)"
+  roadsWidth 9
   startRoadsLength [
     11
   ]
@@ -247,6 +247,7 @@ GenericTrafficLight {
 RoadIntersection {
   translation -59.24 0 -59.68
   name "road intersection(5)"
+  roadsWidth 9
   startRoadsLength [
     8
   ]
@@ -255,6 +256,7 @@ RoadIntersection {
 RoadIntersection {
   translation -42.73 0 -158.66
   name "road intersection(6)"
+  roadsWidth 9
   startRoadsLength [
     11
   ]
@@ -291,8 +293,9 @@ RoadIntersection {
   connectedRoadIDs [
     "1"
   ]
+  roadsWidth 9
   startRoadsLength [
-    8
+    7
   ]
   locked FALSE
 }
@@ -311,6 +314,7 @@ RoadIntersection {
   rotation 0 1 0 0.523598
   name "road intersection(3)"
   roadNumber 3
+  roadsWidth 9
   startRoadsLength [
     11
   ]
@@ -320,6 +324,7 @@ RoadIntersection {
   translation 29.9087 0 -231.366
   rotation 0 1 0 -1.5707953071795862
   name "road intersection(4)"
+  roadsWidth 9
   startRoadsLength [
     11
   ]
@@ -347,6 +352,7 @@ StraightRoadSegment {
   translation 29.859 0 -29.1908
   rotation 0 1 0 2.35619
   name "road(3)"
+  width 9
   length 26
   locked FALSE
 }
@@ -354,6 +360,7 @@ StraightRoadSegment {
   translation 65.2491 0 12.7902
   rotation 0 1 0 2.35619
   name "road(32)"
+  width 9
   length 35
   locked FALSE
 }
@@ -361,6 +368,7 @@ StraightRoadSegment {
   translation 68.5106 0 -67.8391
   rotation 0 1 0 2.35619
   name "road(1)"
+  width 9
   length 61
   locked FALSE
 }
@@ -368,6 +376,7 @@ StraightRoadSegment {
   translation 153.902 0 -45.2608
   rotation 0 1 0 -0.7854053071795866
   name "road(38)"
+  width 9
   length 131
   locked FALSE
 }
@@ -375,6 +384,7 @@ StraightRoadSegment {
   translation 20.1252 0 -221.472
   rotation 0 1 0 -0.7854053071795866
   name "road(6)"
+  width 9
   roadBorderHeight 0.1
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
@@ -450,6 +460,7 @@ StraightRoadSegment {
   translation 5.62236 0 -241.471
   rotation 0 1 0 -0.7854053071795866
   name "road(35)"
+  width 9
   length 83
   locked FALSE
 }
@@ -457,6 +468,7 @@ StraightRoadSegment {
   translation -52.483 0 -148.864
   rotation 0 1 0 -0.7854053071795866
   name "road(24)"
+  width 9
   length 30
   locked FALSE
 }
@@ -464,6 +476,7 @@ StraightRoadSegment {
   translation 48.31 0 -67.6489
   rotation 0 1 0 -2.3561953071795863
   name "road(19)"
+  width 9
   rightBarrier TRUE
   leftBarrier TRUE
   length 60
@@ -473,6 +486,7 @@ StraightRoadSegment {
   translation -10.3159 0 -126.284
   rotation 0 1 0 -2.3561953071795863
   name "road(22)"
+  width 9
   length 32
   locked FALSE
 }
@@ -480,6 +494,8 @@ StraightRoadSegment {
   translation -51.9241 0 -90.186
   rotation 0 1 0 -2.3561953071795863
   name "road(23)"
+  id "3"
+  width 9
   length 31
   locked FALSE
 }
@@ -487,6 +503,7 @@ StraightRoadSegment {
   translation 29.3501 0 -9.19468
   rotation 0 1 0 0.785397
   name "road(30)"
+  width 9
   length 31
   locked FALSE
 }
@@ -494,6 +511,7 @@ StraightRoadSegment {
   translation 9.50825 0 8.86473
   rotation 0 1 0 0.785397
   name "road(40)"
+  width 9
   length 54
   locked FALSE
 }
@@ -501,20 +519,23 @@ StraightRoadSegment {
   translation 68.0252 0 -47.8698
   rotation 0 1 0 0.785397
   name "road(31)"
+  width 9
   length 31
   locked FALSE
 }
 StraightRoadSegment {
-  translation -66.2967 0 -66.691
+  translation -68.0927 0 -68.487
   rotation 0 1 0 -2.3561953071795863
   name "road(25)"
-  length 33
+  width 9
+  length 30
   locked FALSE
 }
 StraightRoadSegment {
   translation 9.61197 0 -28.951
   rotation 0 1 0 -2.3561953071795863
   name "road(21)"
+  width 9
   rightBarrier TRUE
   leftBarrier TRUE
   length 54
@@ -524,6 +545,7 @@ StraightRoadSegment {
   translation 34.1546 0 -152.916
   rotation 0 1 0 -0.7854053071795866
   name "road(18)"
+  width 9
   length 38
   locked FALSE
 }
@@ -531,6 +553,7 @@ StraightRoadSegment {
   translation -10.3164 0 -108.475
   rotation 0 1 0 -0.7854053071795866
   name "road(20)"
+  width 9
   length 26
   locked FALSE
 }
@@ -538,6 +561,7 @@ StraightRoadSegment {
   translation 132.262 0 -212.725
   rotation 0 1 0 -2.3561953071795863
   name "road(9)"
+  width 9
   rightBarrier TRUE
   leftBarrier TRUE
   length 76
@@ -547,6 +571,7 @@ StraightRoadSegment {
   translation 65.2714 0 -266.774
   rotation 0 -1 0 0.785399
   name "road(12)"
+  width 9
   length 36
   locked FALSE
 }
@@ -554,6 +579,7 @@ StraightRoadSegment {
   translation 44.1658 0 -217.174
   rotation 0 1 0 -2.3561953071795863
   name "road(16)"
+  width 9
   length 6
   locked FALSE
 }
@@ -561,6 +587,7 @@ StraightRoadSegment {
   translation 47.0503 0 -172.394
   rotation 0 1 0 3.14159
   name "road(13)"
+  width 9
   length 38
   locked FALSE
 }
@@ -568,6 +595,7 @@ StraightRoadSegment {
   translation 109.318 0 -124.852
   rotation 0 -1 0 2.0944
   name "road(10)"
+  width 9
   rightBarrier TRUE
   leftBarrier TRUE
   length 60
@@ -577,6 +605,7 @@ StraightRoadSegment {
   translation 125.73 0 -108.375
   rotation 0 -1 0 -0.523595307179586
   name "road(2)"
+  width 9
   length 60
   locked FALSE
 }
@@ -584,6 +613,7 @@ StraightRoadSegment {
   translation 132.468 0 -121.381
   rotation 0 1 0 1.83259
   name "road(4)"
+  width 9
   length 103
   locked FALSE
 }
@@ -591,6 +621,7 @@ StraightRoadSegment {
   translation 153.126 0 -206.931
   rotation 0 1 0 1.83259
   name "road(8)"
+  width 9
   length 60
   locked FALSE
 }
@@ -598,6 +629,7 @@ StraightRoadSegment {
   translation 223.302 0 -215.522
   rotation 0 1 0 0.261793
   name "road(27)"
+  width 9
   length 58
   locked FALSE
 }
@@ -605,6 +637,7 @@ StraightRoadSegment {
   translation 121.807 0 -131.292
   rotation 0 -1 0 -2.8797853071795863
   name "road(5)"
+  width 9
   length 63
   locked FALSE
 }
@@ -612,6 +645,7 @@ StraightRoadSegment {
   translation -8.52384 0 -9.02604
   rotation 0 1 0 -2.3561953071795863
   name "road(7)"
+  width 9
   rightBarrier TRUE
   leftBarrier TRUE
   length 61
@@ -621,42 +655,49 @@ CurvedRoadSegment {
   translation 71.6412 0 -259.057
   rotation 0 1 0 2.35619
   name "road(11)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation 12.6189 0 -234.428
   rotation 0 1 0 2.35619
   name "road(34)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation -45.8521 0 -175.991
   rotation 0 1 0 -2.3561953071795863
   name "road(36)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation 213.665 0 -212.871
   rotation 0 -1 0 -1.8325953071795862
   name "road(26)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation 228.558 0 -157.479
   rotation 0 -1 0 -0.261795307179586
   name "road(28)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation 54.65 0 39.8877
   rotation 0 1 0 -0.7854053071795866
   name "road(39)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation 146.679 0 -52.1013
   rotation 0 1 0 0.523595
   name "road(37)"
+  width 9
   totalAngle 1.3
   locked FALSE
 }
@@ -664,25 +705,29 @@ CurvedRoadSegment {
   translation 82.7655 0 -18.9596
   rotation 0 1 0 0.785394
   name "road(29)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation 58.2197 0 5.58464
   rotation 0 1 0 -0.7854053071795866
   name "road(33)"
+  width 9
   locked FALSE
 }
 CurvedRoadSegment {
   translation 37.0255 0 -210.111
   rotation 0 1 0 0.523595
   name "road(14)"
-  totalAngle 0.5
+  width 9
+  totalAngle 0.52
   locked FALSE
 }
 CurvedRoadSegment {
   translation 37.0255 0 -210.111
   rotation 0 1 0 0.785394
   name "road(15)"
+  width 9
   totalAngle 0.5
   locked FALSE
 }
@@ -690,6 +735,7 @@ CurvedRoadSegment {
   translation 41.1328 0 -145.739
   rotation 0 -1 0 -2.356185307179586
   name "road(17)"
+  width 9
   totalAngle 0.25
   locked FALSE
 }
@@ -882,16 +928,6 @@ DEF GROUND Solid {
   locked TRUE
 }
 DEF CarTractor Tractor {
-  hidden position_0_0 -2.7085549136753536e-08
-  hidden position2_0_0 -6.165729281862812e-05
-  hidden position_0_1 -3.0106731441063836e-08
-  hidden position2_0_1 -6.170177731868053e-05
-  hidden position_0_2 0.0003605982172674464
-  hidden position_0_3 0.00036050302289593523
-  hidden rotation_1 -0.0004246075619817214 -0.9999999098542051 1.4507359261056546e-08 5.374076050270422e-05
-  hidden rotation_2 0.0004798201144680554 0.9999998848863221 1.6026162054856503e-08 5.377605078116493e-05
-  hidden rotation_3 0 1 0 0.00028367137503980345
-  hidden rotation_4 0 -1 0 0.00028359314844794654
   translation -24.281430465839826 0.6569156193067831 -149.867229624731
   rotation 0.026195390839950414 0.9976462658047495 -0.06336978637001348 2.3594559124832157
   name "Tractor"
@@ -931,20 +967,6 @@ DEF CarTractor Tractor {
   ]
 }
 Car {
-  hidden position_0_0 7.289534696031108e-06
-  hidden position2_0_0 10.48831209740548
-  hidden position_0_1 7.750777542558929e-06
-  hidden position2_0_1 9.920496863911943
-  hidden position_0_2 13.541876623995785
-  hidden position_0_3 12.028524750036922
-  hidden translation_1 0.004408252021330906 5.139282285651876e-08 -0.008081599930194467
-  hidden rotation_1 2.1441917585720565e-06 -0.9999999999910589 -3.6447673479991055e-06 2.0780585169615082
-  hidden translation_2 -0.008062714994241113 -4.19526198178922e-08 -0.004442698531059924
-  hidden rotation_2 -9.807177109066713e-07 0.9999999999920097 -3.8753887712679e-06 2.6458737504510306
-  hidden translation_3 -0.00849859195616478 -1.260204385289397e-08 0.012774433336731382
-  hidden rotation_3 0 1 0 0.9755060096366122
-  hidden translation_4 0.013241290689988184 -1.2602043852893977e-08 -0.0077511568926990045
-  hidden rotation_4 0 1 0 0.5378458643222508
   translation -109.41286279544471 0.44303308885116016 -89.98385266202376
   rotation 0.003800485800211368 -0.9999514862316315 -0.009087435877820273 -2.324728746648289
   controller "AckermannControllerThrottle"
