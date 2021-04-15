@@ -4,7 +4,7 @@ WorldInfo {
 }
 Viewpoint {
   orientation -0.3253537255398593 -0.8117635892968522 -0.4849585841793354 1.1284127321073218
-  position -161.17766839182352 53.1915764071062 -40.87417278633053
+  position -161.1761302321998 53.24779995288592 -40.8757217863898
   follow "vehicle"
 }
 TexturedBackgroundLight {
@@ -192,25 +192,25 @@ GenericTrafficLight {
   translation 64.3015 0 -57.2785
   rotation 0 -1 0 2.35621
   name "generic traffic light(4)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 25.4723 0 -18.6511
   rotation 0 -1 0 2.35621
   name "generic traffic light(3)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 13.8746 0 -19.1455
   rotation 0 1 0 0.785391
   name "generic traffic light(2)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 19.8135 0 -24.6335
   rotation 0 1 0 -0.7854053071795866
   name "generic traffic light(1)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation 58.31 0 -57.63
@@ -224,25 +224,25 @@ GenericTrafficLight {
   translation -48.5852 0 -159.052
   rotation 0 1 0 0.785383
   name "generic traffic light(8)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 57.9194 0 -51.7253
   rotation 0 1 0 2.35618
   name "generic traffic light(7)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 58.8731 0 -63.5705
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(6)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 52.6066 0 -57.8582
   rotation 0 1 0 0.785383
   name "generic traffic light(5)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation -59.24 0 -59.68
@@ -264,25 +264,25 @@ GenericTrafficLight {
   translation 35.903 0 -230.935
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(12)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -42.9699 0 -152.754
   rotation 0 1 0 2.35618
   name "generic traffic light(11)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -42.5661 0 -164.358
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(10)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -36.7899 0 -158.361
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(9)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation -81.55 0 -119.77
@@ -323,19 +323,19 @@ GenericTrafficLight {
   translation 30.2504 0.01 -237.192
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(15)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 23.9357 0 -231.929
   rotation 0 -1 0 -0.7853853071795864
   name "generic traffic light(14)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 29.4987 0 -225.524
   rotation 0 1 0 2.35618
   name "generic traffic light(13)"
-  state "green"
+  state "red"
 }
 StraightRoadSegment {
   translation 29.859 0 -29.1908
@@ -388,8 +388,18 @@ StraightRoadSegment {
   length 95
 }
 BmwX5 {
-  translation -3.48398261349099 0.2841309742621899 -3.821424604353782
-  rotation 0.004097074240486302 0.9999387111524534 0.010285325538753371 -2.402342790357324
+  hidden position_0_0 3.590471753372093e-09
+  hidden position2_0_0 -1.8353462477232287e-06
+  hidden position_0_1 3.80557080306297e-09
+  hidden position2_0_1 -2.0491477063200082e-06
+  hidden position_0_2 -0.0014422002380385008
+  hidden position_0_3 -0.0014660639636904758
+  hidden rotation_1 0.001956287478366473 -0.9999980864678201 -1.7952324414444256e-09 1.8354456532196237e-06
+  hidden rotation_2 -0.001857144913778668 0.9999982755048976 -1.9027821201873794e-09 2.0492212102021976e-06
+  hidden rotation_3 0 -1 0 0.0014422002381740688
+  hidden rotation_4 0 1 0 0.0014660639635573859
+  translation -3.484151684875174 0.28415356160096933 -3.8215418561965375
+  rotation 0.004007232161646249 0.9999388120350565 0.010310881452261169 -2.402346346585844
   name "vehicle(1)"
 }
 StopSign {
@@ -845,7 +855,7 @@ StopSign {
 GenericTrafficLight {
   translation 19.14 0 -12.96
   rotation 0 1 0 2.35619
-  state "green"
+  state "red"
 }
 DEF GROUND_SHAPE Solid {
   translation 0 -0.04 0
@@ -855,7 +865,7 @@ DEF GROUND_SHAPE Solid {
         baseColor 0.8 0.8 0.8
         baseColorMap ImageTexture {
           url [
-            "C:/Users/adrian/Documents/Semestr_6/ISA/grass.png"
+            "./textures/grass.png"
           ]
         }
         roughness 0.5
@@ -881,8 +891,18 @@ DEF GROUND Solid {
   locked TRUE
 }
 DEF CarTractor Tractor {
-  translation -24.267029480109624 0.6557371077976311 -149.88169333729272
-  rotation 0.026002171371738526 0.9976806737388068 -0.06290596420082369 2.359434391091124
+  hidden position_0_0 -7.285667291689774e-09
+  hidden position2_0_0 -1.1137978336789284e-05
+  hidden position_0_1 -8.274855689549655e-09
+  hidden position2_0_1 -1.114876250568119e-05
+  hidden position_0_2 8.096943256430335e-05
+  hidden position_0_3 8.093929984363246e-05
+  hidden rotation_1 -0.0006541282010614286 -0.9999997860581253 3.6428328664902277e-09 1.1137977572930205e-05
+  hidden rotation_2 0.0007422216955439407 0.9999997245534396 4.137426705134559e-09 1.1148777545849418e-05
+  hidden rotation_3 0 1 0 8.096943273781188e-05
+  hidden rotation_4 0 -1 0 8.093929993410059e-05
+  translation -24.269096710579557 0.6557457440808264 -149.87961729988007
+  rotation 0.026003704183437094 0.9976804020335078 -0.06290963969852638 2.3594341759329134
   name "Tractor"
   sensorSlot [
     Camera {
@@ -920,8 +940,20 @@ DEF CarTractor Tractor {
   ]
 }
 Car {
-  translation -108.741 0.39736 -89.3663
-  rotation 0.004133794778764711 -0.999941157363017 -0.010029633704030386 -2.3597473877329067
+  hidden position_0_0 -3.440747686768327e-11
+  hidden position2_0_0 1.949311085417688e-07
+  hidden position_0_1 3.44075323788345e-11
+  hidden position2_0_1 1.9492912123850171e-07
+  hidden position_0_2 -0.0012368971691052331
+  hidden position_0_3 -0.0012368971991932177
+  hidden linearVelocity_0 6.275437971353659e-14 -9.89530235528946e-16 -2.3791358216840306e-14
+  hidden angularVelocity_0 -4.121016121037725e-15 -8.929142167179375e-17 -3.8885029078279136e-15
+  hidden rotation_1 -0.000176510956045319 0.999999984421941 -1.7203738165840784e-11 1.954268969387413e-07
+  hidden rotation_2 -0.00017651304035132089 -0.9999999844215733 1.720376592140964e-11 1.954268969387413e-07
+  hidden rotation_3 0 -1 0 0.0012368971692743665
+  hidden rotation_4 0 1 0 0.001236897199074262
+  translation -108.73945797173124 0.45370427338115904 -89.36785289596934
+  rotation 0.002842930568488308 -0.999972169560231 -0.006897669953483533 -2.3597255356595705
   controller "AckermanDriver"
   extensionSlot [
     Gyro {
