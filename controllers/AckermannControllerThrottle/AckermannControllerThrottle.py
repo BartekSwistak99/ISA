@@ -21,11 +21,11 @@ def _get_sign(num: float) -> int:
 
 class AckermannVehicleDriver:
     MAX_RPM = 6000  # defined in car model's, any change here will not affect model's mxa rpm
-    SHIFT_RPM = 3000  # if actual rpm is bigger then SHIFT_RPM, car will shift to a higher gear
+    SHIFT_RPM = 2000  # if actual rpm is bigger then SHIFT_RPM, car will shift to a higher gear
     DOWNSHIFT_RPM = 1000  # if actual rpm is smaller then SHIFT_RPM, car will downshift to lower gear
     ANGLE_PER_STEP = 0.035
     MAX_ANGLE = 0.5
-    THROTTLE_PER_STEP = 15
+    THROTTLE_PER_STEP = 10 # 1 to 100
     gear = 0
     max_gear: int
     rpm = 0
@@ -102,26 +102,28 @@ class AckermannVehicleDriver:
         y = int(-self.needle_len * math.sin(alpha))
         self.display.drawLine(100, 95, 100 + x, 95 + y)
 
-        # # GPS speed
-        # s = self.GPS.getSpeed() * 3.6
-        # self.display.drawText('GPS speed: %.2f' % s, 10, 130)
+        # GPS speed
+        s = self.GPS.getSpeed() * 3.6
+        self.display.drawText('GPS: %.2f' % s, 125, 130)
 
         # gear
         self.display.drawText('Gear: %d' % self.gear, 10, 130)
-        # rpm
-        self.display.drawText('RPM: %d' % self.rpm, 75, 130)
 
         # Show driver speed
-        self.display.drawText('Driver speed: %.2f' % self.current_speed, 10, 140)
-        # Show driver speed
-        # self.rpm =
-        self.display.drawText('Driver speed: %.2f' % self.current_speed, 10, 140)
+        self.display.drawText('Speed: %.2f' % self.current_speed, 10, 140)
+        
+        # Show gas
+        self.display.drawText('Gas: %.2f' % self.throttle, 125, 140)
+
+        # Show rpm
+        self.display.drawText('RPM: %d' % self.rpm, 10, 150)
 
     def _set_throttle(self, acceleration: float, reverse=False):
         if self.rpm <= 100 and acceleration < 0.0:  # reverse gear on  - > shift to neutral if rpm is small enough
             self.gear = 0
             self.driver.setGear(self.gear)
             return
+
         if reverse and self.gear > 0.0:
             return
         elif not reverse and self.gear < 0.0 < acceleration:
@@ -160,7 +162,6 @@ class AckermannVehicleDriver:
             self.brake_intensity = 1.0
         elif self.brake_intensity < 0.0:
             self.brake_intensity = 0.0
-
         self.driver.setBrakeIntensity(self.brake_intensity)
 
     def set_expected_speed(self, expected_speed):
@@ -171,28 +172,25 @@ class AckermannVehicleDriver:
             self.expected_speed = self.MAX_SPEED
 
         self.expected_speed = expected_speed
-    # def _update_speed(self):
-        # if self.expected_speed >
 
     def _check_keyboard(self):
         key = self.keyboard.getKey()
-        if key == 32 and self.brake_intensity < 1.0:
-            print('stop')
+        if key == 83:
             self._set_brake_intensity(1.0)
-        elif self.brake_intensity > 0:
+        elif key == 87:
             self._set_brake_intensity(0.0)
-
-        if key == Keyboard.LEFT:
+        elif key == Keyboard.LEFT:
             self._set_steering_angle(-self.ANGLE_PER_STEP)
-        if key == Keyboard.RIGHT:
+        elif key == Keyboard.RIGHT:
             self._set_steering_angle(+self.ANGLE_PER_STEP)
-
-        if key == Keyboard.UP:
+        elif key == Keyboard.UP:
             self._set_throttle(self.THROTTLE_PER_STEP)
         elif key == Keyboard.DOWN:
             self._set_throttle(self.THROTTLE_PER_STEP / 3, reverse=True)
         else:
-            self._set_throttle(-self.THROTTLE_PER_STEP)
+            self._set_throttle(-self.THROTTLE_PER_STEP) # nie powinno być self.driver.setThrottle(0)?
+            # self.driver.setThrottle(0)
+            # self._set_throttle(0.0)
 
     def main_loop(self):
         while self.driver.step() != -1:
@@ -207,3 +205,4 @@ if __name__ == '__main__':
     driver = AckermannVehicleDriver()
 
     driver.main_loop()
+
