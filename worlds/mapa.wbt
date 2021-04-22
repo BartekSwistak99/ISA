@@ -4,8 +4,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.7144779523096104 0.5230320131027519 0.46471364186254427 4.776962798676596
-  position 7.522753406937071 134.91533929173804 -173.7306357355075
+  orientation 0.3816877330173262 0.6944082279613538 0.6100095797638482 4.464792457883046
+  position -0.7839615604901624 36.207916480114775 -201.065643292022
   follow "vehicle"
   followType "Mounted Shot"
 }
@@ -193,25 +193,25 @@ GenericTrafficLight {
   translation 64.3015 0 -57.2785
   rotation 0 -1 0 2.35621
   name "generic traffic light(4)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 25.4723 0 -18.6511
   rotation 0 -1 0 2.35621
   name "generic traffic light(3)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 13.8746 0 -19.1455
   rotation 0 1 0 0.785391
   name "generic traffic light(2)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 19.8135 0 -24.6335
   rotation 0 1 0 -0.7854053071795866
   name "generic traffic light(1)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation 58.31 0 -57.63
@@ -226,25 +226,25 @@ GenericTrafficLight {
   translation -49.4986 0 -158.582
   rotation 0 1 0 0.785383
   name "generic traffic light(8)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 57.9194 0 -51.7253
   rotation 0 1 0 2.35618
   name "generic traffic light(7)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 58.8731 0 -63.5705
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(6)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 52.6066 0 -57.8582
   rotation 0 1 0 0.785383
   name "generic traffic light(5)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation -59.24 0 -59.68
@@ -260,7 +260,7 @@ RoadIntersection {
   name "road intersection(6)"
   roadsWidth 9
   startRoadsLength [
-    11
+    17
   ]
   startRoadsNumberOfLanes 4
   startRoadsStartLine []
@@ -275,7 +275,7 @@ RoadIntersection {
     RoadLine {
     }
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
   ]
@@ -285,25 +285,25 @@ GenericTrafficLight {
   translation 35.903 0 -230.935
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(12)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -42.936 0 -151.792
   rotation 0 1 0 2.35618
   name "generic traffic light(11)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -42.8937 0 -165.3
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(10)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -36.1176 0 -158.576
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(9)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation -81.55 0 -119.77
@@ -345,13 +345,13 @@ RoadIntersection {
   name "road intersection(4)"
   roadsWidth 9
   startRoadsLength [
-    11
+    17
   ]
   startRoadsNumberOfLanes 4
   startRoadsStartLine []
   startRoadsLine [
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
     RoadLine {
@@ -367,19 +367,19 @@ GenericTrafficLight {
   translation 30.2504 0.01 -237.192
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(15)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
-  translation 23.9357 0 -231.929
+  translation 23.1019 0 -231.102
   rotation 0 -1 0 -0.7853853071795864
   name "generic traffic light(14)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 29.4987 0 -225.524
   rotation 0 1 0 2.35618
   name "generic traffic light(13)"
-  state "green"
+  state "red"
 }
 StraightRoadSegment {
   translation 29.859 0 -29.1908
@@ -414,14 +414,14 @@ StraightRoadSegment {
   locked FALSE
 }
 StraightRoadSegment {
-  translation 19.0931 0 -220.446
+  translation 14.8152 0 -216.239
   rotation 0 1 0 -0.7854053071795866
   name "road(6)"
   width 9
   numberOfLanes 4
   lines [
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
     RoadLine {
@@ -434,7 +434,7 @@ StraightRoadSegment {
   roadBorderHeight 0.1
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
-  length 72
+  length 60
   locked FALSE
 }
 StraightRoadSegment {
@@ -503,14 +503,14 @@ CommercialBuilding {
   name "commercial building(2)"
 }
 StraightRoadSegment {
-  translation 5.62236 0 -241.471
+  translation 0.821124 0 -246.303
   rotation 0 1 0 -0.7854053071795866
   name "road(35)"
   width 9
   numberOfLanes 4
   lines [
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
     RoadLine {
@@ -524,11 +524,11 @@ StraightRoadSegment {
   locked FALSE
 }
 StraightRoadSegment {
-  translation -53.6565 0 -147.688
+  translation -57.8851 0 -143.461
   rotation 0 1 0 -0.7854053071795866
   name "road(24)"
   width 9
-  length 28
+  length 22
   locked FALSE
 }
 StraightRoadSegment {
@@ -546,7 +546,7 @@ StraightRoadSegment {
   rotation 0 1 0 -2.3561953071795863
   name "road(22)"
   width 9
-  length 31
+  length 25
   locked FALSE
 }
 StraightRoadSegment {
@@ -631,28 +631,7 @@ StraightRoadSegment {
   rotation 0 -1 0 0.785399
   name "road(12)"
   width 9
-  length 34
-  locked FALSE
-}
-StraightRoadSegment {
-  translation 44.1304 0 -217.139
-  rotation 0 1 0 -2.3561953071795863
-  name "road(16)"
-  width 9
-  numberOfLanes 4
-  lines [
-    RoadLine {
-      color 1 1 0
-      type "continuous"
-    }
-    RoadLine {
-    }
-    RoadLine {
-      color 0 1 0
-      type "continuous"
-    }
-  ]
-  length 5
+  length 28
   locked FALSE
 }
 StraightRoadSegment {
@@ -669,7 +648,7 @@ StraightRoadSegment {
     RoadLine {
     }
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
   ]
@@ -744,7 +723,7 @@ CurvedRoadSegment {
   locked FALSE
 }
 CurvedRoadSegment {
-  translation 12.6189 0 -234.428
+  translation 7.88833 0 -239.226
   rotation 0 1 0 2.35619
   name "road(34)"
   width 9
@@ -757,14 +736,14 @@ CurvedRoadSegment {
     RoadLine {
     }
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
   ]
   locked FALSE
 }
 CurvedRoadSegment {
-  translation -45.8521 0 -175.991
+  translation -50.646 0 -180.708
   rotation 0 1 0 -2.3561953071795863
   name "road(36)"
   width 9
@@ -777,7 +756,7 @@ CurvedRoadSegment {
     RoadLine {
     }
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
   ]
@@ -827,14 +806,14 @@ CurvedRoadSegment {
   locked FALSE
 }
 CurvedRoadSegment {
-  translation 37.0255 0 -210.111
+  translation 37.0622 0 -210.131
   rotation 0 1 0 0.523595
   name "road(14)"
   width 9
   numberOfLanes 4
   lines [
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
     RoadLine {
@@ -848,14 +827,14 @@ CurvedRoadSegment {
   locked FALSE
 }
 CurvedRoadSegment {
-  translation 37.0188 0 -210.104
+  translation 37.0681 0 -210.143
   rotation 0 1 0 0.785394
   name "road(15)"
   width 9
   numberOfLanes 4
   lines [
     RoadLine {
-      color 0 1 0
+      color 1 1 0
       type "continuous"
     }
     RoadLine {
@@ -1029,7 +1008,7 @@ StopSign {
 GenericTrafficLight {
   translation 19.14 0 -12.96
   rotation 0 1 0 2.35619
-  state "green"
+  state "red"
 }
 DEF GROUND_SHAPE Solid {
   translation 0 -0.08 0
@@ -1065,16 +1044,8 @@ DEF GROUND Solid {
   locked TRUE
 }
 DEF CarTractor Tractor {
-  hidden translation_1 0 0 0
-  hidden rotation_1 -0.0006018198585551859 -0.9999998189064125 3.3795697892887312e-09 1.1231166420552375e-05
-  hidden translation_2 0 0 0
-  hidden rotation_2 0.0006892637247729547 0.9999997624577306 3.874111194178351e-09 1.124128430570047e-05
-  hidden translation_3 0 0 0
-  hidden rotation_3 0 1 0 8.080705583632428e-05
-  hidden translation_4 0 0 0
-  hidden rotation_4 0 -1 0 8.07790725163325e-05
-  translation -24.288701855207076 0.6557388640984767 -149.85993075226224
-  rotation 0.02600242904773919 0.9976806146762158 -0.06290679440971099 2.3594303752887833
+  translation -24.296289426909034 0.655738860207782 -149.85231279326868
+  rotation 0.026002416494909742 0.997680615113499 -0.06290679266323695 2.359430704263124
   name "Tractor"
   sensorSlot [
     Camera {
@@ -1112,17 +1083,9 @@ DEF CarTractor Tractor {
   ]
 }
 Car {
-  hidden translation_1 0 0 0
-  hidden rotation_1 0.008711527518531572 0.9999494832944293 -0.0050139951632998635 5.238633562281262
-  hidden translation_2 0 0 0
-  hidden rotation_2 0.006890473867659155 -0.9999638312550643 -0.004985734807668245 1.2527738014660301
-  hidden translation_3 0 0 0
-  hidden rotation_3 0 -1 0 0.31654955125654827
-  hidden translation_4 0 0 0
-  hidden rotation_4 0 -1 0 5.739854911376777
-  translation 19.39117044891322 0.48129244809713784 -140.00200286600665
-  rotation -1.921143769194193e-13 1 8.648243387126293e-13 2.498258618818745
-  controller "AckermannControllerThrottle"
+  translation -9.74101 0.481284 -232.504
+  rotation 0 1 0 2.35619
+  controller "AckermanDriver"
   wheelbase 3
   extensionSlot [
     Group {

@@ -8,6 +8,10 @@ from vehicle import Driver
 
 import numpy as np
 from scipy.ndimage.interpolation import shift
+from skimage.morphology import skeletonize, dilation, square
+from glob import glob
+import numpy as np
+
 
 from datetime import date
 import datetime
@@ -54,7 +58,7 @@ class AckermannVehicleDriver():
         self.camera.enable(self.time_step)
 
         # Auto drive
-        self.SIZE_LINE = 3
+        self.SIZE_LINE = 2
         self.old_line_values = np.zeros(self.SIZE_LINE)
         self.old_value = 0.0
         self.integral = 0.0
@@ -119,14 +123,17 @@ class AckermannVehicleDriver():
         data = np.absolute(data - [255, 255, 0])
         
         sums = np.sum(data, axis=2)
-        threshold = np.where(data < 30)
+        morf = sums < 210
+        morf = dilation(morf, selem=square(5))
+        morf = skeletonize(morf)
+
+        threshold = np.where(morf == 1)
         pixs = threshold[0].shape[0]
+        if pixs < 30:
+            return
+
         sumx = np.sum(threshold[0])
-
-
-        magic = 0
-        if pixs != 0:
-            magic = (sumx / pixs / self.camera.getWidth() - 0.5) * self.camera.getFov()
+        magic = (sumx / pixs / self.camera.getWidth() - 0.5) * self.camera.getFov()
 
         shift(self.old_line_values, 1)
 
@@ -136,8 +143,16 @@ class AckermannVehicleDriver():
         diff = yellow_line_angle - self.old_value
         self.old_value = yellow_line_angle
 
-        angle = 0.05 * yellow_line_angle + diff
-        print(angle)
+
+        speed = self.GPS.getSpeed() * 3.6
+        ax = 5.0
+        if speed > 7.5 and speed < 200.0:
+            ax = speed * 1.15
+        if speed > 20.0 and speed < 200.0:
+            ax = speed * 1.75
+
+        angle = (ax / 1000) * yellow_line_angle + diff
+        #print(f"{angle:2.5}, {ax:2.5}, {speed:2.5}")
         self._set_steering_angle(angle)
 
     def main_loop(self):
