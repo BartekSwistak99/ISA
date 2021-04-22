@@ -4,8 +4,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.591161903391432 0.7993353564923031 0.10765961099661225 0.8020429535801277
-  position -29.063405245004017 13.72246534351343 -146.2810013884308
+  orientation -0.7648369913073809 0.6089142401443223 0.21035166953779028 1.2076836358842715
+  position -33.95370122893534 14.73857711803689 -155.66067587270868
   follow "vehicle"
   followType "Mounted Shot"
 }
@@ -193,25 +193,25 @@ GenericTrafficLight {
   translation 64.3015 0 -57.2785
   rotation 0 -1 0 2.35621
   name "generic traffic light(4)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 25.4723 0 -18.6511
   rotation 0 -1 0 2.35621
   name "generic traffic light(3)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 13.8746 0 -19.1455
   rotation 0 1 0 0.785391
   name "generic traffic light(2)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 19.8135 0 -24.6335
   rotation 0 1 0 -0.7854053071795866
   name "generic traffic light(1)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation 58.31 0 -57.63
@@ -226,25 +226,25 @@ GenericTrafficLight {
   translation -48.5852 0 -159.052
   rotation 0 1 0 0.785383
   name "generic traffic light(8)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 57.9194 0 -51.7253
   rotation 0 1 0 2.35618
   name "generic traffic light(7)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 58.8731 0 -63.5705
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(6)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 52.6066 0 -57.8582
   rotation 0 1 0 0.785383
   name "generic traffic light(5)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation -59.24 0 -59.68
@@ -281,25 +281,25 @@ GenericTrafficLight {
   translation 35.903 0 -230.935
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(12)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -42.9699 0 -152.754
   rotation 0 1 0 2.35618
   name "generic traffic light(11)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -42.5661 0 -164.358
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(10)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation -36.7899 0 -158.361
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(9)"
-  state "green"
+  state "red"
 }
 RoadIntersection {
   translation -81.55 0 -119.77
@@ -349,19 +349,19 @@ GenericTrafficLight {
   translation 30.2504 0.01 -237.192
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(15)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 23.9357 0 -231.929
   rotation 0 -1 0 -0.7853853071795864
   name "generic traffic light(14)"
-  state "green"
+  state "red"
 }
 GenericTrafficLight {
   translation 29.4987 0 -225.524
   rotation 0 1 0 2.35618
   name "generic traffic light(13)"
-  state "green"
+  state "red"
 }
 StraightRoadSegment {
   translation 29.859 0 -29.1908
@@ -407,7 +407,7 @@ StraightRoadSegment {
   locked FALSE
 }
 StraightRoadSegment {
-  translation 38.1573 0 -217.486
+  translation 38.1576 0 -216.18
   rotation 0 1 0 -0.7854053071795866
   name "road(41)"
   id "parking"
@@ -946,7 +946,7 @@ StopSign {
 GenericTrafficLight {
   translation 19.14 0 -12.96
   rotation 0 1 0 2.35619
-  state "green"
+  state "red"
 }
 DEF GROUND_SHAPE Solid {
   translation 0 -0.08 0
@@ -1293,7 +1293,6 @@ Car {
   wheelRearLeft DEF rear_left VehicleWheel {
     name "rear left wheel"
   }
-  engineType "electric"
   maxVelocity 200
   gearRatio [
     -12, 10, 16.5, 4.5, 3.5, 2.75

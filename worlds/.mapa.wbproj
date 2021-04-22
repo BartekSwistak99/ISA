@@ -8,5 +8,5 @@ orthographicViewHeight: 1
 textFiles: -1
 consoles: Console:All:All
 renderingDevicePerspectives: Tractor:camera;0;0.671875;0.192959;0.0590717
-renderingDevicePerspectives: vehicle:camera;1;1.53125;0.00338517;0.302391
+renderingDevicePerspectives: vehicle:camera;1;1.53125;0;0.255978
 renderingDevicePerspectives: vehicle:display;1;1;0;0
