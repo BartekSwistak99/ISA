@@ -1,3 +1,4 @@
-.wbproj
-.txt
-.c
+*.wbproj
+*.txt
+*.c
+*.pyc

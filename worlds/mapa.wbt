@@ -4,8 +4,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.3816877330173262 0.6944082279613538 0.6100095797638482 4.464792457883046
-  position -0.7839615604901624 36.207916480114775 -201.065643292022
+  orientation 0.012146519494782952 0.9520940758271184 0.30556395867161473 4.2826929985691145
+  position -98.90488751255077 46.5148026778987 -244.1522161642585
   follow "vehicle"
   followType "Mounted Shot"
 }
@@ -193,25 +193,25 @@ GenericTrafficLight {
   translation 64.3015 0 -57.2785
   rotation 0 -1 0 2.35621
   name "generic traffic light(4)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 25.4723 0 -18.6511
   rotation 0 -1 0 2.35621
   name "generic traffic light(3)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 13.8746 0 -19.1455
   rotation 0 1 0 0.785391
   name "generic traffic light(2)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 19.8135 0 -24.6335
   rotation 0 1 0 -0.7854053071795866
   name "generic traffic light(1)"
-  state "red"
+  state "green"
 }
 RoadIntersection {
   translation 58.31 0 -57.63
@@ -226,25 +226,25 @@ GenericTrafficLight {
   translation -49.4986 0 -158.582
   rotation 0 1 0 0.785383
   name "generic traffic light(8)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 57.9194 0 -51.7253
   rotation 0 1 0 2.35618
   name "generic traffic light(7)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 58.8731 0 -63.5705
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(6)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation 52.6066 0 -57.8582
   rotation 0 1 0 0.785383
   name "generic traffic light(5)"
-  state "red"
+  state "green"
 }
 RoadIntersection {
   translation -59.24 0 -59.68
@@ -282,28 +282,28 @@ RoadIntersection {
   locked FALSE
 }
 GenericTrafficLight {
-  translation 35.903 0 -230.935
+  translation 37.5292 0 -230.851
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(12)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation -42.936 0 -151.792
   rotation 0 1 0 2.35618
   name "generic traffic light(11)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation -42.8937 0 -165.3
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(10)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
   translation -36.1176 0 -158.576
   rotation 0 1 0 -2.3562053071795863
   name "generic traffic light(9)"
-  state "red"
+  state "green"
 }
 RoadIntersection {
   translation -81.55 0 -119.77
@@ -337,6 +337,22 @@ RoadIntersection {
   startRoadsLength [
     11
   ]
+  startRoadsNumberOfLanes 4
+  startRoadsEndLine [
+    ""
+  ]
+  startRoadsLine [
+    RoadLine {
+      color 1 1 0
+      type "continuous"
+    }
+    RoadLine {
+    }
+    RoadLine {
+      color 1 1 0
+      type "continuous"
+    }
+  ]
   locked FALSE
 }
 RoadIntersection {
@@ -364,22 +380,22 @@ RoadIntersection {
   locked FALSE
 }
 GenericTrafficLight {
-  translation 30.2504 0.01 -237.192
+  translation 30.3495 0.01 -238.8
   rotation 0 1 0 -0.7854153071795862
   name "generic traffic light(15)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
-  translation 23.1019 0 -231.102
+  translation 22.2811 0 -231.914
   rotation 0 -1 0 -0.7853853071795864
   name "generic traffic light(14)"
-  state "red"
+  state "green"
 }
 GenericTrafficLight {
-  translation 29.4987 0 -225.524
+  translation 29.2157 0 -223.267
   rotation 0 1 0 2.35618
   name "generic traffic light(13)"
-  state "red"
+  state "green"
 }
 StraightRoadSegment {
   translation 29.859 0 -29.1908
@@ -605,6 +621,19 @@ StraightRoadSegment {
   rotation 0 1 0 -0.7854053071795866
   name "road(18)"
   width 9
+  numberOfLanes 4
+  lines [
+    RoadLine {
+      color 1 1 0
+      type "continuous"
+    }
+    RoadLine {
+    }
+    RoadLine {
+      color 1 1 0
+      type "continuous"
+    }
+  ]
   length 38
   locked FALSE
 }
@@ -613,6 +642,17 @@ StraightRoadSegment {
   rotation 0 1 0 -0.7854053071795866
   name "road(20)"
   width 9
+  numberOfLanes 4
+  lines [
+    RoadLine {
+      color 1 1 0
+    }
+    RoadLine {
+    }
+    RoadLine {
+      color 1 1 0
+    }
+  ]
   length 26
   locked FALSE
 }
@@ -852,6 +892,17 @@ CurvedRoadSegment {
   rotation 0 -1 0 -2.356185307179586
   name "road(17)"
   width 9
+  numberOfLanes 4
+  lines [
+    RoadLine {
+      color 1 1 0
+    }
+    RoadLine {
+    }
+    RoadLine {
+      color 1 1 0
+    }
+  ]
   totalAngle 0.25
   locked FALSE
 }
@@ -1008,7 +1059,7 @@ StopSign {
 GenericTrafficLight {
   translation 19.14 0 -12.96
   rotation 0 1 0 2.35619
-  state "red"
+  state "green"
 }
 DEF GROUND_SHAPE Solid {
   translation 0 -0.08 0
@@ -1288,6 +1339,7 @@ Car {
     Gyro {
     }
     GPS {
+      accuracy 1
     }
     Display {
       width 200
