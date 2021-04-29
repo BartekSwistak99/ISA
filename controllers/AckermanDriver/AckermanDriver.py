@@ -6,7 +6,11 @@ from controller import Robot, GPS, Gyro, Display, Camera
 from controller import Keyboard
 from vehicle import Driver
 
-import numpy as np
+import sys
+sys.path.append('../')
+from Dijkstra import Graph
+sys.path.pop()
+
 from scipy.ndimage.interpolation import shift
 from skimage.morphology import skeletonize, dilation, square
 from glob import glob
@@ -21,9 +25,10 @@ REAR_WHEEL_RADIUS = 0.6
 
 
 class AckermannVehicleDriver():
-    def __init__(self):
+    def __init__(self, graph = None):
         self.driver = Driver()
         self.keyboard = Keyboard()
+        self.graph = graph
 
         # Display
         self.im = None
@@ -148,26 +153,39 @@ class AckermannVehicleDriver():
         ax = 5.0
         if speed > 7.5 and speed < 200.0:
             ax = speed * 1.15
-        if speed > 20.0 and speed < 200.0:
-            ax = speed * 1.75
+        # if speed > 20.0 and speed < 200.0:
+        #     ax = speed * 1.75
 
         angle = (ax / 1000) * yellow_line_angle + diff
-        #print(f"{angle:2.5}, {ax:2.5}, {speed:2.5}")
+        #print(f"{angle:+2.5f}, {ax:+2.5f}, {speed:+2.5f}", end='\r')
         self._set_steering_angle(angle)
 
     def main_loop(self):
-        self._set_speed(5)
+        self._set_speed(10)
         while self.driver.step() != -1:
             self._check_camera()
             self._update_display()
+
+            v = self.GPS.getValues()
+            c = self.graph.get_closest_vertice(v)
+            l = self.graph.get_closest_edges(v)
+            print(c, l)
             pass
 
 
 if __name__ == '__main__':
     print('Time: ', datetime.datetime.now())
 
-    #controller = AckermannVehicleController()
-    # controller.main_loop()
+    world = Graph('../../world_map.json')
+    print(world.dijkstra_shortest('A', 'J', can_neighborhood=False))
 
-    driver = AckermannVehicleDriver()
+    driver = AckermannVehicleDriver(world)
     driver.main_loop()
+
+    # hardkodowana droga/zakręty jakie trzeba wykonać
+
+    
+
+    
+  
+    
