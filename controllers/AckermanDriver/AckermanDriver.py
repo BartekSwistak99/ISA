@@ -152,20 +152,22 @@ class AckermannVehicleDriver():
         ax = 5.0
         if speed > 7.5 and speed < 200.0:
             ax = speed * 1.15
-        # if speed > 20.0 and speed < 200.0:
-        #     ax = speed * 1.75
 
         angle = (ax / 1000) * yellow_line_angle + diff
         #print(f"{angle:+2.5f}, {ax:+2.5f}, {speed:+2.5f}", end='\r')
         self._set_steering_angle(angle)
     
-    def follow_path(self, source, target, points, min_dist = 1.5):
+    def follow_path(self, source, target, points, graph, min_dist = 2.0):
         if len(points) == 0: 
             print('Reached target location')
             return True
 
+        
         object_xyz = self.GPS.getValues()
-        target_xyz = self.graph.get_points_coord(points[0])
+        if np.any(np.isnan(object_xyz)):
+            return False
+        
+        target_xyz = graph[points[0]]['xyz']
         dist = Graph.calculate_distance(object_xyz, target_xyz)
         if  dist < min_dist:
             print('Reached: ', points[0])
@@ -184,28 +186,31 @@ class AckermannVehicleDriver():
         if radians > +math.pi: radians = math.pi - radians
         if radians < -math.pi: radians = 2*math.pi + radians
 
-        if abs(radians) > (math.pi - 0.025): radians = 0.0
+        if abs(radians) > (math.pi - 0.125): radians = 0.0
 
-        print(target_angle, object_angle, radians)
         if not math.isnan(radians):
             self._set_steering_angle(radians)
 
         return False
 
-
     def main_loop(self):
-        source = 'J'
-        target = 'AN'
-        points:tuple = self.graph.dijkstra_shortest(source, target)
+        # wait for gps 
+        while self.driver.step() != -1:
+            if not np.any(np.isnan(self.GPS.getValues())):
+                break
 
-        print(points, self.graph.get_points_coord('J')) 
-        
+        source = 'source'
+        target = 'target'
+        xyz_target = [-90, 0, -35.5]
+        points, graph = self.graph.get_closest_point_edges_road(self.GPS.getValues(), xyz_target, source, target)
+
+        print(points) 
         self._set_speed(10)
         while self.driver.step() != -1:
             #self._check_camera()
             self._update_display()
 
-            if self.follow_path(source, target, points):
+            if self.follow_path(source, target, points, graph):
                 self.driver.setCruisingSpeed(0)
                 break
 

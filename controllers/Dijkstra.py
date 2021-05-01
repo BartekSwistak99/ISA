@@ -132,19 +132,20 @@ class Graph():
         # Policz nowe wagi
         cost_graph = self._calculate_cost_dict(graph)
         inf_cost = self._calculate_inf_cost_dict(graph)
-        edges_lines = self._calculate_egdes_dict(graph)
-
+        
         # Znajdź nakrótszą ścieżkę między dwoma punktami (z zawracaniem)
         shortest = self.dijkstra_shortest(source, target, True, [inf_cost, cost_graph])
 
-        points = []
-        for i in range(1, len(shortest)):
-            a = shortest[i - 1]
-            b = shortest[i]
-            points.append(edges_lines[a][b])
+        #edges_lines = self._calculate_egdes_dict(graph)
+        # points = []
+        # for i in range(1, len(shortest)):
+        #     a = shortest[i - 1]
+        #     b = shortest[i]
+        #     points.append(edges_lines[a][b])
 
-        points = np.array(points)
-        return np.reshape(points, (-1, points.shape[-1])), shortest
+        # points = np.array(points)
+
+        return shortest, graph
 
 if __name__ == '__main__':
     world = Graph('../world_map.json')
