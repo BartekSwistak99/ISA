@@ -2,7 +2,7 @@
 
 # You may need to import some classes of the controller module. Ex:
 #  from controller import Robot, Motor, DistanceSensor
-from controller import Robot, GPS, Gyro, Display, Camera
+from controller import Robot, GPS, Gyro, Display, Camera, Supervisor, Compass
 from controller import Keyboard
 from vehicle import Driver
 
@@ -26,8 +26,12 @@ REAR_WHEEL_RADIUS = 0.6
 
 class AckermannVehicleDriver():
     def __init__(self, graph = None):
-        self.driver = Driver()
+        #self.supervisor = Supervisor()
+
+        self.driver = Driver() #self.supervisor.getFromDef('my_vehicle')
+       
         self.keyboard = Keyboard()
+
         self.graph = graph
 
         # Display
@@ -37,14 +41,11 @@ class AckermannVehicleDriver():
             self.im = self.display.imageLoad('speedometer.png')
         self.needle_len = 50.0
 
-        # GPS
+        # Extension Slot
         self.GPS = GPS('gps')
-
-        # Gyro
         self.gyro = Gyro('gyro')
-
-        # Camera
         self.camera = Camera('camera')
+        self.compass = Compass('compass')
 
         # Params
         self.speed: float = 0.0
@@ -61,6 +62,7 @@ class AckermannVehicleDriver():
         self.gyro.enable(self.time_step)
         self.keyboard.enable(self.time_step)
         self.camera.enable(self.time_step)
+        self.compass.enable(self.time_step)
 
         # Auto drive
         self.SIZE_LINE = 2
@@ -75,7 +77,7 @@ class AckermannVehicleDriver():
     def _set_steering_angle(self, angle: float):
         sign = self._get_sign(self.steering_angle)
 
-        self.steering_angle += angle
+        self.steering_angle = angle
         if self.steering_angle >= self.max_steering_angle:
             self.steering_angle = self.max_steering_angle
         if self.steering_angle <= -self.max_steering_angle:
@@ -118,9 +120,6 @@ class AckermannVehicleDriver():
             self.speed = -self.max_speed
 
         self.driver.setCruisingSpeed(self.speed)
-        # 100km/h 0 -> 100 => 1 sekund
-        # setCruisingSpeed(0) 100..0  => 1 sekund
-        #
     
     def _check_camera(self):
         image = self.camera.getImageArray()
@@ -159,25 +158,78 @@ class AckermannVehicleDriver():
         angle = (ax / 1000) * yellow_line_angle + diff
         #print(f"{angle:+2.5f}, {ax:+2.5f}, {speed:+2.5f}", end='\r')
         self._set_steering_angle(angle)
+    
+    def follow_path(self, source, target, points, min_dist = 1.5):
+        if len(points) == 0: 
+            print('Reached target location')
+            return True
+
+        object_xyz = self.GPS.getValues()
+        target_xyz = self.graph.get_points_coord(points[0])
+        dist = Graph.calculate_distance(object_xyz, target_xyz)
+        if  dist < min_dist:
+            print('Reached: ', points[0])
+            points.pop(0)
+            return False
+
+        dy = object_xyz[2] - target_xyz[2] 
+        dx = object_xyz[0] - target_xyz[0]
+        target_angle = math.atan2(dy, dx)
+
+        x, _, y = self.compass.getValues()
+        object_angle = math.atan2(x, y)
+
+        radians = object_angle - target_angle
+
+        if radians > +math.pi: radians = math.pi - radians
+        if radians < -math.pi: radians = 2*math.pi + radians
+
+        if abs(radians) > (math.pi - 0.025): radians = 0.0
+
+        print(target_angle, object_angle, radians)
+        if not math.isnan(radians):
+            self._set_steering_angle(radians)
+
+        return False
+
 
     def main_loop(self):
+        source = 'J'
+        target = 'AN'
+        points:tuple = self.graph.dijkstra_shortest(source, target)
+
+        print(points, self.graph.get_points_coord('J')) 
+        
         self._set_speed(10)
         while self.driver.step() != -1:
-            self._check_camera()
+            #self._check_camera()
             self._update_display()
 
-            v = self.GPS.getValues()
-            c = self.graph.get_closest_vertice(v)
-            l = self.graph.get_closest_edges(v)
-            print(c, l)
-            pass
+            if self.follow_path(source, target, points):
+                self.driver.setCruisingSpeed(0)
+                break
 
+# def navigate(self, target):
+#         diff = [self.gps[0] - target[0], self.gps[1] - target[1]]
+#         target_angle = util.rad2deg(math.atan2(diff[1], diff[0]) + math.pi)
+#         car_angle = util.rad2deg(self.orient + math.pi)
+#         diff_angle = car_angle - target_angle
+
+        # if diff_angle > 180:
+        #     diff_angle = 180 - diff_angle
+        # if diff_angle < -180:
+        #     diff_angle = 360 + diff_angle
+
+        # diff_angle = min(30, diff_angle)
+        # diff_angle = max(-30, diff_angle)
+
+        # self.target_velocity = 20
+        # self.set_wheels_by_angle(diff_angle)
 
 if __name__ == '__main__':
     print('Time: ', datetime.datetime.now())
 
     world = Graph('../../world_map.json')
-    print(world.dijkstra_shortest('A', 'J', can_neighborhood=False))
 
     driver = AckermannVehicleDriver(world)
     driver.main_loop()
