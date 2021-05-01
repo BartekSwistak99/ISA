@@ -209,23 +209,6 @@ class AckermannVehicleDriver():
                 self.driver.setCruisingSpeed(0)
                 break
 
-# def navigate(self, target):
-#         diff = [self.gps[0] - target[0], self.gps[1] - target[1]]
-#         target_angle = util.rad2deg(math.atan2(diff[1], diff[0]) + math.pi)
-#         car_angle = util.rad2deg(self.orient + math.pi)
-#         diff_angle = car_angle - target_angle
-
-        # if diff_angle > 180:
-        #     diff_angle = 180 - diff_angle
-        # if diff_angle < -180:
-        #     diff_angle = 360 + diff_angle
-
-        # diff_angle = min(30, diff_angle)
-        # diff_angle = max(-30, diff_angle)
-
-        # self.target_velocity = 20
-        # self.set_wheels_by_angle(diff_angle)
-
 if __name__ == '__main__':
     print('Time: ', datetime.datetime.now())
 
@@ -233,8 +216,6 @@ if __name__ == '__main__':
 
     driver = AckermannVehicleDriver(world)
     driver.main_loop()
-
-    # hardkodowana droga/zakręty jakie trzeba wykonać
 
     
 
