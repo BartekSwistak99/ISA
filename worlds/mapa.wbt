@@ -4,8 +4,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.012146519494782952 0.9520940758271184 0.30556395867161473 4.2826929985691145
-  position -98.90488751255077 46.5148026778987 -244.1522161642585
+  orientation 0.9054702801078314 -0.37673271180761997 -0.1954380610206788 4.786313140019665
+  position -5.422755642358155 130.6226071894649 -138.60831586955524
   follow "vehicle"
   followType "Mounted Shot"
 }
@@ -73,7 +73,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation -10.0187 -1.09627e-06 -120.54
+  translation -11.4248 -1.07269e-06 -120.533
   rotation 3.27098e-09 -1 2.48455e-08 -0.7853753071795859
   name "stop sign(9)"
   signBoards [
@@ -86,7 +86,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation 7.38241 -1.32459e-06 -114.213
+  translation 8.59857 -1.34705e-06 -114.439
   rotation 1.02911e-08 1 -1.35487e-09 -2.3562253071795864
   name "stop sign(8)"
   signBoards [
@@ -391,12 +391,6 @@ GenericTrafficLight {
   name "generic traffic light(14)"
   state "green"
 }
-GenericTrafficLight {
-  translation 29.2157 0 -223.267
-  rotation 0 1 0 2.35618
-  name "generic traffic light(13)"
-  state "green"
-}
 StraightRoadSegment {
   translation 29.859 0 -29.1908
   rotation 0 1 0 2.35619
@@ -492,7 +486,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation 1.76081 -1.34572e-06 -126.158
+  translation 1.11736 -1.34119e-06 -126.801
   rotation 1.98803e-08 1 1.52546e-08 -0.7854253071795858
   name "stop sign(6)"
   signBoards [
@@ -1032,7 +1026,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation -4.78747 -1.06622e-06 -108.361
+  translation -4.15824 -1.07067e-06 -107.738
   rotation 6.31891e-09 1 -8.235e-09 2.35617
   name "stop sign(7)"
   signBoards [
@@ -1133,12 +1127,17 @@ DEF CarTractor Tractor {
     }
   ]
 }
-Car {
-  translation -9.74101 0.481284 -232.504
-  rotation 0 1 0 2.35619
+DEF my_vehicle Car {
+  translation -31.5334 0.441284 -150.858
+  rotation 0 1 0 -2.3561953071795863
   controller "AckermanDriver"
+  controllerArgs [
+    "24.2258 0 -233.859"
+  ]
   wheelbase 3
   extensionSlot [
+    Compass {
+    }
     Group {
       children [
         DEF BUMPER Shape {

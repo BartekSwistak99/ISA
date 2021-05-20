@@ -42,8 +42,7 @@ class Graph():
         for vertice in graph:
             cost_dict[vertice] = dict()
             for neighbour in graph[vertice]['neighbors']:
-                cost_dict[vertice][neighbour] = self._calculate_cost(
-                    vertice, neighbour, graph)
+                cost_dict[vertice][neighbour] = self._calculate_cost(vertice, neighbour, graph)
         return cost_dict
 
     def _search(self, source, target, can_neighborhood=True, graph_data:tuple = None):
@@ -62,11 +61,16 @@ class Graph():
         nextNode = source
         while nextNode != target:
             for neighbor in cost_graph[nextNode]:
+                if neighbor not in inf_costs.keys():
+                    continue
+                
                 if cost_graph[nextNode][neighbor] + inf_costs[nextNode] < inf_costs[neighbor]:
-                    inf_costs[neighbor] = cost_graph[nextNode][neighbor] + \
-                        inf_costs[nextNode]
+                    inf_costs[neighbor] = cost_graph[nextNode][neighbor] + inf_costs[nextNode]
                     parents[neighbor] = nextNode
-                del cost_graph[neighbor][nextNode]
+                
+                if nextNode in cost_graph[neighbor]:
+                    del cost_graph[neighbor][nextNode]
+         
             del inf_costs[nextNode]
             nextNode = min(inf_costs, key=inf_costs.get)
         return parents
@@ -111,8 +115,10 @@ class Graph():
         graph:dict = dict(self._graph)
         if not (source in graph.keys() and target in graph.keys()):
             graph[target] = {'xyz': xyz_target, 'neighbors': [a, b]} 
-            graph[a]['neighbors'].remove(b)           # a -x- b 
-            graph[b]['neighbors'].remove(a)           # b -x- a
+            try: graph[a]['neighbors'].remove(b)           # a -x- b 
+            except: print(b)
+            try: graph[b]['neighbors'].remove(a)           # b -x- a
+            except: print(a)
             graph[a]['neighbors'].append(target)      # a --- target
             graph[b]['neighbors'].append(target)      # target --- b 
                                                       # a --- target --- b
@@ -123,8 +129,10 @@ class Graph():
 
             # Wstaw pomiędzy te krawędzie nowy punkt startowy
             graph[source] = {'xyz': xyz_source, 'neighbors': [c, d]} 
-            graph[c]['neighbors'].remove(d)           # c -x- d 
-            graph[d]['neighbors'].remove(c)           # d -x- c
+            try: graph[c]['neighbors'].remove(d)           # c -x- d 
+            except: print(c)
+            try: graph[d]['neighbors'].remove(c)           # d -x- c
+            except: print(d)
             graph[c]['neighbors'].append(source)      # c --- source
             graph[d]['neighbors'].append(source)      # source --- d
                                                       # c --- source --- d
@@ -136,27 +144,41 @@ class Graph():
         # Znajdź nakrótszą ścieżkę między dwoma punktami (z zawracaniem)
         shortest = self.dijkstra_shortest(source, target, True, [inf_cost, cost_graph])
 
-        #edges_lines = self._calculate_egdes_dict(graph)
-        # points = []
-        # for i in range(1, len(shortest)):
-        #     a = shortest[i - 1]
-        #     b = shortest[i]
-        #     points.append(edges_lines[a][b])
-
-        # points = np.array(points)
-
         return shortest, graph
+    def show(self):
+        print(self._graph)
+    def getKeys(self):
+        return self._graph.keys()
 
 if __name__ == '__main__':
-    world = Graph('../world_map.json')
+    world = Graph('../world_map_new.json')
 
-    image_map = np.zeros(())
-    points, path = world.get_closest_point_edges_road([-60, 0, -183], [51, 0, -159], "J", "AN")
-    x = points[:,:1]
-    y = points[:,2:]
-    print(path)
-    print(world.dijkstra_shortest('J', 'AN'))
-    pypl.plot(y, x)
-    pypl.show()
+    keys = world.getKeys()
+    good = 0
+    bad = 0
+    for a in keys:
+        for b in keys:
+            if a != b:
+                try:
+                    good += 1
+                    path = world.dijkstra_shortest(a, b)
+                except:
+                    bad += 1
+                    print(f'Error! road: {a} to {b}')
+                    
+    print(good, bad)                
+
+    #points, graph = world.get_closest_point_edges_road([12.905, 0, -131.49], [-34.0802, 0.0, -146.593])
+    #print(points)
+
+    exit()
+    for a in world.getKeys():
+        for b in world.getKeys():
+            if a != 'F':
+                print(a, b)
+                print(world.dijkstra_shortest(a, b))
+                print('*'*10)
+
 
     
+#[pink_1, blue_1, green_1, yellow_1, orange_1, red_1, silver_1, P, F]
