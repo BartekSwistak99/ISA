@@ -193,21 +193,23 @@ class AckermannVehicleDriver():
 
         return False
 
-    def main_loop(self):
+    def main_loop(self, xyz_target = None):
         # wait for gps 
         while self.driver.step() != -1:
             if not np.any(np.isnan(self.GPS.getValues())):
                 break
+        
 
         source = 'source'
         target = 'target'
-        xyz_target = [-90, 0, -35.5]
+        if xyz_target == None:
+            xyz_target = [0, 0, 0]
         points, graph = self.graph.get_closest_point_edges_road(self.GPS.getValues(), xyz_target, source, target)
 
         print(points) 
-        self._set_speed(10)
+        self._set_speed(7)
         while self.driver.step() != -1:
-            #self._check_camera()
+            # self._check_camera()
             self._update_display()
 
             if self.follow_path(source, target, points, graph):
@@ -215,12 +217,15 @@ class AckermannVehicleDriver():
                 break
 
 if __name__ == '__main__':
-    print('Time: ', datetime.datetime.now())
+    args = sys.argv[1:]
+    xyz_target = [float(x) for x in list(args[0].split(' '))]
 
-    world = Graph('../../world_map.json')
+    print('Time: ', datetime.datetime.now())
+    print('Target: ', xyz_target)
+    world = Graph('../../world_map_new.json')
 
     driver = AckermannVehicleDriver(world)
-    driver.main_loop()
+    driver.main_loop(xyz_target)
 
     
 
