@@ -4,8 +4,8 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation 0.9054702801078314 -0.37673271180761997 -0.1954380610206788 4.786313140019665
-  position -5.422755642358155 130.6226071894649 -138.60831586955524
+  orientation -0.005232135326877793 -0.78591500870927 -0.6183123998800518 2.410563611572511
+  position -27.618394266673853 72.98489730918249 -220.55466674935562
   follow "vehicle"
   followType "Mounted Shot"
 }
@@ -19,7 +19,7 @@ Roundabout {
   locked FALSE
 }
 StopSign {
-  translation 4.01552 -2.58009e-07 -8.81503
+  translation 3.01154 -2.5096e-07 -9.81907
   rotation -1.98807e-08 -1 -1.5255e-08 0.785411
   name "stop sign(1)"
   signBoards [
@@ -38,7 +38,7 @@ Roundabout {
   locked FALSE
 }
 StopSign {
-  translation 127.57 -3.31262e-06 -113.374
+  translation 129.755 -3.33546e-06 -112.004
   rotation 9.5898e-09 1 -2.5696e-09 -2.618025307179586
   name "stop sign(10)"
   signBoards [
@@ -60,7 +60,7 @@ Roundabout {
   locked FALSE
 }
 StopSign {
-  translation -31.3894 -3.08842e-07 -75.4398
+  translation -30.4035 -3.34567e-07 -76.4257
   rotation 1.02911e-08 1 -1.35487e-09 -2.3562253071795864
   name "stop sign(5)"
   signBoards [
@@ -73,8 +73,8 @@ StopSign {
   ]
 }
 StopSign {
-  translation -11.4248 -1.07269e-06 -120.533
-  rotation 3.27098e-09 -1 2.48455e-08 -0.7853753071795859
+  translation -35.3356 -8.09897e-07 -134.485
+  rotation -3.27108e-09 1 -2.48458e-08 0.785371
   name "stop sign(9)"
   signBoards [
     StopPanel {
@@ -86,7 +86,20 @@ StopSign {
   ]
 }
 StopSign {
-  translation 8.59857 -1.34705e-06 -114.439
+  translation -11.4461 -1.06811e-06 -119.999
+  rotation -3.27108e-09 1 -2.48458e-08 0.785371
+  name "stop sign(19)"
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation 8.84602 -1.35369e-06 -114.684
   rotation 1.02911e-08 1 -1.35487e-09 -2.3562253071795864
   name "stop sign(8)"
   signBoards [
@@ -99,7 +112,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation -37.0816 -3.28143e-07 -87.3119
+  translation -37.7106 -3.31159e-07 -88.7207
   rotation 1.98803e-08 1 1.52546e-08 -0.7854253071795858
   name "stop sign(4)"
   signBoards [
@@ -121,7 +134,7 @@ Roundabout {
   locked FALSE
 }
 StopSign {
-  translation 110.929 -3.0977e-06 -119.776
+  translation 107.961 -3.04814e-06 -119.743
   rotation -1.63366e-14 1 -1.91801e-08 1.04717
   name "stop sign(13)"
   signBoards [
@@ -134,7 +147,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation 117.461 -3.28898e-06 -128.408
+  translation 116.546 -3.29822e-06 -130.955
   rotation -4.47212e-08 -1 -5.82817e-08 0.261828
   name "stop sign(12)"
   signBoards [
@@ -147,8 +160,8 @@ StopSign {
   ]
 }
 StopSign {
-  translation 127.903 -3.42595e-06 -124.629
-  rotation 1.45536e-08 1 6.02828e-09 -1.3090253071795859
+  translation 130.955 -3.49501e-06 -126.487
+  rotation -1.45536e-08 -1 -6.02828e-09 1.30903
   name "stop sign(11)"
   signBoards [
     StopPanel {
@@ -270,13 +283,13 @@ RoadIntersection {
   startRoadsLine [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   locked FALSE
@@ -344,13 +357,13 @@ RoadIntersection {
   startRoadsLine [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   locked FALSE
@@ -368,13 +381,13 @@ RoadIntersection {
   startRoadsLine [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   locked FALSE
@@ -386,7 +399,7 @@ GenericTrafficLight {
   state "green"
 }
 GenericTrafficLight {
-  translation 22.2811 0 -231.914
+  translation 22.2458 0 -231.875
   rotation 0 -1 0 -0.7853853071795864
   name "generic traffic light(14)"
   state "green"
@@ -432,13 +445,13 @@ StraightRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   roadBorderHeight 0.1
@@ -460,7 +473,7 @@ StraightRoadSegment {
   length 95
 }
 StopSign {
-  translation -48.819 -7.97325e-08 -81.7395
+  translation -49.8162 -5.36108e-08 -80.7425
   rotation 3.27098e-09 -1 2.48455e-08 -0.7853753071795859
   name "stop sign(3)"
   signBoards [
@@ -473,7 +486,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation -43.8907 -4.40791e-08 -69.4861
+  translation -42.8993 -5.10267e-08 -68.4947
   rotation 6.31894e-09 1 -8.23501e-09 2.35618
   name "stop sign(2)"
   signBoards [
@@ -503,14 +516,14 @@ CommercialBuilding {
   rotation 0 1 0 0.785398
 }
 CommercialBuilding {
+  translation 18.1741 0 -57.5945
+  rotation 0 1 0 0.785398
+  name "commercial building(2)"
+}
+CommercialBuilding {
   translation -5.36729 0 -81.1351
   rotation 0 1 0 0.785398
   name "commercial building(1)"
-}
-CommercialBuilding {
-  translation 20.5559 0 -55.2127
-  rotation 0 1 0 0.785398
-  name "commercial building(2)"
 }
 StraightRoadSegment {
   translation 0.821124 0 -246.303
@@ -521,13 +534,13 @@ StraightRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   length 83
@@ -619,13 +632,13 @@ StraightRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   length 38
@@ -640,11 +653,13 @@ StraightRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
+      type "none"
     }
   ]
   length 26
@@ -677,13 +692,13 @@ StraightRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   length 36
@@ -765,13 +780,13 @@ CurvedRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   locked FALSE
@@ -785,13 +800,13 @@ CurvedRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   locked FALSE
@@ -848,13 +863,13 @@ CurvedRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   totalAngle 0.52
@@ -869,13 +884,13 @@ CurvedRoadSegment {
   lines [
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
     RoadLine {
     }
     RoadLine {
       color 1 1 0
-      type "continuous"
+      type "none"
     }
   ]
   totalAngle 0.5
@@ -939,13 +954,6 @@ WorkBarrier {
   rotation 0 1 0 -0.785395307179586
   name "work barrier(1)"
 }
-FastFoodRestaurant {
-  translation 5.60909 0 -149.293
-  rotation 0 1 0 2.35619
-  height 20
-  length 20
-  width 19
-}
 UBuilding {
   translation 113.714 0 -49.807
   rotation 0 1 0 0.785398
@@ -987,7 +995,7 @@ Warehouse {
   rotation 0 1 0 -0.785395307179586
 }
 StopSign {
-  translation 148.317 -4.58153e-06 -209.717
+  translation 147.965 -4.58808e-06 -210.988
   rotation -1.45537e-08 -1 -6.02831e-09 1.30902
   name "stop sign(17)"
   signBoards [
@@ -1000,7 +1008,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation 142.76 -4.3436e-06 -194.572
+  translation 143.989 -4.3608e-06 -194.205
   rotation 7.67378e-09 1 -5.88831e-09 2.87977
   name "stop sign(15)"
   signBoards [
@@ -1013,7 +1021,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation 116.964 -3.11145e-06 -110.765
+  translation 117.602 -3.10185e-06 -108.699
   rotation 6.31894e-09 1 -8.23502e-09 2.35617
   name "stop sign(14)"
   signBoards [
@@ -1039,7 +1047,7 @@ StopSign {
   ]
 }
 StopSign {
-  translation -8.33 0 -3.3
+  translation -8.93095 1.57481e-08 -2.69905
   rotation -3.27089e-09 1 -2.48449e-08 0.785395
   signBoards [
     StopPanel {
@@ -1081,6 +1089,237 @@ DEF GROUND_SHAPE Solid {
   boundingObject USE GROUND_PLANE
   locked TRUE
 }
+OrderSign {
+  translation -36.1017 0 -133.788
+  rotation 0 -1 0 -0.7854053071795866
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation -57.9136 0 -151.086
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(2)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation -52.1184 0 -175.49
+  rotation 0 1 0 -2.3561953071795863
+  name "order sign(4)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation -59.121 0 -193.917
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(5)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation 19.442 0 -249.55
+  rotation 0 1 0 -2.3561953071795863
+  name "order sign(7)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation 4.25071 0 -242.27
+  rotation 0 1 0 2.35619
+  name "order sign(8)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation 40.4405 0 -213.138
+  rotation 0 -1 0 -0.785395307179586
+  name "order sign(9)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation 52.5199 0 -206.447
+  rotation 0 1 0 3.14159
+  name "order sign(10)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/20limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation -36.8724 0 -132.985
+  rotation 0 1 0 0.785401
+  name "order sign(1)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/30limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation -48.3346 0 -189.64
+  rotation 0 1 0 2.3562
+  name "order sign(3)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/30limit.png"
+      ]
+    }
+  ]
+}
+OrderSign {
+  translation -5.41912 0 -247.618
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(6)"
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.026
+      signImage [
+        "textures/30limit.png"
+      ]
+    }
+  ]
+}
+CautionSign {
+  translation -37.5563 0 -132.262
+  rotation 0 1 0 0.7854009999999998
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+    }
+  ]
+}
+CautionSign {
+  translation 37.3735 0 -44.1966
+  rotation 0 1 0 -0.785395307179586
+  name "caution sign(2)"
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+    }
+  ]
+}
+CautionSign {
+  translation 39.4841 0 -31.1921
+  rotation 0 1 0 2.3562
+  name "caution sign(3)"
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+    }
+  ]
+}
+CautionSign {
+  translation 20.5668 0 -146.883
+  rotation 0 1 0 -0.785395307179586
+  name "caution sign(1)"
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+    }
+  ]
+}
+CautionSign {
+  translation 22.8932 0 -134.204
+  rotation 0 1 0 2.3562
+  name "caution sign(4)"
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+    }
+  ]
+}
+StopSign {
+  translation -38.6177 0 -131.213
+  rotation 0 1 0 0.785401
+  name "stop sign(18)"
+}
+StopSign {
+  translation 41.817 0 -165.903
+  rotation 0 -1 0 -5.307179586466759e-06
+  name "stop sign(20)"
+}
+StopSign {
+  translation 43.1589 0 -152.208
+  rotation 0 -1 0 -2.094405307179586
+  name "stop sign(21)"
+}
+StopSign {
+  translation 54.9487 0 -162.502
+  rotation 0 1 0 -2.0943853071795866
+  name "stop sign(22)"
+}
 DEF GROUND Solid {
   translation 0 0.31 0
   boundingObject DEF GROUND_PLANE Plane {
@@ -1089,8 +1328,8 @@ DEF GROUND Solid {
   locked TRUE
 }
 DEF CarTractor Tractor {
-  translation -24.296289426909034 0.655738860207782 -149.85231279326868
-  rotation 0.026002416494909742 0.997680615113499 -0.06290679266323695 2.359430704263124
+  translation -17.756806859424284 0.6551130938516155 -156.38972585557266
+  rotation 0.02589803190808272 0.9976991175162758 -0.06265590834496282 2.3594139929252873
   name "Tractor"
   sensorSlot [
     Camera {
@@ -1128,14 +1367,22 @@ DEF CarTractor Tractor {
   ]
 }
 DEF my_vehicle Car {
-  translation -31.5334 0.441284 -150.858
-  rotation 0 1 0 -2.3561953071795863
+  translation 32.4454 0.31528 -224.697
+  rotation 0 1 0 0.785398
   controller "AckermanDriver"
   controllerArgs [
-    "24.2258 0 -233.859"
+    "-21.8205 0.31528 -220.31"
   ]
   wheelbase 3
   extensionSlot [
+    GPS {
+      name "gps3"
+      accuracy 1
+    }
+    GPS {
+      name "gps2"
+      accuracy 1
+    }
     Compass {
     }
     Group {
@@ -1312,7 +1559,7 @@ DEF my_vehicle Car {
     }
     Camera {
       translation 0 0.64 3.77
-      rotation 3.4339994638889944e-07 -0.9659258492010602 -0.2588189595935602 -3.1415853071795863
+      rotation 6.18997e-07 1 -8.77262e-08 3.14159
       children [
         Transform {
           translation 0 0 0.05
@@ -1333,11 +1580,13 @@ DEF my_vehicle Car {
         }
       ]
       fieldOfView 1
-      width 128
+      width 256
+      height 256
     }
     Gyro {
     }
     GPS {
+      name "gps1"
       accuracy 1
     }
     Display {
@@ -1410,4 +1659,18 @@ DEF my_vehicle Car {
   gearRatio [
     -12, 10, 16.5, 4.5, 3.5, 2.75
   ]
+}
+ParkingLines {
+  translation 35.9137 0.01 -42.3066
+  rotation 0 1 0 -0.785395307179586
+  numberOfCarParks 10
+  carParkLength 4
+  carParkWidth 1
+}
+ParkingLines {
+  translation 19.6777 0.01 -145.269
+  rotation 0 1 0 -0.785395307179586
+  numberOfCarParks 10
+  carParkLength 4
+  carParkWidth 1
 }
