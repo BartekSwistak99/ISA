@@ -42,6 +42,20 @@ import pickle
 
 from NeuralNetwork import SignPrediction
 
+
+def rotate(point, angle, origin = (0,0)):
+    """
+    Rotate a point counterclockwise by a given angle around a given origin.
+    The angle should be given in radians.
+    """
+    ox, oy = origin
+    px, py = point
+
+    qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
+    qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
+    return qx, qy
+
+
 class PathGenerator():
     def __init__(self, points:list, timestep = 50, max_point_distance = 5.0):
         super().__init__()
@@ -71,6 +85,8 @@ class PathGenerator():
             else:
                 source = target
                 target = self._points.pop(0)
+            
+            
 
             distance_to_go = self._calculate_distance(source, target)
             distance_traveled = 0.0
@@ -151,14 +167,12 @@ class AckermannVehicleDriver():
         # Carrot position
         self.carrot_filter_size = 5
         self.carrot_position = np.zeros((self.carrot_filter_size, 2)) + np.inf
-        
+        self.max_point_distance = 5.0
 
         # Mean GPS filtering and physics data
         self.gps_xyz = []
         self.gps_speed = 0.0
         
-
-
         # CNN image data
         self.im_num = 0
 
@@ -174,8 +188,6 @@ class AckermannVehicleDriver():
         for gps in self.GPS:
             speed += gps.getSpeed()
         self.gps_speed = speed / len(self.GPS)
-
-
 
     def _get_sign(self, num: float) -> int:
         return -1 if num <= 0.0 else 1
@@ -227,216 +239,12 @@ class AckermannVehicleDriver():
 
         self.driver.setCruisingSpeed(self.speed)
     
-    def follow_path(self, source, target, points, graph, min_dist = 2.0):
-        if len(points) == 0: 
-            print('Reached target location')
-            return True
 
-        
-        object_xyz = self.gps_xyz
-        if np.any(np.isnan(object_xyz)):
-            return False
-        
-        target_xyz = graph[points[0]]['xyz']
-        dist = Graph.calculate_distance(object_xyz, target_xyz)
-        if  dist < min_dist:
-            print('Reached: ', points[0])
-            points.pop(0)
-            return False
-
-        dy = object_xyz[2] - target_xyz[2] 
-        dx = object_xyz[0] - target_xyz[0]
-        target_angle = math.atan2(dy, dx)
-
-        x, _, y = self.compass.getValues()
-        object_angle = math.atan2(x, y)
-
-        radians = (object_angle - target_angle)
-
-        if radians > +math.pi: radians = math.pi - radians
-        if radians < -math.pi: radians = 2*math.pi + radians
-
-        if abs(radians) > (math.pi - 0.125): radians = 0.0
-
-        func_val = math.log10(dist + 1) ** 4
-        if func_val > 1.0: func_val = 1.0
-        radians *= func_val
-
-        if not math.isnan(radians):
-            self._set_steering_angle(radians)
-
-        return False
-
-
-    def follow_path_carrots(self, target_xy, min_dist = 2.0):
-        object_xy = (self.gps_xyz[0], self.gps_xyz[2])
-        if np.any(np.isnan(object_xy)):
-            return False
-        
-        dist = Graph.calculate_distance(object_xy, target_xy)
-        if  dist < min_dist:
-            print('Reached target')
-            return True
-
-        dy = object_xy[1] - target_xy[1] 
-        dx = object_xy[0] - target_xy[0]
-        target_angle = math.atan2(dy, dx)
-
-        x, _, y = self.compass.getValues()
-        object_angle = math.atan2(x, y)
-
-        radians = (object_angle - target_angle)
-
-        if radians > +math.pi: radians = math.pi - radians
-        if radians < -math.pi: radians = 2*math.pi + radians
-
-        if abs(radians) > (math.pi - 0.05): radians = 0.0
-
-        if not math.isnan(radians):
-            self._set_steering_angle(radians)
-
-        return False
-    
-
-    @staticmethod
-    def rotate(point, angle, origin = (0,0)):
-        """
-        Rotate a point counterclockwise by a given angle around a given origin.
-
-        The angle should be given in radians.
-        """
-        ox, oy = origin
-        px, py = point
-
-        qx = ox + math.cos(angle) * (px - ox) - math.sin(angle) * (py - oy)
-        qy = oy + math.sin(angle) * (px - ox) + math.cos(angle) * (py - oy)
-        return qx, qy
-
-    def follow_path_ackerman(self, source, target, points, graph, min_dist = 2.5):
-        if len(points) == 0: 
-            print('Reached target location')
-            return True
-
-        
-        object_xyz = self.gps_xyz
-        if np.any(np.isnan(object_xyz)):
-            return False
-
-        target_xyz = graph[points[0]]['xyz']
-        dist = Graph.calculate_distance(object_xyz, target_xyz)
-        if  dist < min_dist:
-            print('Reached: ', points[0])
-            points.pop(0)
-            return False
-        
-        ox, _, oy = np.array(object_xyz)
-        tx, _, ty = np.array(target_xyz)
-
-        tx -= ox
-        ty -= oy
-        ox -= ox
-        oy -= oy
-
-        #ty = np.abs(ty)
-
-        target_angle = math.atan2(-ty, -tx)
-        cx, _, cy = self.compass.getValues()
-        compass_angle = math.atan2(cy, cx)
-
-        radians = (compass_angle + target_angle)
-
-        if radians > +math.pi: radians = math.pi - radians
-        if radians < -math.pi: radians = 2*math.pi + radians
-
-
-        tx, ty = AckermannVehicleDriver.rotate((tx, ty), compass_angle - math.pi)
-
-        radiuses_valid = np.abs(self.radiuses) > dist
-        radiuses = self.radiuses[radiuses_valid]
-        angles_space = self.angles_space[radiuses_valid]
-
-        phi = 0
-        dist_min = abs(tx)
-        for r, phi_const in zip(radiuses, angles_space):
-            rx = r*self.theta_cos + r
-            ry = r*self.theta_sin
-            xy = np.array(list(zip(rx,ry)))
-            distance_rt = distance.cdist([[tx,ty]], xy).min()
-            if dist_min > distance_rt:
-                dist_min = distance_rt
-                phi = phi_const
-
-        
-        if self.steering_iter % 5 == 0:
-            self.driver.setSteeringAngle(phi)
-        self.steering_iter += 1
-
-        #self._set_steering_angle(phi)
-        return False
-
-
-    def follow_path_ackerman_better(self, points, min_dist = 2.5):
-        if len(points) == 0: 
-            print('Reached target location')
-            return True
-
-        
-        object_xyz = self.gps_xyz
-        if np.any(np.isnan(object_xyz)):
-            return False
-
-        target_xyz = points[0]
-        dist = Graph.calculate_distance(object_xyz, target_xyz)
-        if  dist < min_dist:
-            print('Reached: ', points[0])
-            points.pop(0)
-            return False
-        
-        ox, _, oy = np.array(object_xyz)
-        tx, _, ty = np.array(target_xyz)
-
-        tx -= ox
-        ty -= oy
-        ox -= ox
-        oy -= oy
-
-        #ty = np.abs(ty)
-
-        target_angle = math.atan2(-ty, -tx)
-        cx, _, cy = self.compass.getValues()
-        compass_angle = math.atan2(cy, cx)
-
-        tx, ty = AckermannVehicleDriver.rotate((tx, ty), compass_angle - math.pi)
-
-        radiuses_valid = np.abs(self.radiuses) > dist
-        radiuses = self.radiuses[radiuses_valid]
-        angles_space = self.angles_space[radiuses_valid]
-
-        phi = 0
-        dist_min = abs(tx)
-        for r, phi_const in zip(radiuses, angles_space):
-            rx = r*self.theta_cos + r
-            ry = r*self.theta_sin
-            xy = np.array(list(zip(rx,ry)))
-            distance_rt = distance.cdist([[tx,ty]], xy).min()
-            if dist_min > distance_rt:
-                dist_min = distance_rt
-                phi = phi_const
-
-        self.driver.setSteeringAngle(phi)
-        self.steering_iter += 1
-        return False
-
-
-    def follow_path_ackerman_better_carrot(self, target_xy, min_dist = 2.5):
+    def follow_path(self, target_xy):
         object_xy = (self.gps_xyz[0], self.gps_xyz[2])
         if np.any(np.isnan(object_xy)):
             return False
 
-        dist = Graph.calculate_distance(object_xy, target_xy)
-        if  dist < min_dist:
-            return True
-        
         ox, oy = np.array(object_xy)
         tx, ty = np.array(target_xy)
 
@@ -445,14 +253,13 @@ class AckermannVehicleDriver():
         ox -= ox
         oy -= oy
 
-        #ty = np.abs(ty)
-
         target_angle = math.atan2(-ty, -tx)
         cx, _, cy = self.compass.getValues()
         compass_angle = math.atan2(cy, cx)
 
-        tx, ty = AckermannVehicleDriver.rotate((tx, ty), compass_angle - math.pi)
+        tx, ty = rotate((tx, ty), compass_angle - math.pi)
 
+        dist = Graph.calculate_distance(object_xy, target_xy)
         radiuses_valid = np.abs(self.radiuses) > dist
         radiuses = self.radiuses[radiuses_valid]
         angles_space = self.angles_space[radiuses_valid]
@@ -468,16 +275,13 @@ class AckermannVehicleDriver():
             rx = r*self.theta_cos + r
             ry = r*self.theta_sin
             xy = np.array(list(zip(rx,ry)))
-            #distance_rt = distance.cdist([[tx, ty]], xy).min()
             distance_rt = np.mean(distance.cdist(carrot, xy), axis=0).min()
             if dist_min > distance_rt:
                 dist_min = distance_rt
                 phi = phi_const
 
         if abs(phi) < 0.125: phi = 0.0
-
         self.driver.setSteeringAngle(phi)
-        return False
 
 
     def main_loop(self, xyz_target = None):
@@ -507,21 +311,20 @@ class AckermannVehicleDriver():
             a = graph[points[i]]['xyz']        
             point_list.append((a[0], a[2]))
        
-        max_point_distance = 5.0
         if len(point_list) > 1:
             def func_dist(a, b, dist=5.0):
                 d = Graph.calculate_distance(a, b)
                 x = a[0] + dist/d * (b[0] - a[0])
                 y = a[1] + dist/d * (b[1] - a[1])
                 return (x, y)
-            if Graph.calculate_distance(point_list[0], point_list[1]) > max_point_distance:
-                point_list[0] = func_dist(point_list[0], point_list[1], max_point_distance)
+            if Graph.calculate_distance(point_list[0], point_list[1]) > self.max_point_distance:
+                point_list[0] = func_dist(point_list[0], point_list[1], self.max_point_distance)
             else:
                 point_list = point_list[1:]
 
-        road_point_gen = PathGenerator(point_list, self.time_step, max_point_distance)
+        road_point_gen = PathGenerator(point_list, self.time_step, self.max_point_distance)
 
-        self._set_speed(7)
+        self._set_speed(12)
         target = (self.gps_xyz[0], self.gps_xyz[2])
 
         i = 0
@@ -531,17 +334,12 @@ class AckermannVehicleDriver():
             self._compute_gps_speed()
 
             dist = Graph.calculate_distance((self.gps_xyz[0], self.gps_xyz[2]), target)
-            new_target = road_point_gen.get_next_point(self.gps_speed, dist)
-            if new_target is not None:
-                target = new_target
-            
-            #if self.follow_path_ackerman_better(new_list_xyz):
-            #if self.follow_path_ackerman(source, target, points, graph):
-            #if self.follow_path(source, target, points, graph):
-            if self.follow_path_ackerman_better_carrot(target, 0.75):
-               self.driver.setCruisingSpeed(0)
-               break
-            
+            target = road_point_gen.get_next_point(self.gps_speed, dist)
+            if target is None:
+                self.driver.setCruisingSpeed(0)
+                break
+
+            self.follow_path(target)
 
             i += 1
             if self.sign_recognition and i % 5 == 0:
@@ -551,11 +349,6 @@ class AckermannVehicleDriver():
                 sign_id, sign_name, prob = to_unpack[0:3]
                 print(sign_id, sign_name, prob)
                 
-
-
-
-
-
 if __name__ == '__main__':
     #np.set_printoptions(suppress=True)
 
