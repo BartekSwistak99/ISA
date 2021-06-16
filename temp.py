@@ -43,7 +43,70 @@ def detect_sign():
     cv.imshow('detected circles',cimg)
     cv.waitKey(0)
 
+
+
+
+class PathGenerator():
+    def __init__(self, points:list, timestep = 50):
+        super().__init__()
+        self._timestep = 50
+        self._speed = 0.0
+        self._points = points
+        self._generator = self._path_generator()
+
+    def _calculate_distance(self, x:tuple, y:tuple):
+        return np.linalg.norm(np.array(x, dtype='float32') - np.array(y, dtype='float32'))
+
+    @staticmethod
+    def get_target_point(source, target, p):
+        sx, sy = source
+        tx, ty = target
+        return sx + (tx - sx) * p, sy + (ty - sy) * p
+
+    def _path_generator(self):
+        inited = True
+        source = target = (0,0)
+        while len(self._points) > 0:
+            if inited == True:
+                source = self._points.pop(0)
+                target = self._points.pop(0)
+                inited = False
+            else:
+                source = target
+                target = self._points.pop(0)
+            
+            print(source, target)
+
+            distance_to_go = self._calculate_distance(source, target)
+            distance_traveled = 0.0
+            while distance_traveled < distance_to_go:
+                distance_step = self._speed * (self._timestep / 1000)
+                distance_traveled += distance_step
+                precentage = distance_traveled / distance_to_go
+                yield PathGenerator.get_target_point(source, target, precentage)
+        
+        while True:
+            yield None
+    
+    def get_next_point(self, speed = 0.0):
+        self._speed = speed
+        return next(self._generator)
+
+
 if __name__ == '__main__':
+    points = [(0, 0), (100, 100), (150, 120)]
+    pathgenerator = PathGenerator(points)
+    while True:
+        xy = pathgenerator.get_next_point(10)
+        if xy[0] == np.inf:
+            break
+        print(xy)
+
+
+
+    exit()
+    detect_sign()
+    exit()
 
     theta_pi = np.linspace(0, 2*np.pi, 250)
     theta_cos = np.cos(theta_pi)
@@ -54,7 +117,7 @@ if __name__ == '__main__':
     angle_max = 0.7
     object_xy = np.array([0, 0])
     #target_xy = np.array([0, 0])
-    target_xy = np.array([1 ,1])
+    target_xy = np.array([3 ,5])
 
     target_xy -= object_xy
     object_xy -= object_xy
@@ -62,8 +125,9 @@ if __name__ == '__main__':
     tx, ty = target_xy
 
 
-
-    #tx, ty = rotate([tx, ty], np.pi/4)
+    compass_angle = 0.5
+    tx, ty = rotate((tx, ty), compass_angle)
+    
 
     print('dot', np.dot(object_xy, target_xy))
 

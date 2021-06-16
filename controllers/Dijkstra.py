@@ -105,7 +105,6 @@ class Graph():
                     closest = dist
                     a = vertice1
                     b = vertice2
-                    print(f'{a} {b} {dist}')
         return a, b
     
     def get_closest_point_edges_road(self, xyz_source:tuple, xyz_target:tuple, source='source', target = 'target', can_neighborhood=True):
@@ -129,7 +128,7 @@ class Graph():
             # Przelicz linie dla nowego grafu
             edges_lines = self._calculate_egdes_dict(graph)
             c, d = self.get_closest_edges(xyz_source, edges_lines)
-            print('Closest source: ', [c, d])
+
 
             graph[source] = {'xyz': xyz_source, 'neighbors': []} 
             if d in graph[c]['neighbors']:

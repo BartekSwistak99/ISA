@@ -16,6 +16,7 @@ from skimage.morphology import skeletonize, dilation, square
 from glob import glob
 import numpy as np
 from skimage import io
+from skimage.color import rgb2hsv, rgb2gray
 
 from scipy.spatial import distance
 
@@ -91,8 +92,13 @@ class PathGenerator():
 
 
 class AckermannVehicleDriver():
-    def __init__(self, graph = None):
+    def __init__(self, graph = None, sign_recognition=False):
         #self.supervisor = Supervisor()
+
+        self._sp = None
+        self.sign_recognition = sign_recognition
+        if sign_recognition == True:
+            self._sp = SignPrediction('classifierModGen.h5', 'unet2dMod.h5')
 
         self.driver = Driver() #self.supervisor.getFromDef('my_vehicle')
        
@@ -108,7 +114,7 @@ class AckermannVehicleDriver():
         self.needle_len = 50.0
 
         # Extension Slot
-        self.GPS = GPS('gps1'), GPS('gps2'), GPS('gps3')
+        self.GPS = GPS('gps1'), #GPS('gps2'), GPS('gps3')
         self.gyro = Gyro('gyro')
         self.camera = Camera('camera')
         self.compass = Compass('compass')
@@ -131,12 +137,6 @@ class AckermannVehicleDriver():
         self.camera.enable(self.time_step)
         self.compass.enable(self.time_step)
 
-        # Auto drive
-        self.SIZE_LINE = 2
-        self.old_line_values = np.zeros(self.SIZE_LINE)
-        self.old_value = 0.0
-        self.integral = 0.0
-
         # Constansts for steering
         max_theta_space = 100
         max_angles_space = 150
@@ -147,6 +147,11 @@ class AckermannVehicleDriver():
     
         self.radiuses = self.wheelbase / (np.tan(self.angles_space) + 1e-9) # +1e-9 to avoid div 0
         self.steering_iter = 0
+
+        # Carrot position
+        self.carrot_filter_size = 5
+        self.carrot_position = np.zeros((self.carrot_filter_size, 2)) + np.inf
+        
 
         # Mean GPS filtering and physics data
         self.gps_xyz = []
@@ -452,29 +457,30 @@ class AckermannVehicleDriver():
         radiuses = self.radiuses[radiuses_valid]
         angles_space = self.angles_space[radiuses_valid]
 
+        self.carrot_position[:-1] = self.carrot_position[1:]
+        self.carrot_position[-1] = (tx, ty)
+        carrot = self.carrot_position[np.where(np.sum(self.carrot_position, axis=1)) != np.inf][0]
+        mean_tx, _ = np.mean(carrot, axis=0)
+
         phi = 0
-        dist_min = abs(tx)
+        dist_min = abs(mean_tx)
         for r, phi_const in zip(radiuses, angles_space):
             rx = r*self.theta_cos + r
             ry = r*self.theta_sin
             xy = np.array(list(zip(rx,ry)))
-            distance_rt = distance.cdist([[tx,ty]], xy).min()
+            #distance_rt = distance.cdist([[tx, ty]], xy).min()
+            distance_rt = np.mean(distance.cdist(carrot, xy), axis=0).min()
             if dist_min > distance_rt:
                 dist_min = distance_rt
                 phi = phi_const
+
+        if abs(phi) < 0.125: phi = 0.0
 
         self.driver.setSteeringAngle(phi)
         return False
 
 
-
     def main_loop(self, xyz_target = None):
-        # Load CNN model
-        #model = load_model('C:/Users/adrian/Documents/Semestr_6/ISA/ISA/model_sign.h5')
-
-
-        # wait for gps 
-        i = 0
         while self.driver.step() != -1:
             self._compute_gps_xyz()
             self._compute_gps_speed()
@@ -508,7 +514,6 @@ class AckermannVehicleDriver():
                 x = a[0] + dist/d * (b[0] - a[0])
                 y = a[1] + dist/d * (b[1] - a[1])
                 return (x, y)
-            
             if Graph.calculate_distance(point_list[0], point_list[1]) > max_point_distance:
                 point_list[0] = func_dist(point_list[0], point_list[1], max_point_distance)
             else:
@@ -519,44 +524,34 @@ class AckermannVehicleDriver():
         self._set_speed(7)
         target = (self.gps_xyz[0], self.gps_xyz[2])
 
-
-        image_array = []
-
-        i = 2256
-
+        i = 0
         while self.driver.step() != -1:
             self._update_display()
             self._compute_gps_xyz()
             self._compute_gps_speed()
-
 
             dist = Graph.calculate_distance((self.gps_xyz[0], self.gps_xyz[2]), target)
             new_target = road_point_gen.get_next_point(self.gps_speed, dist)
             if new_target is not None:
                 target = new_target
             
-            #print(target)
-
             #if self.follow_path_ackerman_better(new_list_xyz):
             #if self.follow_path_ackerman(source, target, points, graph):
             #if self.follow_path(source, target, points, graph):
-            if self.follow_path_ackerman_better_carrot(target, 0.0):
+            if self.follow_path_ackerman_better_carrot(target, 0.75):
                self.driver.setCruisingSpeed(0)
                break
             
 
-            # if i % 5 == 0:
-            #     im = np.array(self.camera.getImageArray())
-            #     image_array.append(im)
-            #     pass
             i += 1
-            if i % 8 == 0:
-                im = np.array(self.camera.getImageArray(), dtype='uint8')
-                io.imsave(f'pred/topred{i}.png', im)
+            if self.sign_recognition and i % 5 == 0:
+                im_rgb = np.array(self.camera.getImageArray(), dtype='uint8')
+                im = rgb2gray(im_rgb)
+                to_unpack = self._sp.getSignIfExist(im)
+                sign_id, sign_name, prob = to_unpack[0:3]
+                print(sign_id, sign_name, prob)
+                
 
-        # with open('data_pre_label_3.dat', 'wb') as f:
-        #     pickle.dump(image_array, f)
-        
 
 
 
@@ -570,7 +565,7 @@ if __name__ == '__main__':
     print('Time: ', datetime.datetime.now())
     world = Graph('../../world_map_new.json')
 
-    driver = AckermannVehicleDriver(world)
+    driver = AckermannVehicleDriver(world, sign_recognition=False)
     driver.main_loop(xyz_target)
 
     

@@ -4,12 +4,15 @@ WorldInfo {
   coordinateSystem "NUE"
 }
 Viewpoint {
-  orientation -0.005232135326877793 -0.78591500870927 -0.6183123998800518 2.410563611572511
-  position -27.618394266673853 72.98489730918249 -220.55466674935562
+  fieldOfView 0.785401
+  orientation -0.39069971449400964 0.5472413429224086 0.740189601177143 2.4021938173737354
+  position -54.93972755467249 57.946636442536246 -157.4122938319671
   follow "vehicle"
   followType "Mounted Shot"
 }
 TexturedBackgroundLight {
+  luminosity 1.25
+  castShadows FALSE
 }
 TexturedBackground {
 }
@@ -60,67 +63,210 @@ Roundabout {
   locked FALSE
 }
 StopSign {
-  translation -30.4035 -3.34567e-07 -76.4257
-  rotation 1.02911e-08 1 -1.35487e-09 -2.3562253071795864
-  name "stop sign(5)"
-  signBoards [
-    StopPanel {
-      translation 0 -0.097 0
-      signImage [
-        "textures/signs/roundabout.png"
-      ]
-    }
-  ]
-}
-StopSign {
-  translation -35.3356 -8.09897e-07 -134.485
+  translation -16.4707 -1.03516e-06 -125.331
   rotation -3.27108e-09 1 -2.48458e-08 0.785371
   name "stop sign(9)"
+  radius 0.01
+  color 0.337255 0 0.576471
   signBoards [
     StopPanel {
-      translation 0 -0.097 0
+      translation 0 -0.097 0.04
       signImage [
         "textures/signs/roundabout.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 StopSign {
-  translation -11.4461 -1.06811e-06 -119.999
-  rotation -3.27108e-09 1 -2.48458e-08 0.785371
+  translation -11.0967 -1.07302e-06 -119.869
+  rotation -3.27111e-09 1 -2.48462e-08 0.785363
   name "stop sign(19)"
+  radius 0.01
+  color 0.337255 0 0.576471
   signBoards [
     StopPanel {
-      translation 0 -0.097 0
+      translation 0 -0.097 0.04
       signImage [
         "textures/signs/roundabout.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 StopSign {
-  translation 8.84602 -1.35369e-06 -114.684
+  translation 9.76926 -1.22317e-06 -99.3127
+  rotation -3.27109e-09 1 -2.4846e-08 0.785367
+  name "stop sign(5)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 14.9947 -1.39028e-06 -107.646
   rotation 1.02911e-08 1 -1.35487e-09 -2.3562253071795864
-  name "stop sign(8)"
+  name "stop sign(27)"
+  radius 0.01
+  color 0.337255 0 0.576471
   signBoards [
     StopPanel {
-      translation 0 -0.097 0
+      translation 0 -0.097 0.04
       signImage [
         "textures/signs/roundabout.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 StopSign {
-  translation -37.7106 -3.31159e-07 -88.7207
-  rotation 1.98803e-08 1 1.52546e-08 -0.7854253071795858
-  name "stop sign(4)"
+  translation 1.09373 -1.34538e-06 -127.113
+  rotation 1.98802e-08 1 1.52546e-08 -0.7854353071795863
+  name "stop sign(6)"
+  radius 0.01
+  color 0.337255 0 0.576471
   signBoards [
     StopPanel {
-      translation 0 -0.097 0
+      translation 0 -0.097 0.04
       signImage [
         "textures/signs/roundabout.png"
       ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -13.2562 -1.76101e-06 -195.303
+  rotation 1.98802e-08 1 1.52546e-08 -0.7854353071795863
+  name "stop sign(31)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -6.19245 -1.81082e-06 -188.259
+  rotation 6.31899e-09 1 -8.23508e-09 2.35616
+  name "stop sign(34)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 8.28726 -1.34509e-06 -114.676
+  rotation 1.02911e-08 1 -1.35488e-09 -2.3562253071795864
+  name "stop sign(8)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -3.84776 -1.0766e-06 -107.732
+  rotation 6.31899e-09 1 -8.23508e-09 2.35616
+  name "stop sign(7)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -37.0681 -3.44277e-07 -88.9084
+  rotation 1.98802e-08 1 1.52546e-08 -0.7854353071795863
+  name "stop sign(4)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -30.3279 -3.31671e-07 -75.916
+  rotation -3.27108e-09 1 -2.48462e-08 0.785362
+  name "stop sign(3)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -43.3299 -4.4802e-08 -68.5262
+  rotation 6.31899e-09 1 -8.23512e-09 2.35616
+  name "stop sign(2)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -50.5168 -5.55074e-08 -82.0951
+  rotation 1.02911e-08 1 -1.35486e-09 -2.356235307179586
+  name "stop sign(22)"
+  radius 0.01
+  color 0.337255 0 0.576471
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.04
+      signImage [
+        "textures/signs/roundabout.png"
+      ]
+      color 1 0 0.0156863
     }
   ]
 }
@@ -254,7 +400,7 @@ GenericTrafficLight {
   state "green"
 }
 GenericTrafficLight {
-  translation 52.6066 0 -57.8582
+  translation 50.4503 0 -58.5022
   rotation 0 1 0 0.785383
   name "generic traffic light(5)"
   state "green"
@@ -301,7 +447,7 @@ GenericTrafficLight {
   state "green"
 }
 GenericTrafficLight {
-  translation -42.936 0 -151.792
+  translation -46.4631 0 -148.29
   rotation 0 1 0 2.35618
   name "generic traffic light(11)"
   state "green"
@@ -454,9 +600,9 @@ StraightRoadSegment {
       type "none"
     }
   ]
-  roadBorderHeight 0.1
-  startingRoadBorderWidth 0
-  endingRoadBorderWidth 0
+  roadBorderHeight 0.01
+  startingRoadBorderWidth 1
+  endingRoadBorderWidth 1
   length 60
   locked FALSE
 }
@@ -471,59 +617,6 @@ StraightRoadSegment {
   startingRoadBorderWidth 0
   endingRoadBorderWidth 0
   length 95
-}
-StopSign {
-  translation -49.8162 -5.36108e-08 -80.7425
-  rotation 3.27098e-09 -1 2.48455e-08 -0.7853753071795859
-  name "stop sign(3)"
-  signBoards [
-    StopPanel {
-      translation 0 -0.097 0
-      signImage [
-        "textures/signs/roundabout.png"
-      ]
-    }
-  ]
-}
-StopSign {
-  translation -42.8993 -5.10267e-08 -68.4947
-  rotation 6.31894e-09 1 -8.23501e-09 2.35618
-  name "stop sign(2)"
-  signBoards [
-    StopPanel {
-      translation 0 -0.097 0
-      signImage [
-        "textures/signs/roundabout.png"
-      ]
-    }
-  ]
-}
-StopSign {
-  translation 1.11736 -1.34119e-06 -126.801
-  rotation 1.98803e-08 1 1.52546e-08 -0.7854253071795858
-  name "stop sign(6)"
-  signBoards [
-    StopPanel {
-      translation 0 -0.097 0
-      signImage [
-        "textures/signs/roundabout.png"
-      ]
-    }
-  ]
-}
-CommercialBuilding {
-  translation 58.1451 0 -17.6235
-  rotation 0 1 0 0.785398
-}
-CommercialBuilding {
-  translation 18.1741 0 -57.5945
-  rotation 0 1 0 0.785398
-  name "commercial building(2)"
-}
-CommercialBuilding {
-  translation -5.36729 0 -81.1351
-  rotation 0 1 0 0.785398
-  name "commercial building(1)"
 }
 StraightRoadSegment {
   translation 0.821124 0 -246.303
@@ -954,19 +1047,6 @@ WorkBarrier {
   rotation 0 1 0 -0.785395307179586
   name "work barrier(1)"
 }
-UBuilding {
-  translation 113.714 0 -49.807
-  rotation 0 1 0 0.785398
-}
-TheThreeTowers {
-  translation 54.5431 0 -109.344
-  rotation 0 -1 0 0.785395
-}
-RandomBuilding {
-  translation -43.32 0 -118.7
-  rotation 0 1 0 0.785398
-  floorNumber 5
-}
 LargeResidentialTower {
   translation 160.086 0 -150.095
   rotation 0 1 0 0.261799
@@ -989,10 +1069,6 @@ LargeResidentialTower {
   rotation 0 1 0 0.261799
   name "residential tower(2)"
   numberOfFloors 10
-}
-Warehouse {
-  translation 29.0699 0 9.57016
-  rotation 0 1 0 -0.785395307179586
 }
 StopSign {
   translation 147.965 -4.58808e-06 -210.988
@@ -1024,19 +1100,6 @@ StopSign {
   translation 117.602 -3.10185e-06 -108.699
   rotation 6.31894e-09 1 -8.23502e-09 2.35617
   name "stop sign(14)"
-  signBoards [
-    StopPanel {
-      translation 0 -0.097 0
-      signImage [
-        "textures/signs/roundabout.png"
-      ]
-    }
-  ]
-}
-StopSign {
-  translation -4.15824 -1.07067e-06 -107.738
-  rotation 6.31891e-09 1 -8.235e-09 2.35617
-  name "stop sign(7)"
   signBoards [
     StopPanel {
       translation 0 -0.097 0
@@ -1090,235 +1153,863 @@ DEF GROUND_SHAPE Solid {
   locked TRUE
 }
 OrderSign {
-  translation -36.1017 0 -133.788
+  translation -22.2636 0 -131.141
   rotation 0 -1 0 -0.7854053071795866
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation -57.9136 0 -151.086
-  rotation 0 1 0 -0.785395307179586
-  name "order sign(2)"
+  translation 15.8356 0 -93.1891
+  rotation 0 1 0 0.785407
+  name "order sign(22)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation -52.1184 0 -175.49
-  rotation 0 1 0 -2.3561953071795863
-  name "order sign(4)"
+  translation 22.6792 0 -100.033
+  rotation 0 1 0 -2.356185307179586
+  name "order sign(25)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation -59.121 0 -193.917
-  rotation 0 1 0 -0.785395307179586
-  name "order sign(5)"
+  translation 83.1316 0 -25.7234
+  rotation 0 1 0 -2.356185307179586
+  name "order sign(11)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation 19.442 0 -249.55
-  rotation 0 1 0 -2.3561953071795863
-  name "order sign(7)"
+  translation 90.6779 0 -5.5779
+  rotation 0 -1 0 0.785389
+  name "order sign(14)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation 4.25071 0 -242.27
-  rotation 0 1 0 2.35619
-  name "order sign(8)"
+  translation 65.2759 0 5.7787
+  rotation 0 1 0 2.3562
+  name "order sign(15)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation 40.4405 0 -213.138
-  rotation 0 -1 0 -0.785395307179586
+  translation 46.0116 0 14.374
+  rotation 0 1 0 -2.356185307179586
+  name "order sign(16)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation -51.2431 0 -174.129
+  rotation 0 1 0 -2.356185307179586
   name "order sign(9)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation 52.5199 0 -206.447
-  rotation 0 1 0 3.14159
+  translation -59.0131 0 -193.544
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(3)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 0.239075 0 -238.727
+  rotation 0 1 0 2.3562
+  name "order sign(5)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 14.6056 0 -222.907
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(26)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 21.3996 0 -216.118
+  rotation 0 1 0 2.3562
+  name "order sign(29)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation -34.2261 0 -174.072
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(28)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 21.2418 0 -246.913
+  rotation 0 1 0 -2.3561953071795863
+  name "order sign(6)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 52.0083 0 -201.83
+  rotation 0 1 0 -3.1415853071795863
+  name "order sign(8)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 37.9583 0 -216.32
+  rotation 0 1 0 0.785407
   name "order sign(10)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/20limit.png"
+        "textures/20.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation -36.8724 0 -132.985
+  translation 29.3437 0 -141.095
+  rotation 0 1 0 2.3562
+  name "order sign(21)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 9.63799 0 -135.382
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(20)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/20.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation -27.2589 0 -135.948
   rotation 0 1 0 0.785401
   name "order sign(1)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/30limit.png"
+        "textures/30.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation -48.3346 0 -189.64
+  translation 23.7523 0 -85.3452
+  rotation 0 1 0 0.785397
+  name "order sign(23)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 30.5884 0 -92.1814
+  rotation 0 1 0 -2.3561953071795863
+  name "order sign(24)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation -24.6379 0 -170.064
   rotation 0 1 0 2.3562
-  name "order sign(3)"
+  name "order sign(2)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/30limit.png"
+        "textures/30.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 OrderSign {
-  translation -5.41912 0 -247.618
+  translation 7.58309 0 -216.163
   rotation 0 1 0 -0.785395307179586
-  name "order sign(6)"
+  name "order sign(19)"
+  radius 0.01
   signBoards [
     OrderPanel {
-      translation 0 -0.175 -0.026
+      translation 0 -0.175 -0.005
       signImage [
-        "textures/30limit.png"
+        "textures/30.png"
       ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 14.6466 0 -209.147
+  rotation 0 1 0 2.3562
+  name "order sign(30)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation -26.5355 0 -182.058
+  rotation 0 1 0 -0.785395307179586
+  name "order sign(27)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
     }
   ]
 }
 CautionSign {
-  translation -37.5563 0 -132.262
+  translation -19.6343 0 -92.2124
+  rotation 0 1 0 2.3562
+  name "caution sign(9)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 79.6105 0 -8.57525
+  rotation 0 -1 0 -2.3562053071795863
+  name "order sign(12)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 75.5941 0 9.4007
+  rotation 0 1 0 -0.7853853071795864
+  name "order sign(17)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 46.8441 0 1.46833
+  rotation 0 -1 0 -0.7854153071795862
+  name "order sign(18)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation 86.2509 0 -36.572
+  rotation 0 -1 0 -0.7854053071795866
+  name "order sign(13)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation -48.8049 0 -189.803
+  rotation 0 1 0 2.3562
+  name "order sign(4)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+OrderSign {
+  translation -10.5419 0 -241.951
+  rotation 0 -1 0 0.785396
+  name "order sign(7)"
+  radius 0.01
+  signBoards [
+    OrderPanel {
+      translation 0 -0.175 -0.005
+      signImage [
+        "textures/30.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation -31.9575 0 -140.869
   rotation 0 1 0 0.7854009999999998
+  radius 0.01
   signBoards [
     CautionPanel {
-      translation 0 -0.17 0
+      translation 0 -0.17 0.03
       rotation 0 0 1 -0.785395307179586
       signImage [
         "textures/piesi.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 CautionSign {
-  translation 37.3735 0 -44.1966
-  rotation 0 1 0 -0.785395307179586
-  name "caution sign(2)"
-  signBoards [
-    CautionPanel {
-      translation 0 -0.17 0
-      rotation 0 0 1 -0.785395307179586
-      signImage [
-        "textures/piesi.png"
-      ]
-    }
-  ]
-}
-CautionSign {
-  translation 39.4841 0 -31.1921
-  rotation 0 1 0 2.3562
+  translation 31.5342 0 -77.3826
+  rotation 0 1 0 0.785397
   name "caution sign(3)"
+  radius 0.01
   signBoards [
     CautionPanel {
-      translation 0 -0.17 0
+      translation 0 -0.17 0.03
       rotation 0 0 1 -0.785395307179586
       signImage [
         "textures/piesi.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 CautionSign {
-  translation 20.5668 0 -146.883
+  translation 38.4399 0 -84.2884
+  rotation 0 1 0 -2.3561953071795863
+  name "caution sign(12)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 11.0686 0 -137.069
   rotation 0 1 0 -0.785395307179586
-  name "caution sign(1)"
+  name "caution sign(5)"
+  radius 0.01
   signBoards [
     CautionPanel {
-      translation 0 -0.17 0
+      translation 0 -0.17 0.03
       rotation 0 0 1 -0.785395307179586
       signImage [
         "textures/piesi.png"
       ]
+      color 1 0 0.0156863
     }
   ]
 }
 CautionSign {
-  translation 22.8932 0 -134.204
+  translation 22.9409 0 -134.637
   rotation 0 1 0 2.3562
-  name "caution sign(4)"
+  name "caution sign(1)"
+  radius 0.01
   signBoards [
     CautionPanel {
-      translation 0 -0.17 0
+      translation 0 -0.17 0.03
       rotation 0 0 1 -0.785395307179586
       signImage [
         "textures/piesi.png"
       ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 42.2304 0 -186.941
+  rotation 0 1 0 7.33682e-06
+  name "caution sign(10)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 0.575013 0 -209.225
+  rotation 0 1 0 -0.785395307179586
+  name "caution sign(13)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 7.68827 0 -202.13
+  rotation 0 1 0 2.3562
+  name "caution sign(14)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 51.9604 0 -179.921
+  rotation 0 1 0 -3.1415853071795863
+  name "caution sign(11)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation -22.8022 0 -102.967
+  rotation 0 1 0 -0.785395307179586
+  name "caution sign(8)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 69.8356 0 -39.2237
+  rotation 0 1 0 -2.3561953071795863
+  name "caution sign(4)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 39.7294 0 -32.1501
+  rotation 0 -1 0 0.785401
+  name "caution sign(7)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 36.723 0 -43.0593
+  rotation 0 1 0 2.35619
+  name "caution sign(2)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
+    }
+  ]
+}
+CautionSign {
+  translation 80.9574 0 -41.9049
+  rotation 0 1 0 0.785397
+  name "caution sign(6)"
+  radius 0.01
+  signBoards [
+    CautionPanel {
+      translation 0 -0.17 0.03
+      rotation 0 0 1 -0.785395307179586
+      signImage [
+        "textures/piesi.png"
+      ]
+      color 1 0 0.0156863
     }
   ]
 }
 StopSign {
-  translation -38.6177 0 -131.213
+  translation -38.3907 0 -147.138
   rotation 0 1 0 0.785401
   name "stop sign(18)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
 }
 StopSign {
-  translation 41.817 0 -165.903
-  rotation 0 -1 0 -5.307179586466759e-06
+  translation 42.1117 0 -167.135
+  rotation 0 1 0 7.33682e-06
+  name "stop sign(23)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -7.01378 0 -201.666
+  rotation 0 1 0 -0.785395307179586
+  name "stop sign(30)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 0.10674 0 -194.549
+  rotation 0 1 0 2.3562
+  name "stop sign(33)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -18.9999 0 -189.685
+  rotation 0 1 0 -0.785395307179586
+  name "stop sign(32)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation -11.7566 0 -182.464
+  rotation 0 1 0 2.3562
+  name "stop sign(35)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 45.4249 0 -153.991
+  rotation 0 1 0 2.0944
   name "stop sign(20)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
 }
 StopSign {
-  translation 43.1589 0 -152.208
-  rotation 0 -1 0 -2.094405307179586
+  translation 35.7388 0 -147.435
+  rotation 0 1 0 2.3562
+  name "stop sign(24)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 20.5899 0 -146.27
+  rotation 0 1 0 -0.785395307179586
+  name "stop sign(29)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 36.3723 0 -72.7175
+  rotation 0 1 0 0.785407
+  name "stop sign(25)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 42.2766 0 -66.8132
+  rotation 0 1 0 0.785407
+  name "stop sign(28)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 43.1729 0 -79.5181
+  rotation 0 1 0 -2.356185307179586
+  name "stop sign(26)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
+}
+StopSign {
+  translation 54.1282 0 -162.486
+  rotation 0 1 0 1.04721
   name "stop sign(21)"
-}
-StopSign {
-  translation 54.9487 0 -162.502
-  rotation 0 1 0 -2.0943853071795866
-  name "stop sign(22)"
+  radius 0.01
+  signBoards [
+    StopPanel {
+      translation 0 -0.097 0.03
+      color 1 0 0.0156863
+    }
+  ]
 }
 DEF GROUND Solid {
   translation 0 0.31 0
@@ -1328,8 +2019,8 @@ DEF GROUND Solid {
   locked TRUE
 }
 DEF CarTractor Tractor {
-  translation -17.756806859424284 0.6551130938516155 -156.38972585557266
-  rotation 0.02589803190808272 0.9976991175162758 -0.06265590834496282 2.3594139929252873
+  translation -17.758715793408346 0.6556703893721354 -156.38780822188568
+  rotation 0.02599065940906525 0.9976826937288018 -0.06287867887864568 2.3594252320119677
   name "Tractor"
   sensorSlot [
     Camera {
@@ -1367,11 +2058,11 @@ DEF CarTractor Tractor {
   ]
 }
 DEF my_vehicle Car {
-  translation 32.4454 0.31528 -224.697
-  rotation 0 1 0 0.785398
+  translation -36.1251 0.492469 -168.636
+  rotation 1.46361e-08 1 -3.53341e-08 -0.7854053071795866
   controller "AckermanDriver"
   controllerArgs [
-    "-21.8205 0.31528 -220.31"
+    "52.5541 0 -60.457"
   ]
   wheelbase 3
   extensionSlot [
@@ -1668,7 +2359,28 @@ ParkingLines {
   carParkWidth 1
 }
 ParkingLines {
+  translation 80.2787 0.01 -42.5473
+  rotation 0 1 0 -2.3561953071795863
+  numberOfCarParks 10
+  carParkLength 4
+  carParkWidth 1
+}
+ParkingLines {
   translation 19.6777 0.01 -145.269
+  rotation 0 1 0 -0.785395307179586
+  numberOfCarParks 10
+  carParkLength 4
+  carParkWidth 1
+}
+ParkingLines {
+  translation 42.2348 0.01 -185.433
+  rotation 0 1 0 2.85387e-06
+  numberOfCarParks 10
+  carParkLength 4
+  carParkWidth 1
+}
+ParkingLines {
+  translation -23.3216 0.01 -102.27
   rotation 0 1 0 -0.785395307179586
   numberOfCarParks 10
   carParkLength 4

@@ -18,19 +18,27 @@ from tensorflow.keras.layers import (Activation, BatchNormalization, Conv2D,
                                      Dropout, Input, MaxPooling2D,
                                      Softmax, UpSampling2D, concatenate, Dense, Flatten)
 
+config = tf.compat.v1.ConfigProto()
+config.gpu_options.allow_growth = True
+session =tf.compat.v1.InteractiveSession(config=config)
 
 # ----------------------------------------------------------------------------- #
 #                            CNNClassifier                                      #
 # ----------------------------------------------------------------------------- #
+def image_std(im:np.ndarray) -> np.ndarray:
+    im = np.array(im)
+    return (im - np.mean(im)) / np.std(im)
+
 def CNNClassifier(input_shape = (20, 20, 1), num_of_clasess = 5, loss='categorical_crossentropy', optimizer='adam'):
     inputs = Input(shape=input_shape)
 
-    x = Conv2D(8, (3, 3), activation='relu')(inputs)
+    x = Conv2D(8, (2, 2), activation='relu')(inputs)
+    x = Dropout(0.25)(x)
     x = MaxPooling2D((2,2))(x)
-    x = Conv2D(16, (3, 3), activation='relu')(x)
+    x = Conv2D(16, (2, 2), activation='relu')(x)
     x = Dropout(0.5)(x)
     x = MaxPooling2D((2,2))(x)
-    x = Conv2D(32, (3, 3), activation='relu')(x)
+    x = Conv2D(32, (2, 2), activation='relu')(x)
     x = Flatten()(x)
     outputs = Dense(num_of_clasess, activation='softmax')(x)
     model = Model(inputs=inputs, outputs=outputs)
@@ -45,15 +53,20 @@ def accuracy_sklearn(y_pred, y_true):
     return accuracy_score(y_pred, y_true)
 
 
-def trainingCNNClassifier(dataset_path:str='dataset_segmented_sign.dat', model_save:str='classifierMod.h5'):
+def trainingCNNClassifier(dataset_path:str='dataset_segmented_sign_new.dat', model_save:str='classifierModGen.h5'):
     with open(dataset_path, 'rb') as f:
         dataset = pickle.load(f)
         x,y = dataset
-        x = np.array(x) / 255.0
+
         y = np.array(y)
+        for i in range(len(x)):
+            x[i] = image_std(x[i])
+        x = np.array(x)        
+        
 
         model = CNNClassifier()
-        model.fit(x,y, epochs=150)
+        model.fit(x, y , epochs=400, verbose=2)
+        #model.fit(x,y, epochs=150)
 
         y_pred = model.predict(x)
         print(accuracy_sklearn(y_pred, y))
@@ -121,11 +134,14 @@ def UNet2DModel(shape = (128, 64, 1), weights=None):
         model.load_weights(weights)
     return model
 
-def training_UNet2D(path_dataset:str = 'dataset_sign_2.dat', model_save:str = 'modelSeg.h5'):
+def training_UNet2D(path_dataset:str = 'dataset_sign_3.dat', model_save:str = 'modelSeg.h5'):
     with open(path_dataset, 'rb') as f:
         dataset = pickle.load(f)
 
         x, y = dataset
+
+        for i in range(len(x)):
+            x[i] = image_std(x[i])
 
         x = np.array(x)
         y = np.array(y)
@@ -143,56 +159,40 @@ def image_to_dataset():
     X = []
     Y = []
 
-    y = None
-    x = None
-    with open('data_pre_label.dat', 'rb') as f:
-        y = pickle.load(f)
-    with open('data_pre_image.dat', 'rb') as f:
-        x = pickle.load(f)
+    pair = [
+        ('data_pre_label.dat', 'data_pre_image.dat'),
+        ('data_pre_label_2.dat', 'data_pre_image_2.dat'),
+        ('data_pre_label_3.dat', 'data_pre_image_3.dat'),
+        ('data_pre_label_4.dat', 'data_pre_image_4.dat')
+    ]
 
-    for i in range(len(y)):
-        seg = rgb2hsv(y[i])
-        new = seg[:,:,0] * seg[:,:,1]
-        new[np.where(new < 0.85)] = 0
-        new[np.where(new > 0.0)] = 1.0
-        #new = getLargestCC(new)
-        new = new[..., np.newaxis]
-        xnew = rgb2gray(x[i]) 
-        xnew = xnew[..., np.newaxis]
+    for y_p, x_p in pair:
+        y = None
+        x = None
+        with open(y_p, 'rb') as f:
+            y = pickle.load(f)
+        with open(x_p, 'rb') as f:
+            x = pickle.load(f)
 
-        new_x = xnew[128:,64:128]
-        new_y = new[128:,64:128]
+        for i in range(len(y)):
+            seg = rgb2hsv(y[i])
+            new = seg[:,:,0] * seg[:,:,1]
+            new[np.where(new < 0.85)] = 0
+            new[np.where(new > 0.0)] = 1.0
+            #new = getLargestCC(new)
+            new = new[..., np.newaxis]
+            xnew = rgb2gray(x[i]) 
+            xnew = xnew[..., np.newaxis]
 
-        X.append(new_x)
-        Y.append(new_y)
-    
-    y = None
-    x = None
-    with open('data_pre_label_2.dat', 'rb') as f:
-        y = pickle.load(f)
-    with open('data_pre_image_2.dat', 'rb') as f:
-        x = pickle.load(f)
-    for i in range(len(y)):
-        seg = rgb2hsv(y[i])
-        new = seg[:,:,0] * seg[:,:,1]
-        new[np.where(new < 0.85)] = 0
-        new[np.where(new > 0.0)] = 1.0
-        new = new[..., np.newaxis]
-        xnew = rgb2gray(x[i]) 
-        xnew = xnew[..., np.newaxis]
+            new_x = xnew[128:,64:128]
+            new_y = new[128:,64:128]
 
-        new_x = xnew[128:,64:128]
-        new_y = new[128:,64:128]
-
-        plt.imshow(new_y, 'gray')
-        plt.show()
-
-        X.append(new_x)
-        Y.append(new_y)
+            X.append(new_x)
+            Y.append(new_y)
 
     dataset = [X, Y]
 
-    with open('dataset_sign_2.dat', 'wb') as f:
+    with open('dataset_sign_3.dat', 'wb') as f:
         pickle.dump(dataset, f)
     exit()
 
@@ -221,7 +221,7 @@ def convert_to_dataset():
             x.append(im)
             y.append(y_true)
     dataset = [x, y]
-    with open('dataset_segmented_sign.dat', 'wb') as f:
+    with open('dataset_segmented_sign_new.dat', 'wb') as f:
         pickle.dump(dataset, f)
     
     
@@ -237,7 +237,7 @@ class ProcessSegmentation():
         self.model:Model = tf.keras.models.load_model(model_path, custom_objects={'dice_coef':dice_coef, 'dice_loss':dice_loss})
         pass
 
-    def getLargestCC(self, segmentation: np.ndarray, min_count = 150) -> np.ndarray:
+    def getLargestCC(self, segmentation: np.ndarray, min_count = 200) -> np.ndarray:
         """
         min_bicount: 
             minimum object size 
@@ -284,13 +284,16 @@ class ProcessSegmentation():
         return image[x,y]
     
     def predictAndCrop(self, image:np.ndarray, box_size=20, prob_th=0.5) -> np.ndarray:
+        image = image_std(image)
         prediction = self.model.predict(np.array([image]))[0]
         cropped_im = self.getCroppedImageFromPred(image, prediction, box_size, prob_th)
         if cropped_im is None:
             return None
         return cropped_im, prediction
 
-    def predictImage(self, images:np.ndarray) -> np.ndarray:
+    def predictImages(self, images:np.ndarray) -> np.ndarray:
+        for i in range(len(images)):
+            images[i] = image_std(images[i])
         prediction = self.model.predict(images)
         return prediction
 
@@ -301,16 +304,17 @@ class SignPrediction():
         self._names = {-1: 'brak', 0:'stop',1:'przejscie dla pieszych', 2:'ograniczenie 20', 3:'ograniczenie 30', 4:'rondo'}
         self._indexes = image_box
 
-    def getSignIfExist(self, image:np.ndarray, box_size=20, prob_th=0.5)->[int, str]:
+    def getSignIfExist(self, image:np.ndarray, box_size=20, prob_th=0.5)->[int, str, float, np.ndarray]:
         image = image[self._indexes]
         pack = self._ps.predictAndCrop(image, box_size, prob_th)
         if pack is None:
-            return -1, self._names[-1] 
+            return -1, self._names[-1], -1.0, None
         
-        im, pred = pack
+        im_cropped, mask = pack
+        im = image_std(im_cropped)
         pred = self._model_class.predict(np.array([im]))[0]
         p = np.argmax(pred)
-        return p, self._names[p]
+        return p, self._names[p], pred[p], mask, im_cropped
         
 
     
@@ -323,40 +327,58 @@ def predict_multi(model_path, path):
         im = io.imread(im_name, as_gray=True)
         images.append(im)
     images = np.array(images)
+    sp = SignPrediction('classifierModGen.h5', 'unet2dMod.h5')
 
-    sp = SignPrediction('classifierMod.h5', 'modelSeg.h5')
-
+    image_box = np.index_exp[128:,64:128]
     box_size = 20
     for i in range(len(images)):
         pred = sp.getSignIfExist(images[i])
         if pred[0] != -1:
-            print(pred)
-            plt.imshow(images[i], 'gray')
+            print(pred[0:3])
+            f, axarr = plt.subplots(1,3)
+            axarr[0].imshow(images[i][image_box], cmap='gray')
+            axarr[1].imshow(pred[3], cmap='gray')
+            axarr[2].imshow(pred[4], cmap='gray')
+
             plt.show()
+        
 
     exit()
 
+def detect_multi():
+    ps = ProcessSegmentation('modelSeg.h5')
+    images = []
+    dict_images = {}
+
+    imnames = sorted(glob('stopSign/*'), key=lambda f: int(re.sub('\D', '', f)))
+    for im_name in imnames:
+        im = io.imread(im_name, as_gray=True)
+        images.append(im)
+    images = np.array(images)
+
+    image_box = np.index_exp[128:,64:128]
+
+    k = 24
+    for i in range(len(images)):
+        im = images[i][image_box]
+        p = ps.predictAndCrop(im)
+        if p is not None:
+            im, pr = p
+        
+            #io.imsave(f'labeled/{k}_2.png', im)
+            #k+=1
+            plt.imshow(im, 'gray')
+            plt.show()
 
 
 if __name__ == '__main__':
+    np.set_printoptions(suppress=True)
+
+    #detect_multi()
     #trainingCNNClassifier()
     #convert_to_dataset()
     #image_to_dataset()
-    predict_multi('modelSeg.h5', 'pred/*')
+    predict_multi('unet2dMod.h5', 'pred/*')
     #predict('modelSeg.h5', 'topred.png')
-
-    with open('dataset_sign_2.dat', 'rb') as f:
-        dataset = pickle.load(f)
-
-        x, y = dataset
-
-        x = np.array(x)
-        y = np.array(y)
-
-        model = UNet2DModel()
-        model.fit(x, y, batch_size=16, epochs=50)
-        model.save('modelSeg.h5')
-
-        
-
-
+    # training_UNet2D(model_save='unet2dMod.h5')
+    pass
