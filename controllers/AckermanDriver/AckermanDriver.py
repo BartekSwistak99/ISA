@@ -39,8 +39,12 @@ import threading, queue
 from queue import Empty
 
 import pickle
+import asyncio
+import threading
 
 from NeuralNetwork import SignPrediction
+
+
 
 
 def rotate(point, angle, origin = (0,0)):
@@ -111,11 +115,6 @@ class AckermannVehicleDriver():
     def __init__(self, graph = None, sign_recognition=False):
         #self.supervisor = Supervisor()
 
-        self._sp = None
-        self.sign_recognition = sign_recognition
-        if sign_recognition == True:
-            self._sp = SignPrediction('classifierModGen.h5', 'unet2dMod.h5')
-
         self.driver = Driver() #self.supervisor.getFromDef('my_vehicle')
        
         self.keyboard = Keyboard()
@@ -175,6 +174,15 @@ class AckermannVehicleDriver():
         
         # CNN image data
         self.im_num = 0
+        self.cnn_iter = 0
+        self.cnn_per_iter = 5
+        self.cnn_sem = threading.Semaphore(0)
+        
+        self._sp = None
+        self.sign_recognition = sign_recognition
+        if sign_recognition == True:
+            self._sp = SignPrediction('classifierModGen.h5', 'unet2dMod.h5')
+            self._run_sign_recognition_thread()
 
 
     def _compute_gps_xyz(self):
@@ -283,6 +291,35 @@ class AckermannVehicleDriver():
         if abs(phi) < 0.125: phi = 0.0
         self.driver.setSteeringAngle(phi)
 
+    def _run_sign_recognition_thread(self):
+        def _routine():
+            while True:
+                self.cnn_sem.acquire()
+                im = rgb2gray(np.array(self.camera.getImageArray(), dtype='uint8'))
+                to_unpack = self._sp.getSignIfExist(im)
+                sign_id, sign_name, prob = to_unpack[0:3]
+                
+                if sign_id == -1: #brak znaku
+                    pass
+                if sign_id == 0: #stop
+                    # TODO: do implementacji stop
+                    pass
+                if sign_id == 1: #przejscie dla pieszych
+                    # TODO: do implementacji spowalnianie na przejściu dla pieszych
+                    pass
+                if sign_id == 2: #ograniczenie 20
+                    # TODO: do implementacji ogranicznie do 20
+                    pass
+                if sign_id == 3: #ograniczenie 30
+                    # TODO: do implementacji ogranicznie do 30
+                    pass
+                if sign_id == 4: #rondo
+                    # TODO: do implementacji spowalnianie przy rondzie
+                    pass
+
+                print(sign_id, sign_name, prob)
+        threading.Thread(target=_routine).start()
+
 
     def main_loop(self, xyz_target = None):
         while self.driver.step() != -1:
@@ -327,7 +364,6 @@ class AckermannVehicleDriver():
         self._set_speed(12)
         target = (self.gps_xyz[0], self.gps_xyz[2])
 
-        i = 0
         while self.driver.step() != -1:
             self._update_display()
             self._compute_gps_xyz()
@@ -341,13 +377,10 @@ class AckermannVehicleDriver():
 
             self.follow_path(target)
 
-            i += 1
-            if self.sign_recognition and i % 5 == 0:
-                im_rgb = np.array(self.camera.getImageArray(), dtype='uint8')
-                im = rgb2gray(im_rgb)
-                to_unpack = self._sp.getSignIfExist(im)
-                sign_id, sign_name, prob = to_unpack[0:3]
-                print(sign_id, sign_name, prob)
+            self.cnn_iter += 1
+            if self.sign_recognition and self.cnn_iter % self.cnn_per_iter == 0:
+                self.cnn_sem.release()
+                
                 
 if __name__ == '__main__':
     #np.set_printoptions(suppress=True)
@@ -358,7 +391,7 @@ if __name__ == '__main__':
     print('Time: ', datetime.datetime.now())
     world = Graph('../../world_map_new.json')
 
-    driver = AckermannVehicleDriver(world, sign_recognition=False)
+    driver = AckermannVehicleDriver(world, sign_recognition=True)
     driver.main_loop(xyz_target)
 
     

@@ -237,7 +237,7 @@ class ProcessSegmentation():
         self.model:Model = tf.keras.models.load_model(model_path, custom_objects={'dice_coef':dice_coef, 'dice_loss':dice_loss})
         pass
 
-    def getLargestCC(self, segmentation: np.ndarray, min_count = 200) -> np.ndarray:
+    def getLargestCC(self, segmentation: np.ndarray, min_count = 200, max_count = 300) -> np.ndarray:
         """
         min_bicount: 
             minimum object size 
@@ -248,6 +248,7 @@ class ProcessSegmentation():
 
         obj_count = np.bincount(labels.flat)[1:] # [1:] to remove background
         obj_count[np.where(obj_count < min_count)] = 0 # remove objects with size less than min_count
+        obj_count[np.where(obj_count > max_count)] = 0 # remove objects with size greater than max_count
         if obj_count.max() == 0:
             return np.zeros(segmentation.shape)
 
