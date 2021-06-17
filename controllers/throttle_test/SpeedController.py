@@ -170,6 +170,8 @@ class SpeedController():
     def set_expected_speed(self, expected_speed):
         if self.expected_speed < self.MIN_SPEED:
             self.expected_speed = self.MIN_SPEED
+        if expected_speed == 0.0:
+            expected_speed = 0.000001
         self.expected_speed = expected_speed
 
     def update_speed_controller(self,gps_speed):
@@ -193,8 +195,6 @@ class SpeedController():
 
     def slow_down(self, speed =0.000001,time = None):
         if not self.stop:
-            if speed == 0.0:
-                speed = 0.000001
             self.previous_speed = self.expected_speed
             self.stop = 1
             self.set_expected_speed(speed)

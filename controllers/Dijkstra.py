@@ -1,6 +1,6 @@
 import json
 import numpy as np
-import matplotlib.pyplot as pypl
+#import matplotlib.pyplot as pypl
 
 class Graph():
     def __init__(self, filename:str):
@@ -154,7 +154,7 @@ class Graph():
         return self._graph.keys()
 
 if __name__ == '__main__':
-    world = Graph('C:\\Users\\adrian\\Documents\\Semestr_6\\ISA\\ISA\\world_map_new.json')
+    world = Graph('C:\\Users\\barte\\OneDrive\\Dokumenty\\ISA\\ISA\\world_map_new.json')
 
     keys = world.getKeys()
     good = 0

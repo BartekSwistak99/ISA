@@ -19,7 +19,7 @@ from skimage import io
 from skimage.color import rgb2hsv, rgb2gray
 
 from scipy.spatial import distance
-
+import SpeedController as sc
 from datetime import date
 import datetime
 import math
@@ -42,7 +42,7 @@ import pickle
 import asyncio
 import threading
 
-from NeuralNetwork import SignPrediction
+# from NeuralNetwork import SignPrediction
 
 
 
@@ -121,15 +121,9 @@ class AckermannVehicleDriver():
 
         self.graph: Graph = graph
 
-        # Display
-        self.im = None
-        self.display = Display('display')
-        if self.display is not None:
-            self.im = self.display.imageLoad('speedometer.png')
-        self.needle_len = 50.0
 
         # Extension Slot
-        self.GPS = GPS('gps1'), #GPS('gps2'), GPS('gps3')
+        self.GPS = GPS('gps1'),# GPS('gps2'), GPS('gps3')
         self.gyro = Gyro('gyro')
         self.camera = Camera('camera')
         self.compass = Compass('compass')
@@ -151,7 +145,8 @@ class AckermannVehicleDriver():
         self.keyboard.enable(self.time_step)
         self.camera.enable(self.time_step)
         self.compass.enable(self.time_step)
-
+        # add speed controller
+        self.speedController = sc.SpeedController(self.driver, self.GPS, self.gyro)
         # Constansts for steering
         max_theta_space = 100
         max_angles_space = 150
@@ -201,42 +196,9 @@ class AckermannVehicleDriver():
         return -1 if num <= 0.0 else 1
 
     def _set_steering_angle(self, angle: float):
-        sign = self._get_sign(self.steering_angle)
+        self.speedController.set_steering_angle(angle)
 
-        self.steering_angle = angle
-        if self.steering_angle >= self.max_steering_angle:
-            self.steering_angle = self.max_steering_angle
-        if self.steering_angle <= -self.max_steering_angle:
-            self.steering_angle = -self.max_steering_angle
 
-        if sign == self._get_sign(self.steering_angle):
-            self.driver.setSteeringAngle(self.steering_angle)
-        else:
-            self.driver.setSteeringAngle(0.0)
-
-    def _update_display(self):
-        if self.display is None or self.im is None:
-            return
-
-        self.display.imagePaste(self.im, 0, 0)
-
-        current_speed: float = self.driver.getCurrentSpeed()
-        if math.isnan(current_speed):
-            current_speed = 0.0
-        if current_speed < 0.0:
-            current_speed = abs(current_speed)
-
-        alpha: float = current_speed / 260.0 * 3.72 - 0.27
-        x = int(-self.needle_len * math.cos(alpha))
-        y = int(-self.needle_len * math.sin(alpha))
-        self.display.drawLine(100, 95, 100 + x, 95 + y)
-
-        # GPS speed
-        s = self.gps_speed * 3.6
-        self.display.drawText('GPS speed: %.2f' % s, 10, 130)
-
-        # Show driver speed
-        self.display.drawText('Driver speed: %.2f' % current_speed, 10, 140)
 
     def _set_speed(self, acceleration: float):
         self.speed += acceleration
@@ -245,8 +207,8 @@ class AckermannVehicleDriver():
         if self.speed < -self.max_speed:
             self.speed = -self.max_speed
 
-        self.driver.setCruisingSpeed(self.speed)
-    
+        # self.driver.setCruisingSpeed(self.speed)
+        self.speedController.set_expected_speed(acceleration)
 
     def follow_path(self, target_xy):
         object_xy = (self.gps_xyz[0], self.gps_xyz[2])
@@ -327,6 +289,7 @@ class AckermannVehicleDriver():
             self._compute_gps_speed()
             if not np.any(np.isnan(self.gps_xyz)) and not np.any(np.isnan(self.gps_speed)):
                 break
+
         for i in range(5): 
             self._compute_gps_xyz()
             self.driver.step()
@@ -361,19 +324,21 @@ class AckermannVehicleDriver():
 
         road_point_gen = PathGenerator(point_list, self.time_step, self.max_point_distance)
 
-        self._set_speed(12)
+        self._set_speed(30)
         target = (self.gps_xyz[0], self.gps_xyz[2])
 
         while self.driver.step() != -1:
-            self._update_display()
+            # self._update_display()
             self._compute_gps_xyz()
             self._compute_gps_speed()
+            self.speedController.update_speed_controller(self.gps_speed)
 
             dist = Graph.calculate_distance((self.gps_xyz[0], self.gps_xyz[2]), target)
             target = road_point_gen.get_next_point(self.gps_speed, dist)
             if target is None:
-                self.driver.setCruisingSpeed(0)
+                self.speedController.set_expected_speed(0.0)
                 break
+
 
             self.follow_path(target)
 
@@ -391,7 +356,8 @@ if __name__ == '__main__':
     print('Time: ', datetime.datetime.now())
     world = Graph('../../world_map_new.json')
 
-    driver = AckermannVehicleDriver(world, sign_recognition=True)
+    driver = AckermannVehicleDriver(world, sign_recognition=False)
+
     driver.main_loop(xyz_target)
 
     
